@@ -53,12 +53,7 @@ public abstract class Renderer {
          * s.drawInCanva(this);
          * }
          */
-
-        Point2D start = new Point2D.Double(0, 0);
-        Point2D end = new Point2D.Double(100, 100);
-        drawLine(start, end, MyColor.RED);
-
-        ToolBar toolBar = new ToolBar(20);
+        ToolBar toolBar = new ToolBar(20, this);
         toolBar.createToolBar(this);
     }
 }
