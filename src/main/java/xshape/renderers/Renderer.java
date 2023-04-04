@@ -3,10 +3,13 @@ package xshape.renderers;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import xshape.factory.ShapeFactory;
+import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
 
 public abstract class Renderer {
     ArrayList<Shape> _shapes = new ArrayList<Shape>();
+    ShapeFactory _factory = new ShapesFactory();
 
     public void run() {
     }
@@ -29,13 +32,15 @@ public abstract class Renderer {
     }
 
     public void draw() {
-        Rectangle r = new Rectangle(0, 0, 100, 100);
-        Point2D p1 = new Point2D.Double(250, 250);
-        ArrayList<Point2D> p2 = new ArrayList<Point2D>();
-        p2.add(new Point2D.Double(300, 300));
-        p2.add(new Point2D.Double(350, 300));
-        p2.add(new Point2D.Double(350, 350));
-        _shapes.add(new Polygon(p1, 3, p2));
+        Rectangle r = _factory.createRectangle(0, 0, 100, 100);
+        ArrayList<Point2D> points = new ArrayList<Point2D>();
+        points.add(new Point2D.Double(300, 300));
+        points.add(new Point2D.Double(350, 300));
+        points.add(new Point2D.Double(350, 350));
+
+        Polygon p = _factory.createPolygon(points);
+
+        _shapes.add(p);
         _shapes.add(r);
         for (Shape s : _shapes) {
             s.drawInCanva(this);
