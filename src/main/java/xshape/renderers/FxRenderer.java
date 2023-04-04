@@ -19,8 +19,9 @@ public class FxRenderer extends Renderer {
     /*
      * Constructor
      */
-    public FxRenderer() {
-        _canvas = new Canvas(500, 500);
+    public FxRenderer(int width, int height) {
+        super(width, height);
+        _canvas = new Canvas(getWidth(), getHeight());
         _gc = _canvas.getGraphicsContext2D();
     }
 
@@ -50,7 +51,6 @@ public class FxRenderer extends Renderer {
     @Override
     public void drawText(Point2D pos, String text, MyColor c) {
         _gc.setFill(c.toFx());
-        System.out.println("Supposed to draw text: " + text);
         _gc.fillText(text, pos.getX(), pos.getY());
     }
 

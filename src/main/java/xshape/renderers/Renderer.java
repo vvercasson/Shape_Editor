@@ -10,9 +10,39 @@ import xshape.toolbar.ToolBar;
 import xshape.utils.MyColor;
 
 public abstract class Renderer {
-    ArrayList<Shape> _shapes = new ArrayList<Shape>();
-    ShapeFactory _factory = new ShapesFactory();
+    /*
+     * Window attributes
+     */
+    private int _width, _height;
 
+    /*
+     * Rendering attributes
+     */
+    private ArrayList<Shape> _shapes = new ArrayList<Shape>();
+    private ShapeFactory _factory = new ShapesFactory();
+
+    /*
+     * Constructor
+     */
+    public Renderer(int width, int height) {
+        _width = width;
+        _height = height;
+    }
+
+    /*
+     * Getters
+     */
+    public int getWidth() {
+        return _width;
+    }
+
+    public int getHeight() {
+        return _height;
+    }
+
+    /*
+     * Methods to be implemented by every specific renderer
+     */
     public void run() {
     }
 
@@ -33,6 +63,9 @@ public abstract class Renderer {
         System.out.println("Drawing line");
     }
 
+    /*
+     * Function that says what to be displayed on open
+     */
     public void draw() {
         /*
          * MyColor c1 = new MyColor(0, 0, 255);

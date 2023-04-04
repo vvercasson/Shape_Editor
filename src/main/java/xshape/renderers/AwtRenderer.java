@@ -1,6 +1,5 @@
 package xshape.renderers;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -11,13 +10,24 @@ import xshape.utils.MyColor;
 
 public class AwtRenderer extends Renderer {
     /*
+     * Attributes
+     */
+
+    /*
+     * Constructors
+     */
+    public AwtRenderer(int width, int height) {
+        super(width, height);
+    }
+
+    /*
      * Run function
      */
     @Override
     public void run() {
         JCanvas jc = new JCanvas(this);
-        jc.setBackground(Color.WHITE);
-        jc.setPreferredSize(new Dimension(500, 500));
+        jc.setBackground(MyColor.WHITE.toAwt());
+        jc.setPreferredSize(new Dimension(getWidth(), getHeight()));
         GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
     }
 
