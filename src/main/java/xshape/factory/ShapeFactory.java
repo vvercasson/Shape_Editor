@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.utils.MyColor;
 
 public interface ShapeFactory {
-    public Rectangle createRectangle(double posX, double posY, double height, double width);
+    public Rectangle createRectangle(double posX, double posY, double height, double width, MyColor c);
 
-    public Polygon createPolygon(ArrayList<Point2D> points);
+    public Polygon createPolygon(ArrayList<Point2D> points, MyColor c);
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
+import xshape.utils.MyColor;
 
 public abstract class Renderer {
     ArrayList<Shape> _shapes = new ArrayList<Shape>();
@@ -32,13 +33,17 @@ public abstract class Renderer {
     }
 
     public void draw() {
-        Rectangle r = _factory.createRectangle(0, 0, 100, 100);
+        MyColor c1 = new MyColor(0, 0, 255);
+        MyColor c2 = new MyColor(255, 0, 0);
+
+        Rectangle r = _factory.createRectangle(0, 0, 100, 100, c1);
+
         ArrayList<Point2D> points = new ArrayList<Point2D>();
         points.add(new Point2D.Double(300, 300));
         points.add(new Point2D.Double(350, 300));
         points.add(new Point2D.Double(350, 350));
 
-        Polygon p = _factory.createPolygon(points);
+        Polygon p = _factory.createPolygon(points, c2);
 
         _shapes.add(p);
         _shapes.add(r);

@@ -5,6 +5,7 @@ import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 
 import xshape.renderers.Renderer;
+import xshape.utils.MyColor;
 
 public class Polygon extends AShape {
 
@@ -13,6 +14,12 @@ public class Polygon extends AShape {
 
     public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points) {
         super(pos);
+        _nbPoints = nbPoints;
+        _points = points;
+    }
+
+    public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points, MyColor c) {
+        super(pos, c);
         _nbPoints = nbPoints;
         _points = points;
     }

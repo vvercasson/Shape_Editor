@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import xshape.renderers.Renderer;
+import xshape.utils.MyColor;
 
 public class ShapeGroup implements Shape, Iterable<Shape> {
     /*
@@ -78,6 +79,20 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     @Override
     public Iterator<Shape> iterator() {
         return _shapes.iterator();
+    }
+
+    @Override
+    public MyColor getColor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getColor'");
+    }
+
+    @Override
+    public void setColor(MyColor color) {
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            it.next().setColor(color);
+        }
     }
 
 }

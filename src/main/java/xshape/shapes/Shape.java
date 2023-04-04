@@ -3,9 +3,14 @@ package xshape.shapes;
 import java.awt.geom.Point2D;
 
 import xshape.renderers.Renderer;
+import xshape.utils.MyColor;
 
 public interface Shape {
 	Point2D getPos();
+
+	MyColor getColor();
+
+	void setColor(MyColor color);
 
 	Shape setPos(Point2D position);
 

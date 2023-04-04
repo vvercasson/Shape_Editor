@@ -38,6 +38,7 @@ public class AwtRenderer extends Renderer {
             xPoints[i] = (int) points.get(i).getX();
             yPoints[i] = (int) points.get(i).getY();
         }
+        AwtApp.instance().graphics().setColor(r.getColor().toAwt());
         AwtApp.instance().graphics().fillPolygon(xPoints, yPoints, points.size());
     }
 
@@ -50,6 +51,7 @@ public class AwtRenderer extends Renderer {
             xPoints[i] = (int) points.get(i).getX();
             yPoints[i] = (int) points.get(i).getY();
         }
+        AwtApp.instance().graphics().setColor(p.getColor().toAwt());
         AwtApp.instance().graphics().fillPolygon(xPoints, yPoints, points.size());
     }
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.utils.MyColor;
 
 public class ShapesFactory implements ShapeFactory {
     public ShapesFactory() {
@@ -12,13 +13,13 @@ public class ShapesFactory implements ShapeFactory {
 
     @Override
     public Rectangle createRectangle(double posX, double posY,
-            double height, double width) {
-        return new Rectangle(posX, posY, height, width);
+            double height, double width, MyColor c) {
+        return new Rectangle(posX, posY, height, width, c);
     }
 
     @Override
-    public Polygon createPolygon(ArrayList<Point2D> points) {
-        return new Polygon(points.get(0), points.size(), points);
+    public Polygon createPolygon(ArrayList<Point2D> points, MyColor c) {
+        return new Polygon(points.get(0), points.size(), points, c);
     }
 
 }

@@ -46,6 +46,7 @@ public class FxRenderer extends Renderer {
             xPoints[i] = r.getPoints().get(i).getX();
             yPoints[i] = r.getPoints().get(i).getY();
         }
+        _gc.setFill(r.getColor().toFx());
         _gc.fillPolygon(xPoints, yPoints, 4);
     }
 
@@ -63,6 +64,7 @@ public class FxRenderer extends Renderer {
             xPoints[i] = points.get(i).getX();
             yPoints[i] = points.get(i).getY();
         }
+        _gc.setFill(p.getColor().toFx());
         _gc.fillPolygon(xPoints, yPoints, points.size());
     }
 
