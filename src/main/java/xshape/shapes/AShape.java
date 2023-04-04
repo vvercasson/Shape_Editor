@@ -10,6 +10,7 @@ public abstract class AShape implements Shape {
      */
     private Point2D _pos;
     MyColor _color;
+    private Point2D _rotationCenter;
 
     /*
      * Constructors
@@ -44,5 +45,15 @@ public abstract class AShape implements Shape {
     public Shape setPos(Point2D _pos) {
         this._pos = _pos;
         return this;
+    }
+
+    @Override
+    public void setRotationCenter(Point2D center) {
+        _rotationCenter = center;
+    }
+
+    @Override
+    public Point2D getRotationCenter() {
+        return _rotationCenter;
     }
 }

@@ -57,6 +57,18 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
         }
     }
 
+    @Override
+    public Point2D getRotationCenter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRotationCenter'");
+    }
+
+    @Override
+    public void setRotationCenter(Point2D center) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setRotationCenter'");
+    }
+
     /*
      * Methods
      */

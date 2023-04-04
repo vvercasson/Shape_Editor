@@ -8,7 +8,6 @@ import xshape.utils.MyColor;
 /*
  * Interface for all shapes
  */
-
 public interface Shape {
 	Point2D getPos();
 
@@ -21,6 +20,10 @@ public interface Shape {
 	Shape translate(Point2D vec);
 
 	Shape rotate(double angle);
+
+	Point2D getRotationCenter();
+
+	void setRotationCenter(Point2D center);
 
 	public void drawInCanva(Renderer r);
 }

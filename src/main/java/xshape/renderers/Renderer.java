@@ -89,6 +89,13 @@ public abstract class Renderer {
 
         Point2D startLine = new Point2D.Double(70, 300);
 
+        Rectangle r = _factory.createRectangle(150, 150, 60, 50, MyColor.PINK);
+        r.drawInCanva(this);
+        r.setRotationCenter(new Point2D.Double(250, 250));
+        drawText(new Point2D.Double(250, 250), ".", MyColor.RED);
+        r.rotate(180);
+        r.drawInCanva(this);
+
         drawText(startLine, "PoufBamBam", MyColor.GREEN);
         ToolBar toolBar = new ToolBar(20, this);
         toolBar.createToolBar(this);

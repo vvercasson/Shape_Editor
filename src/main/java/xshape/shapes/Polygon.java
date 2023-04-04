@@ -21,12 +21,14 @@ public class Polygon extends AShape {
         super(pos);
         _nbPoints = nbPoints;
         _points = points;
+        computeCenterOfRotation();
     }
 
     public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points, MyColor c) {
         super(pos, c);
         _nbPoints = nbPoints;
         _points = points;
+        computeCenterOfRotation();
     }
 
     /*
@@ -43,12 +45,34 @@ public class Polygon extends AShape {
     @Override
     public Shape rotate(double angle) {
         // TODO: Implement rotate method to allow rotation of polygons
-        throw new UnsupportedOperationException("Unimplemented method 'rotate'");
+        double centerX = getRotationCenter().getX();
+        double centerY = getRotationCenter().getY();
+        double radians = Math.toRadians(angle);
+        for (Point2D point : getPoints()) {
+            double x = point.getX() - centerX;
+            double y = point.getY() - centerY;
+            double xPrime = x * Math.cos(radians) - y * Math.sin(radians);
+            double yPrime = x * Math.sin(radians) + y * Math.cos(radians);
+            point.setLocation(xPrime + centerX, yPrime + centerY);
+        }
+        return this;
     }
 
     @Override
     public void drawInCanva(Renderer r) {
         r.drawPolygon(this);
+    }
+
+    public void computeCenterOfRotation() {
+        double x = 0;
+        double y = 0;
+        for (Point2D p : _points) {
+            x += p.getX();
+            y += p.getY();
+        }
+        x /= _nbPoints;
+        y /= _nbPoints;
+        setRotationCenter(new Point2D.Double(x, y));
     }
 
     /*
