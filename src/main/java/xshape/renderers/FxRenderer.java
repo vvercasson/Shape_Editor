@@ -48,7 +48,9 @@ public class FxRenderer extends Renderer {
     }
 
     @Override
-    public void drawText(Point2D pos, String text) {
+    public void drawText(Point2D pos, String text, MyColor c) {
+        _gc.setFill(c.toFx());
+        System.out.println("Supposed to draw text: " + text);
         _gc.fillText(text, pos.getX(), pos.getY());
     }
 

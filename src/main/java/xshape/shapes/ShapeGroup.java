@@ -45,7 +45,7 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
 
     @Override
     public MyColor getColor() {
-        // TODO Auto-generated method stub
+        // TODO : What do we return ? Average of each shape color ? Or just nothing
         throw new UnsupportedOperationException("Unimplemented method 'getColor'");
     }
 

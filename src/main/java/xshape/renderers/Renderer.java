@@ -20,7 +20,7 @@ public abstract class Renderer {
         System.out.println("Drawing rectangle");
     }
 
-    public void drawText(Point2D pos, String text) {
+    public void drawText(Point2D pos, String text, MyColor c) {
         System.out.println("Drawing text");
     }
 
@@ -53,6 +53,10 @@ public abstract class Renderer {
          * s.drawInCanva(this);
          * }
          */
+
+        Point2D startLine = new Point2D.Double(70, 300);
+
+        drawText(startLine, "PoufBamBam", MyColor.GREEN);
         ToolBar toolBar = new ToolBar(20, this);
         toolBar.createToolBar(this);
     }

@@ -26,6 +26,12 @@ public class AwtRenderer extends Renderer {
      */
 
     @Override
+    public void drawText(Point2D pos, String text, MyColor c) {
+        AwtApp.instance().graphics().setColor(c.toAwt());
+        AwtApp.instance().graphics().drawString(text, (int) pos.getX(), (int) pos.getY());
+    }
+
+    @Override
     public void drawRectangle(Rectangle r) {
         ArrayList<Point2D> points = r.getPoints();
         int[] xPoints = new int[points.size()];
