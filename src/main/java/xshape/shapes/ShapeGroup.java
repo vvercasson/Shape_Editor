@@ -22,7 +22,7 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     }
 
     /*
-     * Shape interface
+     * Getters and setters
      */
     @Override
     public Point2D getPos() {
@@ -43,6 +43,23 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
         return this;
     }
 
+    @Override
+    public MyColor getColor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getColor'");
+    }
+
+    @Override
+    public void setColor(MyColor color) {
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            it.next().setColor(color);
+        }
+    }
+
+    /*
+     * Methods
+     */
     @Override
     public Shape translate(Point2D vec) {
         Iterator<Shape> it = iterator();
@@ -79,20 +96,6 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     @Override
     public Iterator<Shape> iterator() {
         return _shapes.iterator();
-    }
-
-    @Override
-    public MyColor getColor() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getColor'");
-    }
-
-    @Override
-    public void setColor(MyColor color) {
-        Iterator<Shape> it = iterator();
-        while (it.hasNext()) {
-            it.next().setColor(color);
-        }
     }
 
 }

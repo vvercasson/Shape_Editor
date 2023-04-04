@@ -8,10 +8,15 @@ import xshape.renderers.Renderer;
 import xshape.utils.MyColor;
 
 public class Polygon extends AShape {
-
+    /*
+     * Attributes
+     */
     private int _nbPoints;
     private ArrayList<Point2D> _points;
 
+    /*
+     * Constructors
+     */
     public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points) {
         super(pos);
         _nbPoints = nbPoints;
@@ -24,25 +29,15 @@ public class Polygon extends AShape {
         _points = points;
     }
 
+    /*
+     * Methods
+     */
     @Override
     public Shape translate(Point2D vec) {
         for (Point2D p : _points) {
             p.setLocation(p.getX() + vec.getX(), p.getY() + vec.getY());
         }
         return this;
-    }
-
-    public ArrayList<Point2D> getPoints() {
-        return _points;
-    }
-
-    public void setPoints(ArrayList<Point2D> _points) {
-        this._points = _points;
-        this._nbPoints = _points.size();
-    }
-
-    public int getNbPoints() {
-        return _nbPoints;
     }
 
     @Override
@@ -54,6 +49,22 @@ public class Polygon extends AShape {
     @Override
     public void drawInCanva(Renderer r) {
         r.drawPolygon(this);
+    }
+
+    /*
+     * Getters and Setters
+     */
+    public ArrayList<Point2D> getPoints() {
+        return _points;
+    }
+
+    public void setPoints(ArrayList<Point2D> _points) {
+        this._points = _points;
+        this._nbPoints = _points.size();
+    }
+
+    public int getNbPoints() {
+        return _nbPoints;
     }
 
 }

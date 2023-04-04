@@ -5,6 +5,10 @@ import java.awt.geom.Point2D;
 import xshape.renderers.Renderer;
 import xshape.utils.MyColor;
 
+/*
+ * Interface for all shapes
+ */
+
 public interface Shape {
 	Point2D getPos();
 

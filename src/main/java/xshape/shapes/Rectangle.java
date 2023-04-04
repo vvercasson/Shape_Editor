@@ -7,6 +7,9 @@ import xshape.renderers.Renderer;
 import xshape.utils.MyColor;
 
 public class Rectangle extends Polygon {
+    /*
+     * Constructors
+     */
     public Rectangle(double posX, double posY, double height, double width) {
         super(new Point2D.Double(posX, posY), 4, new ArrayList<Point2D>() {
             {
@@ -29,6 +32,9 @@ public class Rectangle extends Polygon {
         }, c);
     }
 
+    /*
+     * Methods
+     */
     @Override
     public Shape translate(Point2D vec) {
         getPos().setLocation(getPos().getX() + vec.getX(),
