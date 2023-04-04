@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
+import xshape.toolbar.ToolBar;
 import xshape.utils.MyColor;
 
 public abstract class Renderer {
@@ -33,7 +34,7 @@ public abstract class Renderer {
     }
 
     public void draw() {
-        MyColor c1 = new MyColor(0, 0, 255);
+        /*MyColor c1 = new MyColor(0, 0, 255);
         MyColor c2 = new MyColor(255, 0, 0);
 
         Rectangle r = _factory.createRectangle(0, 0, 100, 100, c1);
@@ -49,6 +50,9 @@ public abstract class Renderer {
         _shapes.add(r);
         for (Shape s : _shapes) {
             s.drawInCanva(this);
-        }
+        }*/
+
+        ToolBar toolBar = new ToolBar(20);
+        toolBar.createToolBar(this);
     }
 }
