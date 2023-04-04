@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+# Target files
+target/*
+
+# images
+*uml.png
+
 # Log file
 *.log
 
