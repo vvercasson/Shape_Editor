@@ -1,6 +1,7 @@
 package xshape.shapes;
 
 import java.awt.geom.Point2D;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 
 import xshape.renderers.Renderer;
@@ -24,6 +25,19 @@ public class Polygon extends AShape {
         return this;
     }
 
+    public ArrayList<Point2D> getPoints() {
+        return _points;
+    }
+
+    public void setPoints(ArrayList<Point2D> _points) {
+        this._points = _points;
+        this._nbPoints = _points.size();
+    }
+
+    public int getNbPoints() {
+        return _nbPoints;
+    }
+
     @Override
     public Shape rotate(double angle) {
         // TODO: Implement rotate method to allow rotation of polygons
@@ -32,7 +46,7 @@ public class Polygon extends AShape {
 
     @Override
     public void drawInCanva(Renderer r) {
-        r.drawPolygon(_points);
+        r.drawPolygon(this);
     }
 
 }

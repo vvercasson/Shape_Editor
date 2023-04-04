@@ -15,19 +15,19 @@ public abstract class Renderer {
     }
 
     public void drawLine(Point2D start, Point2D end) {
-        System.out.println("Drawing line from " + start + " to " + end);
+        System.out.println("Drawing line");
     }
 
     public void drawRectangle(Rectangle r) {
-        System.out.println("Drawing rectangle at " + r.getPos() + " with size " + r.getSize());
+        System.out.println("Drawing rectangle");
     }
 
     public void drawText(Point2D pos, String text) {
-        System.out.println("Drawing text at " + pos + ": " + text);
+        System.out.println("Drawing text");
     }
 
     // TODO: change to Polygon as paramter once Polygon exists
-    public void drawPolygon(ArrayList<Point2D> points) {
+    public void drawPolygon(Polygon p) {
         System.out.println("Drawing polygon");
     }
 

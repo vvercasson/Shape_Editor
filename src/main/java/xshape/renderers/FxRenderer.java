@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 
 public class FxRenderer extends Renderer {
@@ -39,8 +40,13 @@ public class FxRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
-        _gc.fillRect(r.getPos().getX(), r.getPos().getY(), r.getSize().getX(),
-                r.getSize().getY());
+        double[] xPoints = new double[r.getPoints().size()];
+        double[] yPoints = new double[r.getPoints().size()];
+        for (int i = 0; i < r.getPoints().size(); i++) {
+            xPoints[i] = r.getPoints().get(i).getX();
+            yPoints[i] = r.getPoints().get(i).getY();
+        }
+        _gc.fillPolygon(xPoints, yPoints, 4);
     }
 
     @Override
@@ -49,7 +55,8 @@ public class FxRenderer extends Renderer {
     }
 
     @Override
-    public void drawPolygon(ArrayList<Point2D> points) {
+    public void drawPolygon(Polygon p) {
+        ArrayList<Point2D> points = p.getPoints();
         double[] xPoints = new double[points.size()];
         double[] yPoints = new double[points.size()];
         for (int i = 0; i < points.size(); i++) {
