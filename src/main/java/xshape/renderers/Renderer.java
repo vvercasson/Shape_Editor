@@ -24,12 +24,18 @@ public abstract class Renderer {
     }
 
     // TODO: change to Polygon as paramter once Polygon exists
-    public void drawPolygon(Point2D[] points) {
+    public void drawPolygon(ArrayList<Point2D> points) {
         System.out.println("Drawing polygon");
     }
 
     public void draw() {
         Rectangle r = new Rectangle(0, 0, 100, 100);
+        Point2D p1 = new Point2D.Double(250, 250);
+        ArrayList<Point2D> p2 = new ArrayList<Point2D>();
+        p2.add(new Point2D.Double(300, 300));
+        p2.add(new Point2D.Double(350, 300));
+        p2.add(new Point2D.Double(350, 350));
+        _shapes.add(new Polygon(p1, 3, p2));
         _shapes.add(r);
         for (Shape s : _shapes) {
             s.drawInCanva(this);

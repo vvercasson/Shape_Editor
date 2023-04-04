@@ -1,6 +1,7 @@
 package xshape.renderers;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -48,14 +49,14 @@ public class FxRenderer extends Renderer {
     }
 
     @Override
-    public void drawPolygon(Point2D[] points) {
-        double[] xPoints = new double[points.length];
-        double[] yPoints = new double[points.length];
-        for (int i = 0; i < points.length; i++) {
-            xPoints[i] = points[i].getX();
-            yPoints[i] = points[i].getY();
+    public void drawPolygon(ArrayList<Point2D> points) {
+        double[] xPoints = new double[points.size()];
+        double[] yPoints = new double[points.size()];
+        for (int i = 0; i < points.size(); i++) {
+            xPoints[i] = points.get(i).getX();
+            yPoints[i] = points.get(i).getY();
         }
-        _gc.fillPolygon(xPoints, yPoints, points.length);
+        _gc.fillPolygon(xPoints, yPoints, points.size());
     }
 
 }
