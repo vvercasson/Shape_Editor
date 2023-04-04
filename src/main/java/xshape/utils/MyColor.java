@@ -1,8 +1,31 @@
 package xshape.utils;
 
 public class MyColor implements Cloneable {
+    /*
+     * Attributes
+     */
     double[] _rgb = new double[4];
 
+    /*
+     * Some predefined colors
+     */
+    public static final MyColor RED = new MyColor(255, 0, 0);
+    public static final MyColor GREEN = new MyColor(0, 255, 0);
+    public static final MyColor BLUE = new MyColor(0, 0, 255);
+    public static final MyColor BLACK = new MyColor(0, 0, 0);
+    public static final MyColor WHITE = new MyColor(255, 255, 255);
+    public static final MyColor YELLOW = new MyColor(255, 255, 0);
+    public static final MyColor CYAN = new MyColor(0, 255, 255);
+    public static final MyColor MAGENTA = new MyColor(255, 0, 255);
+    public static final MyColor ORANGE = new MyColor(255, 165, 0);
+    public static final MyColor PINK = new MyColor(255, 192, 203);
+    public static final MyColor GRAY = new MyColor(128, 128, 128);
+    public static final MyColor LIGHT_GRAY = new MyColor(211, 211, 211);
+    public static final MyColor DARK_GRAY = new MyColor(169, 169, 169);
+
+    /*
+     * Constructors
+     */
     public MyColor(double r, double g, double b) {
         _rgb[0] = r;
         _rgb[1] = g;
@@ -17,6 +40,9 @@ public class MyColor implements Cloneable {
         _rgb[3] = opacity;
     }
 
+    /*
+     * Methods
+     */
     public java.awt.Color toAwt() {
         return new java.awt.Color((float) _rgb[0] / 255, (float) _rgb[1] / 255, (float) _rgb[2] / 255,
                 (float) _rgb[3] / 255);
