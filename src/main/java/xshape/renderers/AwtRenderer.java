@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.utils.MyColor;
 
 public class AwtRenderer extends Renderer {
     /*
@@ -23,11 +24,6 @@ public class AwtRenderer extends Renderer {
     /*
      * Drawing methods
      */
-    @Override
-    public void drawLine(Point2D start, Point2D end) {
-        AwtApp.instance().graphics().drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(),
-                (int) end.getY());
-    }
 
     @Override
     public void drawRectangle(Rectangle r) {
@@ -53,5 +49,12 @@ public class AwtRenderer extends Renderer {
         }
         AwtApp.instance().graphics().setColor(p.getColor().toAwt());
         AwtApp.instance().graphics().fillPolygon(xPoints, yPoints, points.size());
+    }
+
+    @Override
+    public void drawLine(Point2D start, Point2D end, MyColor c) {
+        AwtApp.instance().graphics().setColor(c.toAwt());
+        AwtApp.instance().graphics().drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(),
+                (int) end.getY());
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.utils.MyColor;
 
 public class FxRenderer extends Renderer {
     /*
@@ -33,10 +34,6 @@ public class FxRenderer extends Renderer {
     /*
      * Drawing methods
      */
-    @Override
-    public void drawLine(Point2D start, Point2D end) {
-        _gc.strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
-    }
 
     @Override
     public void drawRectangle(Rectangle r) {
@@ -66,6 +63,12 @@ public class FxRenderer extends Renderer {
         }
         _gc.setFill(p.getColor().toFx());
         _gc.fillPolygon(xPoints, yPoints, points.size());
+    }
+
+    @Override
+    public void drawLine(Point2D start, Point2D end, MyColor c) {
+        _gc.setStroke(c.toFx());
+        _gc.strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
     }
 
 }
