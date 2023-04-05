@@ -74,7 +74,7 @@ public abstract class Renderer {
         MyColor c1 = new MyColor(0, 0, 255);
         MyColor c2 = new MyColor(255, 0, 0);
 
-        Rectangle r = _factory.createRectangle(50, 50, 100, 100, c1);
+        Rectangle r = _factory.createRectangle(100, 100, 100, 100, c1);
 
         ArrayList<Point2D> points = new ArrayList<Point2D>();
         points.add(new Point2D.Double(300, 300));
@@ -89,6 +89,9 @@ public abstract class Renderer {
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }
+
+        ToolBar toolBar = new ToolBar(this);
+        toolBar.createToolBar(this);
 
         // Point2D startLine = new Point2D.Double(70, 300);
 

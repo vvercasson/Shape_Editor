@@ -11,4 +11,7 @@ public interface ShapeFactory {
     public Rectangle createRectangle(double posX, double posY, double height, double width, MyColor c);
 
     public Polygon createPolygon(ArrayList<Point2D> points, MyColor c);
+
+    public Polygon createDefaultPolygon(double posX, double posY, double height, double width, MyColor c);
+
 }

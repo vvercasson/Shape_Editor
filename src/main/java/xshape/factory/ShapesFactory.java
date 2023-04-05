@@ -22,4 +22,15 @@ public class ShapesFactory implements ShapeFactory {
         return new Polygon(points.get(0), points.size(), points, c);
     }
 
+    @Override
+    public Polygon createDefaultPolygon(double posX, double posY, double height, double width, MyColor c) {
+        ArrayList<Point2D> points = new ArrayList<>();
+
+        points.add(new Point2D.Double(posX+width/2, posY));
+        points.add(new Point2D.Double(posX+width, posY+height/2));
+        points.add(new Point2D.Double(posX+width/2, posY+height));
+        points.add(new Point2D.Double(posX, posY+height/2));
+        return createPolygon(points,c);
+    }
+
 }
