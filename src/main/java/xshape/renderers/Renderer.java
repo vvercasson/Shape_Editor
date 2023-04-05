@@ -66,37 +66,40 @@ public abstract class Renderer {
      * Function that says what to be displayed on open
      */
     public void draw() {
-        /*
-         * MyColor c1 = new MyColor(0, 0, 255);
-         * MyColor c2 = new MyColor(255, 0, 0);
-         * 
-         * Rectangle r = _factory.createRectangle(0, 0, 100, 100, c1);
-         * 
-         * ArrayList<Point2D> points = new ArrayList<Point2D>();
-         * points.add(new Point2D.Double(300, 300));
-         * points.add(new Point2D.Double(350, 300));
-         * points.add(new Point2D.Double(350, 350));
-         * 
-         * Polygon p = _factory.createPolygon(points, c2);
-         * 
-         * _shapes.add(p);
-         * _shapes.add(r);
-         * for (Shape s : _shapes) {
-         * s.drawInCanva(this);
-         * }
-         */
 
-        Point2D startLine = new Point2D.Double(70, 300);
+        MyColor c1 = new MyColor(0, 0, 255);
+        MyColor c2 = new MyColor(255, 0, 0);
 
-        Rectangle r = _factory.createRectangle(150, 150, 60, 50, MyColor.PINK);
-        r.drawInCanva(this);
-        r.setRotationCenter(new Point2D.Double(250, 250));
-        drawText(new Point2D.Double(250, 250), ".", MyColor.RED);
-        r.rotate(180);
-        r.drawInCanva(this);
+        Rectangle r = _factory.createRectangle(50, 50, 100, 100, c1);
 
-        drawText(startLine, "PoufBamBam", MyColor.GREEN);
-        ToolBar toolBar = new ToolBar(20, this);
-        toolBar.createToolBar(this);
+        ArrayList<Point2D> points = new ArrayList<Point2D>();
+        points.add(new Point2D.Double(300, 300));
+        points.add(new Point2D.Double(350, 300));
+        points.add(new Point2D.Double(350, 350));
+
+        Polygon p = _factory.createPolygon(points, c2);
+
+        ShapeGroup g = new ShapeGroup();
+        g.add(r);
+        g.add(p);
+
+        _shapes.add(g);
+
+        for (Shape s : _shapes) {
+            s.drawInCanva(this);
+        }
+
+        // Point2D startLine = new Point2D.Double(70, 300);
+
+        // Rectangle r = _factory.createRectangle(150, 150, 60, 50, MyColor.PINK);
+        // r.drawInCanva(this);
+        // r.setRotationCenter(new Point2D.Double(250, 250));
+        // drawText(new Point2D.Double(250, 250), ".", MyColor.RED);
+        // r.rotate(180);
+        // r.drawInCanva(this);
+
+        // drawText(startLine, "PoufBamBam", MyColor.GREEN);
+        // ToolBar toolBar = new ToolBar(20, this);
+        // toolBar.createToolBar(this);
     }
 }

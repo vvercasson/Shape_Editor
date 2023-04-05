@@ -57,6 +57,21 @@ public class Polygon extends AShape {
     }
 
     @Override
+    public Shape rotate(double angle, Point2D center) {
+        double centerX = center.getX();
+        double centerY = center.getY();
+        double radians = Math.toRadians(angle);
+        for (Point2D point : getPoints()) {
+            double x = point.getX() - centerX;
+            double y = point.getY() - centerY;
+            double xPrime = x * Math.cos(radians) - y * Math.sin(radians);
+            double yPrime = x * Math.sin(radians) + y * Math.cos(radians);
+            point.setLocation(xPrime + centerX, yPrime + centerY);
+        }
+        return this;
+    }
+
+    @Override
     public void drawInCanva(Renderer r) {
         r.drawPolygon(this);
     }

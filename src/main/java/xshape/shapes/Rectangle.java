@@ -42,7 +42,6 @@ public class Rectangle extends Polygon {
         return this;
     }
 
-    // TODO: Implement this method
     @Override
     public Shape rotate(double angle) {
         super.rotate(angle);

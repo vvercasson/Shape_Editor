@@ -12,13 +12,19 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
      * Composite pattern
      */
     private ArrayList<Shape> _shapes = new ArrayList<Shape>();
+    private Point2D _rotationCenterOfGroup;
 
+    /*
+     * Composite pattern
+     */
     public void add(Shape s) {
         _shapes.add(s);
+        computeCenterOfRotation();
     }
 
     public void remove(Shape s) {
         _shapes.remove(s);
+        computeCenterOfRotation();
     }
 
     /*
@@ -38,15 +44,21 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
 
     @Override
     public Shape setPos(Point2D position) {
-        // TODO: Wondering how to handle that, we clearly don't want to set all shapes
-        // to the same positions
+        // TODO: Does this even have sense ?
         return this;
     }
 
     @Override
     public MyColor getColor() {
-        // TODO : What do we return ? Average of each shape color ? Or just nothing
-        throw new UnsupportedOperationException("Unimplemented method 'getColor'");
+        Iterator<Shape> it = iterator();
+        int r = 0, g = 0, b = 0;
+        while (it.hasNext()) {
+            MyColor c = it.next().getColor();
+            r += c.getRed();
+            g += c.getGreen();
+            b += c.getBlue();
+        }
+        return new MyColor(r / _shapes.size(), g / _shapes.size(), b / _shapes.size());
     }
 
     @Override
@@ -58,15 +70,25 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     }
 
     @Override
+    public void computeCenterOfRotation() {
+        Iterator<Shape> it = iterator();
+        double x = 0, y = 0;
+        while (it.hasNext()) {
+            Point2D p = it.next().getRotationCenter();
+            x += p.getX();
+            y += p.getY();
+        }
+        _rotationCenterOfGroup = (new Point2D.Double(x / _shapes.size(), y / _shapes.size()));
+    }
+
+    @Override
     public Point2D getRotationCenter() {
-        // TODO: Need to figure out
-        throw new UnsupportedOperationException("Unimplemented method 'getRotationCenter'");
+        return _rotationCenterOfGroup;
     }
 
     @Override
     public void setRotationCenter(Point2D center) {
-        // TODO: Need to figure out
-        throw new UnsupportedOperationException("Unimplemented method 'setRotationCenter'");
+        _rotationCenterOfGroup = center;
     }
 
     /*
@@ -78,6 +100,7 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
         while (it.hasNext()) {
             it.next().translate(vec);
         }
+        computeCenterOfRotation();
         return this;
     }
 
@@ -85,7 +108,16 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     public Shape rotate(double angle) {
         Iterator<Shape> it = iterator();
         while (it.hasNext()) {
-            it.next().rotate(angle);
+            it.next().rotate(angle, getRotationCenter());
+        }
+        return this;
+    }
+
+    @Override
+    public Shape rotate(double angle, Point2D center) {
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            it.next().rotate(angle, center);
         }
         return this;
     }
@@ -109,5 +141,4 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     public Iterator<Shape> iterator() {
         return _shapes.iterator();
     }
-
 }
