@@ -39,6 +39,8 @@ public interface Shape {
 
 	Shape rotate(double angle, Point2D center);
 
+	boolean belongsTo(Point2D p);
+
 	/*
 	 * Draw method
 	 */

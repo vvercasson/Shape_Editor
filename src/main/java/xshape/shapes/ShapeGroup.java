@@ -123,6 +123,17 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     }
 
     @Override
+    public boolean belongsTo(Point2D p) {
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            if (it.next().belongsTo(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void drawInCanva(Renderer r) {
         Iterator<Shape> it = iterator();
         while (it.hasNext()) {

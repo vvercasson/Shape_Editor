@@ -40,6 +40,10 @@ public abstract class Renderer {
         return _height;
     }
 
+    protected ArrayList<Shape> getShapes() {
+        return _shapes;
+    }
+
     /*
      * Methods to be implemented by every specific renderer
      */
@@ -79,11 +83,8 @@ public abstract class Renderer {
 
         Polygon p = _factory.createPolygon(points, c2);
 
-        ShapeGroup g = new ShapeGroup();
-        g.add(r);
-        g.add(p);
-
-        _shapes.add(g);
+        _shapes.add(p);
+        _shapes.add(r);
 
         for (Shape s : _shapes) {
             s.drawInCanva(this);
@@ -101,5 +102,11 @@ public abstract class Renderer {
         // drawText(startLine, "PoufBamBam", MyColor.GREEN);
         // ToolBar toolBar = new ToolBar(20, this);
         // toolBar.createToolBar(this);
+    }
+
+    public void redraw() {
+        for (Shape s : _shapes) {
+            s.drawInCanva(this);
+        }
     }
 }

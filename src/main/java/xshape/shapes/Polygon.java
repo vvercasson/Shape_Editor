@@ -1,5 +1,6 @@
 package xshape.shapes;
 
+import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -69,6 +70,17 @@ public class Polygon extends AShape {
             point.setLocation(xPrime + centerX, yPrime + centerY);
         }
         return this;
+    }
+
+    @Override
+    public boolean belongsTo(Point2D p) {
+        Path2D path = new Path2D.Double();
+        path.moveTo(getPoints().get(0).getX(), getPoints().get(0).getY());
+        for (int i = 1; i < getPoints().size(); i++) {
+            path.lineTo(getPoints().get(i).getX(), getPoints().get(i).getY());
+        }
+        path.closePath();
+        return path.contains(p);
     }
 
     @Override
