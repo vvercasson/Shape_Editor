@@ -1,17 +1,21 @@
 package xshape.renderers;
 
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.utils.MyColor;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class FxRenderer extends Renderer {
     /*
@@ -60,6 +64,28 @@ public class FxRenderer extends Renderer {
     public void drawText(Point2D pos, String text, MyColor c) {
         _gc.setFill(c.toFx());
         _gc.fillText(text, pos.getX(), pos.getY());
+    }
+
+    @Override
+    public void drawTrashToolBar(Point2D pos){
+        double width = 40;
+        double height = 50;
+
+        // trash body
+        _gc.setFill(MyColor.BLACK.toFx());
+        _gc.fillRect(pos.getX(), pos.getY(), width, height);
+
+        // top of the trash
+        _gc.setFill(MyColor.BLACK.toFx());
+        _gc.fillRect(pos.getX() + 5, pos.getY() - 10, width - 10, 10);
+
+        _gc.setFill(MyColor.WHITE.toFx());
+        _gc.fillRect(pos.getX(), pos.getY(), width, 5);
+
+        // wheels of trash
+        _gc.setFill(MyColor.WHITE.toFx());
+        _gc.fillOval(pos.getX() + 5, pos.getY() + height - 15, 10, 10);
+        _gc.fillOval(pos.getX() + width - 15, pos.getY() + height - 15, 10, 10);
     }
 
     @Override

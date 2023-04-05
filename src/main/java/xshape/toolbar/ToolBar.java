@@ -27,8 +27,7 @@ public class ToolBar extends ShapeGroup {
         add(shapeFactory.createDefaultPolygon(10,50,50,40,MyColor.BLACK));
 
         // draw trash
-
-
+        //r.drawTrashToolBar(new Point2D.Double(10,400));
     }
 
     public void createToolBar(Renderer r) {
