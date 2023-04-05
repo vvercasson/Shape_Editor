@@ -54,7 +54,6 @@ public abstract class Renderer {
         System.out.println("Drawing text");
     }
 
-    // TODO: change to Polygon as paramter once Polygon exists
     public void drawPolygon(Polygon p) {
         System.out.println("Drawing polygon");
     }

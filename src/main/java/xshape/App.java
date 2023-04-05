@@ -3,7 +3,6 @@ package xshape;
 import xshape.renderers.AwtRenderer;
 import xshape.renderers.FxRenderer;
 import xshape.renderers.Renderer;
-import xshape.utils.MyColor;
 
 public class App {
 

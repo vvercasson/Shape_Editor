@@ -1,7 +1,6 @@
 package xshape.shapes;
 
 import java.awt.geom.Point2D;
-import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 
 import xshape.renderers.Renderer;
@@ -44,7 +43,6 @@ public class Polygon extends AShape {
 
     @Override
     public Shape rotate(double angle) {
-        // TODO: Implement rotate method to allow rotation of polygons
         double centerX = getRotationCenter().getX();
         double centerY = getRotationCenter().getY();
         double radians = Math.toRadians(angle);
