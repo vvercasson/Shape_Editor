@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.ArcTo;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.utils.MyColor;
@@ -38,14 +42,18 @@ public class FxRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
-        double[] xPoints = new double[r.getPoints().size()];
-        double[] yPoints = new double[r.getPoints().size()];
-        for (int i = 0; i < r.getPoints().size(); i++) {
-            xPoints[i] = r.getPoints().get(i).getX();
-            yPoints[i] = r.getPoints().get(i).getY();
+        ArrayList<Point2D> points = r.getPoints();
+        int[] xPoints = new int[points.size()];
+        int[] yPoints = new int[points.size()];
+        for (int i = 0; i < points.size(); i++) {
+            xPoints[i] = (int) points.get(i).getX();
+            yPoints[i] = (int) points.get(i).getY();
         }
         _gc.setFill(r.getColor().toFx());
-        _gc.fillPolygon(xPoints, yPoints, 4);
+        if (!r.isRounded())
+            _gc.fillRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2]);
+        else
+            _gc.fillRoundRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2], 10, 10);
     }
 
     @Override
@@ -59,12 +67,29 @@ public class FxRenderer extends Renderer {
         ArrayList<Point2D> points = p.getPoints();
         double[] xPoints = new double[points.size()];
         double[] yPoints = new double[points.size()];
-        for (int i = 0; i < points.size(); i++) {
-            xPoints[i] = points.get(i).getX();
-            yPoints[i] = points.get(i).getY();
+        if (!p.isRounded()) {
+            for (int i = 0; i < points.size(); i++) {
+                xPoints[i] = points.get(i).getX();
+                yPoints[i] = points.get(i).getY();
+            }
+            _gc.setFill(p.getColor().toFx());
+            _gc.fillPolygon(xPoints, yPoints, points.size());
+        } else {
+            double centerX = p.getRotationCenter().getX();
+            double centerY = p.getRotationCenter().getY();
+            double radius = 80;
+            double angle = Math.PI / 6; // 30 degrees
+            double offset = Math.PI / 2; // 90 degrees
+            for (int i = 0; i < p.getNbPoints(); i++) {
+                double x = centerX + radius * Math.cos(i * angle + offset);
+                double y = centerY + radius * Math.sin(i * angle + offset);
+                xPoints[i] = x;
+                yPoints[i] = y;
+            }
+            _gc.setFill(p.getColor().toFx());
+            _gc.fillPolygon(xPoints, yPoints, p.getNbPoints());
         }
-        _gc.setFill(p.getColor().toFx());
-        _gc.fillPolygon(xPoints, yPoints, points.size());
+
     }
 
     @Override

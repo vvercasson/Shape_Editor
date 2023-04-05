@@ -1,6 +1,7 @@
 package xshape.renderers;
 
 import java.awt.Dimension;
+import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -43,6 +44,7 @@ public class AwtRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
+        // je suis stupide numero 2
         ArrayList<Point2D> points = r.getPoints();
         int[] xPoints = new int[points.size()];
         int[] yPoints = new int[points.size()];
@@ -51,7 +53,10 @@ public class AwtRenderer extends Renderer {
             yPoints[i] = (int) points.get(i).getY();
         }
         AwtApp.instance().graphics().setColor(r.getColor().toAwt());
-        AwtApp.instance().graphics().fillPolygon(xPoints, yPoints, points.size());
+        if (!r.isRounded())
+            AwtApp.instance().graphics().fillRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2]);
+        else
+            AwtApp.instance().graphics().fillRoundRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2], 10, 10);
     }
 
     @Override

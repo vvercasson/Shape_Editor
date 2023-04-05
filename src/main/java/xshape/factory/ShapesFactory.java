@@ -12,9 +12,8 @@ public class ShapesFactory implements ShapeFactory {
     }
 
     @Override
-    public Rectangle createRectangle(double posX, double posY,
-            double height, double width, MyColor c) {
-        return new Rectangle(posX, posY, height, width, c);
+    public Rectangle createRectangle(double posX, double posY, double height, double width, MyColor c) {
+        return new Rectangle(posX, posY, height, width, c, false);
     }
 
     @Override
@@ -25,12 +24,16 @@ public class ShapesFactory implements ShapeFactory {
     @Override
     public Polygon createDefaultPolygon(double posX, double posY, double height, double width, MyColor c) {
         ArrayList<Point2D> points = new ArrayList<>();
+        points.add(new Point2D.Double(posX + width / 2, posY));
+        points.add(new Point2D.Double(posX + width, posY + height / 2));
+        points.add(new Point2D.Double(posX + width / 2, posY + height));
+        points.add(new Point2D.Double(posX, posY + height / 2));
+        return createPolygon(points, c);
+    }
 
-        points.add(new Point2D.Double(posX+width/2, posY));
-        points.add(new Point2D.Double(posX+width, posY+height/2));
-        points.add(new Point2D.Double(posX+width/2, posY+height));
-        points.add(new Point2D.Double(posX, posY+height/2));
-        return createPolygon(points,c);
+    @Override
+    public Rectangle createRoundedRectangle(double posX, double posY, double height, double width, MyColor c) {
+        return new Rectangle(posX, posY, height, width, c, true);
     }
 
 }

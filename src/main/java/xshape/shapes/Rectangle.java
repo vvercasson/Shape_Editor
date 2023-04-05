@@ -32,6 +32,17 @@ public class Rectangle extends Polygon {
         }, c);
     }
 
+    public Rectangle(double posX, double posY, double height, double width, MyColor c, boolean rounded) {
+        super(new Point2D.Double(posX, posY), 4, new ArrayList<Point2D>() {
+            {
+                add(new Point2D.Double(posX, posY));
+                add(new Point2D.Double(posX + width, posY));
+                add(new Point2D.Double(posX + width, posY + height));
+                add(new Point2D.Double(posX, posY + height));
+            }
+        }, c, rounded);
+    }
+
     /*
      * Methods
      */

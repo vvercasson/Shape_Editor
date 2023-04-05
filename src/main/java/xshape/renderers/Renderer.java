@@ -78,7 +78,7 @@ public abstract class Renderer {
         MyColor c1 = new MyColor(0, 0, 255);
         MyColor c2 = new MyColor(255, 0, 0);
 
-        Rectangle r = _factory.createRectangle(100, 100, 100, 100, c1);
+        Rectangle r = _factory.createRoundedRectangle(100d, 100d, 100d, 100d, c1);
 
         ArrayList<Point2D> points = new ArrayList<Point2D>();
         points.add(new Point2D.Double(300, 300));

@@ -13,6 +13,7 @@ public class Polygon extends AShape {
      */
     private int _nbPoints;
     private ArrayList<Point2D> _points;
+    private boolean _rounded = false;
 
     /*
      * Constructors
@@ -28,6 +29,14 @@ public class Polygon extends AShape {
         super(pos, c);
         _nbPoints = nbPoints;
         _points = points;
+        computeCenterOfRotation();
+    }
+
+    public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points, MyColor c, boolean rounded) {
+        super(pos, c);
+        _nbPoints = nbPoints;
+        _points = points;
+        _rounded = rounded;
         computeCenterOfRotation();
     }
 
@@ -103,6 +112,14 @@ public class Polygon extends AShape {
     /*
      * Getters and Setters
      */
+    public boolean isRounded() {
+        return _rounded;
+    }
+
+    public void setRounded(boolean _rounded) {
+        this._rounded = _rounded;
+    }
+
     public ArrayList<Point2D> getPoints() {
         return _points;
     }
