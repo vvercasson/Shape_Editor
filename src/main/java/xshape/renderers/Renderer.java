@@ -9,6 +9,8 @@ import xshape.shapes.*;
 import xshape.toolbar.ToolBar;
 import xshape.utils.MyColor;
 
+import javax.swing.*;
+
 public abstract class Renderer {
     /*
      * Window attributes
@@ -65,6 +67,8 @@ public abstract class Renderer {
     public void drawLine(Point2D start, Point2D end, MyColor c) {
         System.out.println("Drawing line");
     }
+
+    public void drawTrashToolBar(Point2D pos, ImageIcon icon){System.out.println("Drawing trash");}
 
     /*
      * Function that says what to be displayed on open
