@@ -5,7 +5,6 @@ import xshape.renderers.FxRenderer;
 import xshape.renderers.Renderer;
 
 public class App {
-
     public static void main(String[] args) {
         Renderer FxApp = new FxRenderer(500, 500);
         FxApp.run();

@@ -27,9 +27,9 @@ public class FxRenderer extends Renderer {
 
     @Override
     public void run() {
-        FxApp._root.getChildren().add(_canvas);
+        FxCanva._root.getChildren().add(_canvas);
         draw();
-        FxApp.launch(FxApp.class);
+        FxCanva.launch(FxCanva.class);
     }
 
     /*

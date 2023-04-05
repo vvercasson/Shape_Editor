@@ -25,10 +25,10 @@ public class AwtRenderer extends Renderer {
      */
     @Override
     public void run() {
-        JCanvas jc = new JCanvas(this);
+        AwtCanva jc = new AwtCanva(this);
         jc.setBackground(MyColor.WHITE.toAwt());
         jc.setPreferredSize(new Dimension(getWidth(), getHeight()));
-        GUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
+        AwtGUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
     }
 
     /*

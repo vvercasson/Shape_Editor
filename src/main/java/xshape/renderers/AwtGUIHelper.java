@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class GUIHelper {
+public class AwtGUIHelper {
     public static void showOnFrame(JComponent component, String frameName) {
         JFrame frame = new JFrame(frameName);
         WindowAdapter wa = new WindowAdapter() {

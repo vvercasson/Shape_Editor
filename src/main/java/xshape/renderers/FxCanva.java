@@ -5,7 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FxApp extends Application {
+public class FxCanva extends Application {
     public static Group _root = new Group();
 
     @Override

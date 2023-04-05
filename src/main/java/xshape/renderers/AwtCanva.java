@@ -4,10 +4,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class JCanvas extends JPanel {
+public class AwtCanva extends JPanel {
     Renderer _r = null;
 
-    public JCanvas(Renderer r) {
+    public AwtCanva(Renderer r) {
         _r = r;
     }
 
