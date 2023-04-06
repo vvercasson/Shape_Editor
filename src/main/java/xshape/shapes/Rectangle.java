@@ -67,15 +67,12 @@ public class Rectangle extends Polygon {
      */
     @Override
     public Shape translate(Point2D vec) {
-        getPos().setLocation(getPos().getX() + vec.getX(),
-                getPos().getY() + vec.getY());
-        return this;
+        return super.translate(vec);
     }
 
     @Override
     public Shape rotate(double angle) {
-        super.rotate(angle);
-        return this;
+        return super.rotate(angle);
     }
 
     @Override
