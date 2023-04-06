@@ -44,6 +44,25 @@ public class Rectangle extends Polygon {
     }
 
     /*
+     * Getters
+     */
+    public int getX() {
+        return (int) getPoints().get(0).getX();
+    }
+
+    public int getY() {
+        return (int) getPoints().get(0).getY();
+    }
+
+    public int getWidth() {
+        return (int) (getPoints().get(2).getX() - getX());
+    }
+
+    public int getHeight() {
+        return (int) (getPoints().get(2).getY() - getY());
+    }
+
+    /*
      * Methods
      */
     @Override

@@ -69,7 +69,9 @@ public abstract class Renderer {
         System.out.println("Drawing line");
     }
 
-    public void drawTrashToolBar(Trash t){System.out.println("Drawing trash");}
+    public void drawTrashToolBar(Trash t) {
+        System.out.println("Drawing trash");
+    }
 
     /*
      * Function that says what to be displayed on open
@@ -79,7 +81,7 @@ public abstract class Renderer {
         MyColor c1 = new MyColor(0, 0, 255);
         MyColor c2 = new MyColor(255, 0, 0);
 
-        Rectangle r = _factory.createRoundedRectangle(100d, 100d, 100d, 100d, c1);
+        Rectangle r = _factory.createRectangle(100d, 100d, 100d, 100d, c1);
 
         ArrayList<Point2D> points = new ArrayList<Point2D>();
         points.add(new Point2D.Double(300, 300));
@@ -91,10 +93,13 @@ public abstract class Renderer {
         _shapes.add(p);
         _shapes.add(r);
 
+        ToolBar toolBar = new ToolBar(this);
+        _shapes.add(toolBar);
+
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }
-        ToolBar toolBar = new ToolBar(this);
+
     }
 
     public void redraw() {

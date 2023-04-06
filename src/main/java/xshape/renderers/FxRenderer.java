@@ -1,22 +1,14 @@
 package xshape.renderers;
 
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class FxRenderer extends Renderer {
     /*
@@ -44,21 +36,18 @@ public class FxRenderer extends Renderer {
     /*
      * Drawing methods
      */
-
     @Override
     public void drawRectangle(Rectangle r) {
-        ArrayList<Point2D> points = r.getPoints();
-        int[] xPoints = new int[points.size()];
-        int[] yPoints = new int[points.size()];
-        for (int i = 0; i < points.size(); i++) {
-            xPoints[i] = (int) points.get(i).getX();
-            yPoints[i] = (int) points.get(i).getY();
-        }
+        int x = (int) r.getX();
+        int y = (int) r.getY();
+        int width = (int) r.getWidth();
+        int height = (int) r.getHeight();
         _gc.setFill(r.getColor().toFx());
+        System.out.println("Drawing with width: " + width + " and height: " + height + "!");
         if (!r.isRounded())
-            _gc.fillRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0], yPoints[2] - yPoints[0]);
+            _gc.fillRect(x, y, width, height);
         else
-            _gc.fillRoundRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0], yPoints[2] - yPoints[0], 10, 10);
+            _gc.fillRoundRect(x, y, width, height, 10, 10);
     }
 
     @Override

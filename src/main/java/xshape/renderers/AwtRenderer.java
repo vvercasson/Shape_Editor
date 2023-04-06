@@ -72,21 +72,15 @@ public class AwtRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
-        // je suis stupide numero 2
-        ArrayList<Point2D> points = r.getPoints();
-        int[] xPoints = new int[points.size()];
-        int[] yPoints = new int[points.size()];
-        for (int i = 0; i < points.size(); i++) {
-            xPoints[i] = (int) points.get(i).getX();
-            yPoints[i] = (int) points.get(i).getY();
-        }
+        int x = (int) r.getX();
+        int y = (int) r.getY();
+        int width = (int) r.getWidth();
+        int height = (int) r.getHeight();
         AwtApp.instance().graphics().setColor(r.getColor().toAwt());
         if (!r.isRounded())
-            AwtApp.instance().graphics().fillRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0],
-                    yPoints[2] - yPoints[0]);
+            AwtApp.instance().graphics().fillRect(x, y, width, height);
         else
-            AwtApp.instance().graphics().fillRoundRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0],
-                    yPoints[2] - yPoints[0], 10, 10);
+            AwtApp.instance().graphics().fillRoundRect(x, y, width, height, 10, 10);
     }
 
     @Override
