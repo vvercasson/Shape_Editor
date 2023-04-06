@@ -7,6 +7,7 @@ import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
 import xshape.toolbar.ToolBar;
+import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
 import javax.swing.*;
@@ -68,7 +69,7 @@ public abstract class Renderer {
         System.out.println("Drawing line");
     }
 
-    public void drawTrashToolBar(Point2D pos){System.out.println("Drawing trash");}
+    public void drawTrashToolBar(Trash t){System.out.println("Drawing trash");}
 
     /*
      * Function that says what to be displayed on open
@@ -95,7 +96,8 @@ public abstract class Renderer {
         }
         ToolBar toolBar = new ToolBar(this);
         toolBar.createToolBar(this);
-        drawTrashToolBar(new Point2D.Double(10,440));
+        Trash t = new Trash(new Point2D.Double(10, 440));
+        drawTrashToolBar(t);
     }
 
     public void redraw() {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
 public class AwtRenderer extends Renderer {
@@ -43,25 +44,25 @@ public class AwtRenderer extends Renderer {
     }
 
     @Override
-    public void drawTrashToolBar(Point2D pos){
+    public void drawTrashToolBar(Trash t){
         int width = 40;
         int height = 50;
 
         // trash body
         AwtApp.instance().graphics().setColor(MyColor.BLACK.toAwt());
-        AwtApp.instance().graphics().fillRect((int)pos.getX(),(int) pos.getY(), width, height);
+        AwtApp.instance().graphics().fillRect((int)t.get_pos().getX(),(int) t.get_pos().getY(), width, height);
 
         // top of the trash
         AwtApp.instance().graphics().setColor(MyColor.BLACK.toAwt());
-        AwtApp.instance().graphics().fillRect((int) pos.getX() + 5, (int) pos.getY() - 10, width - 10, 10);
+        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX() + 5, (int) t.get_pos().getY() - 10, width - 10, 10);
 
         AwtApp.instance().graphics().setColor(MyColor.WHITE.toAwt());
-        AwtApp.instance().graphics().fillRect((int) pos.getX(),(int) pos.getY(), width, 5);
+        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX(),(int) t.get_pos().getY(), width, 5);
 
         // wheels of trash
         AwtApp.instance().graphics().setColor(MyColor.WHITE.toAwt());
-        AwtApp.instance().graphics().fillOval((int) pos.getX() + 5,(int) pos.getY() + height - 15, 10, 10);
-        AwtApp.instance().graphics().fillOval((int) pos.getX() + width - 15,(int) pos.getY() + height - 15, 10, 10);
+        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + 5,(int) t.get_pos().getY() + height - 15, 10, 10);
+        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + width - 15,(int) t.get_pos().getY() + height - 15, 10, 10);
     }
 
     @Override

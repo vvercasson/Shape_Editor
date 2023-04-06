@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
 import javax.imageio.ImageIO;
@@ -67,25 +68,25 @@ public class FxRenderer extends Renderer {
     }
 
     @Override
-    public void drawTrashToolBar(Point2D pos){
+    public void drawTrashToolBar(Trash t){
         double width = 40;
         double height = 50;
 
         // trash body
         _gc.setFill(MyColor.BLACK.toFx());
-        _gc.fillRect(pos.getX(), pos.getY(), width, height);
+        _gc.fillRect(t.get_pos().getX(), t.get_pos().getY(), width, height);
 
         // top of the trash
         _gc.setFill(MyColor.BLACK.toFx());
-        _gc.fillRect(pos.getX() + 5, pos.getY() - 10, width - 10, 10);
+        _gc.fillRect(t.get_pos().getX() + 5, t.get_pos().getY() - 10, width - 10, 10);
 
         _gc.setFill(MyColor.WHITE.toFx());
-        _gc.fillRect(pos.getX(), pos.getY(), width, 5);
+        _gc.fillRect(t.get_pos().getX(), t.get_pos().getY(), width, 5);
 
         // wheels of trash
         _gc.setFill(MyColor.WHITE.toFx());
-        _gc.fillOval(pos.getX() + 5, pos.getY() + height - 15, 10, 10);
-        _gc.fillOval(pos.getX() + width - 15, pos.getY() + height - 15, 10, 10);
+        _gc.fillOval(t.get_pos().getX() + 5, t.get_pos().getY() + height - 15, 10, 10);
+        _gc.fillOval(t.get_pos().getX() + width - 15, t.get_pos().getY() + height - 15, 10, 10);
     }
 
     @Override
