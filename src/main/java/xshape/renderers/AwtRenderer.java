@@ -14,12 +14,14 @@ public class AwtRenderer extends Renderer {
     /*
      * Attributes
      */
+    AwtCanva jc;
 
     /*
      * Constructors
      */
     public AwtRenderer(int width, int height) {
         super(width, height);
+        jc = new AwtCanva(this);
     }
 
     /*
@@ -27,7 +29,7 @@ public class AwtRenderer extends Renderer {
      */
     @Override
     public void run() {
-        AwtCanva jc = new AwtCanva(this);
+        // AwtCanva jc = new AwtCanva(this);
         jc.setBackground(MyColor.WHITE.toAwt());
         jc.setPreferredSize(new Dimension(getWidth(), getHeight()));
         AwtGUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
@@ -44,25 +46,28 @@ public class AwtRenderer extends Renderer {
     }
 
     @Override
-    public void drawTrashToolBar(Trash t){
+    public void drawTrashToolBar(Trash t) {
         int width = 40;
         int height = 50;
 
         // trash body
         AwtApp.instance().graphics().setColor(MyColor.BLACK.toAwt());
-        AwtApp.instance().graphics().fillRect((int)t.get_pos().getX(),(int) t.get_pos().getY(), width, height);
+        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX(), (int) t.get_pos().getY(), width, height);
 
         // top of the trash
         AwtApp.instance().graphics().setColor(MyColor.BLACK.toAwt());
-        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX() + 5, (int) t.get_pos().getY() - 10, width - 10, 10);
+        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX() + 5, (int) t.get_pos().getY() - 10, width - 10,
+                10);
 
         AwtApp.instance().graphics().setColor(MyColor.WHITE.toAwt());
-        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX(),(int) t.get_pos().getY(), width, 5);
+        AwtApp.instance().graphics().fillRect((int) t.get_pos().getX(), (int) t.get_pos().getY(), width, 5);
 
         // wheels of trash
         AwtApp.instance().graphics().setColor(MyColor.WHITE.toAwt());
-        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + 5,(int) t.get_pos().getY() + height - 15, 10, 10);
-        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + width - 15,(int) t.get_pos().getY() + height - 15, 10, 10);
+        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + 5, (int) t.get_pos().getY() + height - 15, 10,
+                10);
+        AwtApp.instance().graphics().fillOval((int) t.get_pos().getX() + width - 15,
+                (int) t.get_pos().getY() + height - 15, 10, 10);
     }
 
     @Override
@@ -77,9 +82,11 @@ public class AwtRenderer extends Renderer {
         }
         AwtApp.instance().graphics().setColor(r.getColor().toAwt());
         if (!r.isRounded())
-            AwtApp.instance().graphics().fillRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2]);
+            AwtApp.instance().graphics().fillRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0],
+                    yPoints[2] - yPoints[0]);
         else
-            AwtApp.instance().graphics().fillRoundRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2], 10, 10);
+            AwtApp.instance().graphics().fillRoundRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0],
+                    yPoints[2] - yPoints[0], 10, 10);
     }
 
     @Override

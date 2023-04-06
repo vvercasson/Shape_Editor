@@ -56,9 +56,9 @@ public class FxRenderer extends Renderer {
         }
         _gc.setFill(r.getColor().toFx());
         if (!r.isRounded())
-            _gc.fillRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2]);
+            _gc.fillRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0], yPoints[2] - yPoints[0]);
         else
-            _gc.fillRoundRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2], 10, 10);
+            _gc.fillRoundRect(xPoints[0], yPoints[0], xPoints[2] - xPoints[0], yPoints[2] - yPoints[0], 10, 10);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class FxRenderer extends Renderer {
     }
 
     @Override
-    public void drawTrashToolBar(Trash t){
+    public void drawTrashToolBar(Trash t) {
         double width = 40;
         double height = 50;
 
