@@ -20,7 +20,7 @@ public class AwtCanva extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         AwtApp.instance().graphics(g);
-        _r.redraw();
+        _r.draw();
     }
 
 }

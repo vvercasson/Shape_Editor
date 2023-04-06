@@ -17,6 +17,7 @@ public abstract class Renderer {
      * Window attributes
      */
     private int _width, _height;
+    private boolean init = false;
 
     /*
      * Rendering attributes
@@ -78,24 +79,27 @@ public abstract class Renderer {
      */
     public void draw() {
 
-        // ToolBar toolBar = new ToolBar(this);
 
-        MyColor c1 = new MyColor(0, 0, 255);
-        MyColor c2 = new MyColor(255, 0, 0);
+        ToolBar toolBar = new ToolBar(this);
 
-        Rectangle r = _factory.createRoundedRectangle(100d, 100d, 100d, 100d, c1);
+        if(!init){
+            MyColor c1 = new MyColor(0, 0, 255);
+            MyColor c2 = new MyColor(255, 0, 0);
 
-        ArrayList<Point2D> points = new ArrayList<Point2D>();
-        points.add(new Point2D.Double(300, 300));
-        points.add(new Point2D.Double(350, 300));
-        points.add(new Point2D.Double(350, 350));
+            Rectangle r = _factory.createRoundedRectangle(100d, 100d, 100d, 100d, c1);
 
-        Polygon p = _factory.createPolygon(points, c2);
+            ArrayList<Point2D> points = new ArrayList<Point2D>();
+            points.add(new Point2D.Double(300, 300));
+            points.add(new Point2D.Double(350, 300));
+            points.add(new Point2D.Double(350, 350));
 
-        // _shapes.add(toolBar);
-        _shapes.add(p);
-        _shapes.add(r);
+            Polygon p = _factory.createPolygon(points, c2);
 
+            _shapes.add(toolBar);
+            _shapes.add(p);
+            _shapes.add(r);
+            init = true;
+        }
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }

@@ -33,7 +33,6 @@ public class AwtRenderer extends Renderer {
         canva.setBackground(MyColor.WHITE.toAwt());
         canva.setPreferredSize(new Dimension(getWidth(), getHeight()));
         AwtGUIHelper.showOnFrame(canva, "XShape Swing/AWT Rendering");
-        super.draw();
     }
 
     /*
