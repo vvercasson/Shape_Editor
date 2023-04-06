@@ -5,12 +5,9 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
 public class FxRenderer extends Renderer {
@@ -39,27 +36,46 @@ public class FxRenderer extends Renderer {
     /*
      * Drawing methods
      */
-
     @Override
     public void drawRectangle(Rectangle r) {
-        ArrayList<Point2D> points = r.getPoints();
-        int[] xPoints = new int[points.size()];
-        int[] yPoints = new int[points.size()];
-        for (int i = 0; i < points.size(); i++) {
-            xPoints[i] = (int) points.get(i).getX();
-            yPoints[i] = (int) points.get(i).getY();
-        }
+        int x = (int) r.getX();
+        int y = (int) r.getY();
+        int width = (int) r.getWidth();
+        int height = (int) r.getHeight();
         _gc.setFill(r.getColor().toFx());
+        System.out.println("Drawing with width: " + width + " and height: " + height + "!");
         if (!r.isRounded())
-            _gc.fillRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2]);
+            _gc.fillRect(x, y, width, height);
         else
-            _gc.fillRoundRect(xPoints[0], yPoints[0], xPoints[2], yPoints[2], 10, 10);
+            _gc.fillRoundRect(x, y, width, height, 10, 10);
     }
 
     @Override
     public void drawText(Point2D pos, String text, MyColor c) {
         _gc.setFill(c.toFx());
         _gc.fillText(text, pos.getX(), pos.getY());
+    }
+
+    @Override
+    public void drawTrashToolBar(Trash t) {
+        double width = 40;
+        double height = 50;
+
+        // trash body
+        _gc.setFill(MyColor.BLACK.toFx());
+        _gc.fillRect(t.get_pos().getX(), t.get_pos().getY(), width, height);
+
+        // top of the trash
+        _gc.setFill(MyColor.BLACK.toFx());
+        _gc.fillRect(t.get_pos().getX() + 5, t.get_pos().getY() - 10, width - 10, 10);
+
+        _gc.setFill(MyColor.WHITE.toFx());
+        _gc.fillRect(t.get_pos().getX(), t.get_pos().getY(), width, 5);
+
+        // wheels of trash
+        _gc.setFill(MyColor.WHITE.toFx());
+        _gc.fillOval(t.get_pos().getX() + 5, t.get_pos().getY() + height - 15, 10, 10);
+        _gc.fillOval(t.get_pos().getX() + width - 15, t.get_pos().getY() + height - 15, 10, 10);
     }
 
     @Override

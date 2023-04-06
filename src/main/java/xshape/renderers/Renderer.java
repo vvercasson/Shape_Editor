@@ -7,6 +7,7 @@ import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
 import xshape.toolbar.ToolBar;
+import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
 import javax.swing.*;
@@ -68,7 +69,9 @@ public abstract class Renderer {
         System.out.println("Drawing line");
     }
 
-    public void drawTrashToolBar(Point2D pos, ImageIcon icon){System.out.println("Drawing trash");}
+    public void drawTrashToolBar(Trash t) {
+        System.out.println("Drawing trash");
+    }
 
     /*
      * Function that says what to be displayed on open
@@ -78,7 +81,7 @@ public abstract class Renderer {
         MyColor c1 = new MyColor(0, 0, 255);
         MyColor c2 = new MyColor(255, 0, 0);
 
-        Rectangle r = _factory.createRoundedRectangle(100d, 100d, 100d, 100d, c1);
+        Rectangle r = _factory.createRectangle(100d, 100d, 100d, 100d, c1);
 
         ArrayList<Point2D> points = new ArrayList<Point2D>();
         points.add(new Point2D.Double(300, 300));
@@ -90,25 +93,13 @@ public abstract class Renderer {
         _shapes.add(p);
         _shapes.add(r);
 
+        ToolBar toolBar = new ToolBar(this);
+        _shapes.add(toolBar);
+
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }
 
-        ToolBar toolBar = new ToolBar(this);
-        toolBar.createToolBar(this);
-
-        // Point2D startLine = new Point2D.Double(70, 300);
-
-        // Rectangle r = _factory.createRectangle(150, 150, 60, 50, MyColor.PINK);
-        // r.drawInCanva(this);
-        // r.setRotationCenter(new Point2D.Double(250, 250));
-        // drawText(new Point2D.Double(250, 250), ".", MyColor.RED);
-        // r.rotate(180);
-        // r.drawInCanva(this);
-
-        // drawText(startLine, "PoufBamBam", MyColor.GREEN);
-        // ToolBar toolBar = new ToolBar(20, this);
-        // toolBar.createToolBar(this);
     }
 
     public void redraw() {
