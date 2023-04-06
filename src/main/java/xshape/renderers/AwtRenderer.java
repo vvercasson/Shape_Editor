@@ -10,9 +10,11 @@ import xshape.shapes.Rectangle;
 import xshape.utils.MyColor;
 
 public class AwtRenderer extends Renderer {
+
     /*
      * Attributes
      */
+    private AwtCanva canva;
 
     /*
      * Constructors
@@ -27,9 +29,11 @@ public class AwtRenderer extends Renderer {
     @Override
     public void run() {
         AwtCanva jc = new AwtCanva(this);
+        canva=jc;
         jc.setBackground(MyColor.WHITE.toAwt());
         jc.setPreferredSize(new Dimension(getWidth(), getHeight()));
         AwtGUIHelper.showOnFrame(jc, "XShape Swing/AWT Rendering");
+        super.draw();
     }
 
     /*
@@ -77,5 +81,8 @@ public class AwtRenderer extends Renderer {
         AwtApp.instance().graphics().setColor(c.toAwt());
         AwtApp.instance().graphics().drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(),
                 (int) end.getY());
+    }
+    public AwtCanva getCanva() {
+        return canva;
     }
 }

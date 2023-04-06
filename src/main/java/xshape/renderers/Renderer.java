@@ -42,7 +42,7 @@ public abstract class Renderer {
         return _height;
     }
 
-    protected ArrayList<Shape> getShapes() {
+    public ArrayList<Shape> getShapes() {
         return _shapes;
     }
 
