@@ -95,9 +95,6 @@ public abstract class Renderer {
             s.drawInCanva(this);
         }
         ToolBar toolBar = new ToolBar(this);
-        toolBar.createToolBar(this);
-        Trash t = new Trash(new Point2D.Double(10, 440));
-        drawTrashToolBar(t);
     }
 
     public void redraw() {

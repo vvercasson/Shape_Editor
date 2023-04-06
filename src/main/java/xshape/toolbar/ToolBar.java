@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ToolBar extends ShapeGroup {
     int width;
     ShapeFactory factory = new ShapesFactory();
+    Trash t;
 
     public ToolBar(Renderer r) {
 
@@ -25,9 +26,11 @@ public class ToolBar extends ShapeGroup {
         // draw shapes
         add(shapeFactory.createRectangle(10,10,20,40,MyColor.RED));
         add(shapeFactory.createDefaultPolygon(10,50,50,40,MyColor.BLACK));
-
+        createToolBar(r);
         // draw trash
-        //r.drawTrashToolBar(new Point2D.Double(10,400));
+        Trash t = new Trash(new Point2D.Double(10,400));
+        this.t = t;
+        r.drawTrashToolBar(t);
     }
 
     public void createToolBar(Renderer r) {
