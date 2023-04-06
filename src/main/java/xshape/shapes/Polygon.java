@@ -18,22 +18,22 @@ public class Polygon extends AShape {
     /*
      * Constructors
      */
-    public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points) {
-        super(pos);
+    public Polygon(int nbPoints, ArrayList<Point2D> points) {
+        super(points.get(0));
         _nbPoints = nbPoints;
         _points = points;
         computeCenterOfRotation();
     }
 
-    public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points, MyColor c) {
-        super(pos, c);
+    public Polygon(int nbPoints, ArrayList<Point2D> points, MyColor c) {
+        super(points.get(0), c);
         _nbPoints = nbPoints;
         _points = points;
         computeCenterOfRotation();
     }
 
-    public Polygon(Point2D pos, int nbPoints, ArrayList<Point2D> points, MyColor c, boolean rounded) {
-        super(pos, c);
+    public Polygon(int nbPoints, ArrayList<Point2D> points, MyColor c, boolean rounded) {
+        super(points.get(0), c);
         _nbPoints = nbPoints;
         _points = points;
         _rounded = rounded;

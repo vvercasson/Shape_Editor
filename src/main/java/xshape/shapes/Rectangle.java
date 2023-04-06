@@ -11,7 +11,7 @@ public class Rectangle extends Polygon {
      * Constructors
      */
     public Rectangle(double posX, double posY, double height, double width) {
-        super(new Point2D.Double(posX, posY), 4, new ArrayList<Point2D>() {
+        super(4, new ArrayList<Point2D>() {
             {
                 add(new Point2D.Double(posX, posY));
                 add(new Point2D.Double(posX + width, posY));
@@ -22,7 +22,7 @@ public class Rectangle extends Polygon {
     }
 
     public Rectangle(double posX, double posY, double height, double width, MyColor c) {
-        super(new Point2D.Double(posX, posY), 4, new ArrayList<Point2D>() {
+        super(4, new ArrayList<Point2D>() {
             {
                 add(new Point2D.Double(posX, posY));
                 add(new Point2D.Double(posX + width, posY));
@@ -33,7 +33,7 @@ public class Rectangle extends Polygon {
     }
 
     public Rectangle(double posX, double posY, double height, double width, MyColor c, boolean rounded) {
-        super(new Point2D.Double(posX, posY), 4, new ArrayList<Point2D>() {
+        super(4, new ArrayList<Point2D>() {
             {
                 add(new Point2D.Double(posX, posY));
                 add(new Point2D.Double(posX + width, posY));

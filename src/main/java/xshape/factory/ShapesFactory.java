@@ -18,7 +18,7 @@ public class ShapesFactory implements ShapeFactory {
 
     @Override
     public Polygon createPolygon(ArrayList<Point2D> points, MyColor c) {
-        return new Polygon(points.get(0), points.size(), points, c);
+        return new Polygon(points.size(), points, c);
     }
 
     @Override
