@@ -3,10 +3,12 @@ package xshape.renderers;
 import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
@@ -101,6 +103,26 @@ public class AwtRenderer extends Renderer {
         AwtApp.instance().graphics().setColor(c.toAwt());
         AwtApp.instance().graphics().drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(),
                 (int) end.getY());
+    }
+
+    public void drawButtonToolBar(ButtonToolBar bar, String nameButton){
+
+        Graphics g = AwtApp.instance().graphics();
+
+        g.setColor(MyColor.GRAY.toAwt());
+        g.fillRect((int) bar.get_newPos(),0, 50, 25);
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setColor(Color.BLACK);
+        g2d.setStroke(new BasicStroke(1));
+        g2d.draw(new Rectangle2D.Double(bar.get_newPos(), 0, 50, 25));
+
+        // Draw the label for the button
+        g.setColor(MyColor.WHITE.toAwt());
+        g.setFont(new Font("SansSerif", Font.PLAIN,12));
+        g.drawString(nameButton, (int) (bar.get_newPos()+10),16);
+        bar.set_newPos(bar.get_newPos()+60);
     }
     public AwtCanva getCanva() {
         return canva;
