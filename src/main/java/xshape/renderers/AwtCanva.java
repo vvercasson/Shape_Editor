@@ -1,7 +1,7 @@
 package xshape.renderers;
 
 import xshape.eventObserver.CanvaObserver;
-import xshape.eventObserver.EventHandler;
+import xshape.eventObserver.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +13,8 @@ public class AwtCanva extends JPanel {
     public AwtCanva(Renderer r) {
         _r = r;
         observer = new CanvaObserver(_r);
-        EventHandler eventHandler= new EventHandler(_r,observer);
-        addMouseListener(eventHandler);
+        EventHandlerInterface eventHandler= new EventHandlerAWT(_r,observer, this);
+        eventHandler.addMoListener();
     }
 
     public void paint(Graphics g) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import xshape.eventObserver.*;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.Trash;
@@ -16,6 +17,7 @@ public class FxRenderer extends Renderer {
      */
     private GraphicsContext _gc;
     private Canvas _canvas;
+    private Observer observer;
 
     /*
      * Constructor
@@ -24,13 +26,18 @@ public class FxRenderer extends Renderer {
         super(width, height);
         _canvas = new Canvas(getWidth(), getHeight());
         _gc = _canvas.getGraphicsContext2D();
+        observer = new CanvaObserver(this);
     }
 
     @Override
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
+        EventHandlerFX eventHandler= new EventHandlerFX(this, observer, _canvas);
+        eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
+        
+        
     }
 
     /*

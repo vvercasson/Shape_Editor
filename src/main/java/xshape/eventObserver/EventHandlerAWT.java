@@ -1,6 +1,5 @@
 package xshape.eventObserver;
 
-import xshape.renderers.AwtApp;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.renderers.Renderer;
@@ -10,14 +9,21 @@ import xshape.utils.MyColor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class EventHandler implements MouseListener {
+public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
 
     private Renderer renderer;
     private Observer observer;
+    private AwtCanva canva;
 
-    public EventHandler(Renderer renderer, Observer observer) {
+    public EventHandlerAWT(Renderer renderer, Observer observer, AwtCanva canva) {
         this.renderer = renderer;
         this.observer = observer;
+        this.canva = canva;
+    }
+
+    @Override
+    public void addMoListener(){
+        canva.addMouseListener(this);
     }
 
 
