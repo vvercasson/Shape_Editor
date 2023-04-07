@@ -18,7 +18,10 @@ public class ShapeToolBar extends ShapeGroup {
 
     private double _xPositionTB = 10;
 
+    Renderer r;
     public ShapeToolBar(Renderer r) {
+        this.r = r;
+
         _newShapePos = 10;
         ShapeFactory shapeFactory = new ShapesFactory();
 
@@ -38,6 +41,12 @@ public class ShapeToolBar extends ShapeGroup {
     public void add(Shape s) {
         super.add(s);
         _newShapePos += 30; // 60 sera la height
+
+        // draw Line //TODO
+        /*Point2D.Double start = new Point2D.Double(0,_newShapePos);
+        Point2D.Double end = new Point2D.Double(70,_newShapePos);
+
+        r.drawLine(start,end,MyColor.RED);*/
 
     }
 
