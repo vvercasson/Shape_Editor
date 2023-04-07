@@ -3,14 +3,15 @@ package xshape.renderers;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import javafx.scene.canvas.GraphicsContext;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
-import xshape.toolbar.ToolBar;
+import xshape.toolbar.ButtonToolBar;
+import xshape.toolbar.ShapeToolBar;
 import xshape.toolbar.Trash;
+import xshape.toolbar.buttons.Button;
 import xshape.utils.MyColor;
-
-import javax.swing.*;
 
 public abstract class Renderer {
     /*
@@ -70,19 +71,20 @@ public abstract class Renderer {
         System.out.println("Drawing line");
     }
 
-    public void drawTrashToolBar(Trash t) {
-        System.out.println("Drawing trash");
-    }
+    public void drawTrashToolBar(Trash t){System.out.println("Drawing trash");}
+
+    public void drawButtonToolBar(ButtonToolBar bar, String nameButton){System.out.println("Drawing ButtonToolBar");}
 
     /*
      * Function that says what to be displayed on open
      */
     public void draw() {
 
+        ShapeToolBar toolBar = new ShapeToolBar(this);
+        ButtonToolBar bar = new ButtonToolBar(this);
 
-        ToolBar toolBar = new ToolBar(this);
+        if(!init) {
 
-        if(!init){
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
 
