@@ -8,14 +8,31 @@ import xshape.shapes.Rectangle;
 import xshape.utils.MyColor;
 
 public class ShapesFactory implements ShapeFactory {
-    public ShapesFactory() {
-    }
 
+    /*
+     * 
+     * RECTANGLE FACTORY
+     * 
+     */
+
+    // Customizable rectangle
     @Override
-    public Rectangle createRectangle(double posX, double posY, double height, double width, MyColor c) {
-        return new Rectangle(posX, posY, height, width, c, false);
+    public Rectangle createCustomRectangle(double posX, double posY, double height, double width, MyColor c,
+            boolean rounded) {
+        return new Rectangle(posX, posY, height, width, c, rounded);
     }
 
+    // Default rectangle
+    @Override
+    public Rectangle createDefaultRectangle(int x, int y) {
+        return new Rectangle(x, y, 100, 100, MyColor.RED, false);
+    }
+
+    /*
+     * 
+     * POLYGON FACTORY
+     * 
+     */
     @Override
     public Polygon createPolygon(ArrayList<Point2D> points, MyColor c) {
         return new Polygon(points.size(), points, c);
@@ -29,11 +46,6 @@ public class ShapesFactory implements ShapeFactory {
         points.add(new Point2D.Double(posX + width / 2, posY + height));
         points.add(new Point2D.Double(posX, posY + height / 2));
         return createPolygon(points, c);
-    }
-
-    @Override
-    public Rectangle createRoundedRectangle(double posX, double posY, double height, double width, MyColor c) {
-        return new Rectangle(posX, posY, height, width, c, true);
     }
 
 }

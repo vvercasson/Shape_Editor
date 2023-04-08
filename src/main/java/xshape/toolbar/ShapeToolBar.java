@@ -22,6 +22,7 @@ public class ShapeToolBar extends ShapeGroup {
     private double _xPositionTB = 10;
 
     Renderer r;
+
     public ShapeToolBar(Renderer r) {
         this.r = r;
 
@@ -29,14 +30,14 @@ public class ShapeToolBar extends ShapeGroup {
         ShapeFactory shapeFactory = new ShapesFactory();
 
         // draw container
-        Rectangle background = shapeFactory.createRectangle(0,0,500,70,MyColor.GRAY);
+        Rectangle background = shapeFactory.createCustomRectangle(0, 0, 500, 70, MyColor.GRAY, false);
         r.drawRectangle(background);
         // draw shapes
-        add(shapeFactory.createRectangle(10,_newShapePos,20,40,MyColor.RED));
-        add(shapeFactory.createDefaultPolygon(10,_newShapePos,50,40,MyColor.BLACK));
+        add(shapeFactory.createCustomRectangle(10, _newShapePos, 20, 40, MyColor.RED, false));
+        add(shapeFactory.createDefaultPolygon(10, _newShapePos, 50, 40, MyColor.BLACK));
         _factory = shapeFactory;
         // draw trash
-        Trash t = new Trash(new Point2D.Double(10,400));
+        Trash t = new Trash(new Point2D.Double(10, 400));
         _t = t;
         r.drawTrashToolBar(t);
     }
@@ -45,10 +46,12 @@ public class ShapeToolBar extends ShapeGroup {
         _newShapePos += 30; // 60 sera la height
         _shapesTB.add(s);
         // draw Line //TODO
-        /*Point2D.Double start = new Point2D.Double(0,_newShapePos);
-        Point2D.Double end = new Point2D.Double(70,_newShapePos);
-
-        r.drawLine(start,end,MyColor.RED);*/
+        /*
+         * Point2D.Double start = new Point2D.Double(0,_newShapePos);
+         * Point2D.Double end = new Point2D.Double(70,_newShapePos);
+         * 
+         * r.drawLine(start,end,MyColor.RED);
+         */
 
     }
 
@@ -60,7 +63,7 @@ public class ShapeToolBar extends ShapeGroup {
         return _xPositionTB;
     }
 
-    public double get_newShapePos(){
+    public double get_newShapePos() {
         return _newShapePos;
     }
 
