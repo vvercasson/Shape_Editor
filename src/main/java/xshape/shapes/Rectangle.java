@@ -44,7 +44,7 @@ public class Rectangle extends Polygon {
     }
 
     /*
-     * Getters
+     * Getters Setters
      */
     public int getX() {
         return (int) getPoints().get(0).getX();
@@ -60,6 +60,11 @@ public class Rectangle extends Polygon {
 
     public int getHeight() {
         return (int) (getPoints().get(2).getY() - getY());
+    }
+
+    @Override
+    public Shape setPos(Point2D _pos) {
+        return super.setPos(_pos);
     }
 
     /*
@@ -78,5 +83,13 @@ public class Rectangle extends Polygon {
     @Override
     public void drawInCanva(Renderer r) {
         r.drawRectangle(this);
+    }
+
+    /*
+     * Prototype pattern
+     */
+    @Override
+    public Shape clone() {
+        return new Rectangle(getX(), getY(), getHeight(), getWidth(), getColor(), isRounded());
     }
 }

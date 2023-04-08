@@ -8,7 +8,7 @@ import xshape.utils.MyColor;
 /*
  * Interface for all shapes
  */
-public interface Shape {
+public interface Shape extends Cloneable {
 	/*
 	 * Getters and setters
 	 */

@@ -45,10 +45,8 @@ public class Polygon extends AShape {
      */
     @Override
     public Shape translate(Point2D vec) {
-        double dx = vec.getX() - _points.get(0).getX();
-        double dy = vec.getY() - _points.get(0).getY();
         for (Point2D p : _points) {
-            p.setLocation(p.getX() + dx, p.getY() + dy);
+            p.setLocation(p.getX() + vec.getX(), p.getY() + vec.getY());
         }
         return this;
     }
@@ -122,6 +120,16 @@ public class Polygon extends AShape {
         this._rounded = _rounded;
     }
 
+    @Override
+    public Shape setPos(Point2D _pos) {
+        double dx = _pos.getX() - _points.get(0).getX();
+        double dy = _pos.getY() - _points.get(0).getY();
+        for (Point2D p : _points) {
+            p.setLocation(p.getX() + dx, p.getY() + dy);
+        }
+        return this;
+    }
+
     public ArrayList<Point2D> getPoints() {
         return _points;
     }
@@ -133,6 +141,18 @@ public class Polygon extends AShape {
 
     public int getNbPoints() {
         return _nbPoints;
+    }
+
+    /*
+     * Prototype pattern
+     */
+    @Override
+    public Shape clone() {
+        ArrayList<Point2D> points = new ArrayList<Point2D>();
+        for (Point2D p : _points) {
+            points.add((Point2D) p.clone());
+        }
+        return new Polygon(getNbPoints(), points, getColor(), isRounded());
     }
 
 }

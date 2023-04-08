@@ -39,7 +39,7 @@ public abstract class Renderer {
     }
 
     /*
-     * Getters
+     * Getters Setters
      */
     public int getWidth() {
         return _width;
@@ -55,6 +55,14 @@ public abstract class Renderer {
 
     public ArrayList<Shape> get_shapesToolBar() {
         return _shapesToolBar;
+    }
+
+    public void setShapeSelected(Shape s) {
+        _shapeSelected = s;
+    }
+
+    public Shape getShapeSelected() {
+        return _shapeSelected;
     }
 
     /*
@@ -87,14 +95,6 @@ public abstract class Renderer {
         System.out.println("Drawing ButtonToolBar");
     }
 
-    public void setShapeSelected(Shape s) {
-        _shapeSelected = s;
-    }
-
-    public Shape getShapeSelected() {
-        return _shapeSelected;
-    }
-
     /*
      * Function that says what to be displayed on open
      */
@@ -116,8 +116,12 @@ public abstract class Renderer {
 
             Polygon p = _factory.createPolygon(points, c2);
 
+            Shape p2 = p.clone();
+            p2.translate(new Point2D.Double(100, 100));
+
             _shapesToolBar = toolBar.get_shapesTB();
             _shapes.add(p);
+            _shapes.add(p2);
             _shapes.add(r);
             init = true;
         }
