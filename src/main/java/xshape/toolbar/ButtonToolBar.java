@@ -15,7 +15,7 @@ public class ButtonToolBar {
         Button undo = new UndoButton(r,this);
         Button redo = new RedoButton(r,this);
         Button save = new SaveButton(r,this);
-        Button open = new OpenButton(r,this);
+        Button open = new LoadButton(r,this);
 
         _buttons.add(undo);
         _buttons.add(redo);
