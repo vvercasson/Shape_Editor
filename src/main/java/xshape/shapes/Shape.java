@@ -45,4 +45,9 @@ public interface Shape extends Cloneable {
 	 * Draw method
 	 */
 	public void drawInCanva(Renderer r);
+
+	/*
+	 * Clone method
+	 */
+	public Shape clone();
 }

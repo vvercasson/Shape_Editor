@@ -152,4 +152,17 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     public Iterator<Shape> iterator() {
         return _shapes.iterator();
     }
+
+    /*
+     * Clone method
+     */
+    @Override
+    public Shape clone() {
+        ShapeGroup clone = new ShapeGroup();
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            clone.add(it.next().clone());
+        }
+        return clone;
+    }
 }

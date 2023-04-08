@@ -56,4 +56,9 @@ public abstract class AShape implements Shape {
     public Point2D getRotationCenter() {
         return _rotationCenter;
     }
+
+    @Override
+    public Shape clone() {
+        return null;
+    }
 }
