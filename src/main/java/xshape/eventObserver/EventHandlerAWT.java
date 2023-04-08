@@ -46,12 +46,24 @@ public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        for(Shape s: renderer.get_shapesToolBar()){
+            if(s.belongsTo(e.getPoint())){
+                renderer.setShapeSelected(s);
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        Shape selected = renderer.getShapeSelected();
+        if (selected != null) {
+            selected.setPos(e.getPoint());
+            observer.updateShapePosition(selected,e.getX(),e.getY());
+            if (renderer instanceof AwtRenderer) {
+                ((AwtRenderer) renderer).getCanva().repaint();
+            }
+            renderer.setShapeSelected(null);
+        }
     }
 
     @Override
