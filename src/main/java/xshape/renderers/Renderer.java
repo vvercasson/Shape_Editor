@@ -24,10 +24,10 @@ public abstract class Renderer {
      * Rendering attributes
      */
     private ArrayList<Shape> _shapes = new ArrayList<Shape>();
-
-    private ArrayList<Shape> _shapesToolBar = new ArrayList<>();
+    private ShapeToolBar _tb = new ShapeToolBar();
     private ShapeFactory _factory = new ShapesFactory();
 
+    // ! a virer
     private Shape _shapeSelected;
 
     /*
@@ -41,6 +41,11 @@ public abstract class Renderer {
     /*
      * Getters Setters
      */
+
+    public ShapeToolBar getShapeToolbar() {
+        return _tb;
+    }
+
     public int getWidth() {
         return _width;
     }
@@ -51,10 +56,6 @@ public abstract class Renderer {
 
     public ArrayList<Shape> getShapes() {
         return _shapes;
-    }
-
-    public ArrayList<Shape> get_shapesToolBar() {
-        return _shapesToolBar;
     }
 
     public void setShapeSelected(Shape s) {
@@ -95,13 +96,20 @@ public abstract class Renderer {
         System.out.println("Drawing ButtonToolBar");
     }
 
+    public void drawShapeToolbar(ShapeToolBar tb) {
+        drawRectangle(tb.getBackground());
+        for (Shape s : tb.getToolbarShapes()) {
+            s.drawInCanva(this);
+        }
+        drawTrashToolBar(tb.getTrash());
+    }
+
     /*
      * Function that says what to be displayed on open
      */
     public void draw() {
 
         if (!init) {
-            ShapeToolBar toolBar = new ShapeToolBar(this);
             ButtonToolBar bar = new ButtonToolBar(this);
 
             MyColor c1 = new MyColor(0, 0, 255);
@@ -119,23 +127,18 @@ public abstract class Renderer {
             Shape p2 = p.clone();
             p2.translate(new Point2D.Double(100, 100));
 
-            _shapesToolBar = toolBar.get_shapesTB();
             _shapes.add(p);
             _shapes.add(p2);
             _shapes.add(r);
             init = true;
         }
 
-        for (Shape s : _shapesToolBar) {
-            s.drawInCanva(this);
-        }
+        // for (Shape s : _tb.get_shapesTB()) {
+        // s.drawInCanva(this);
+        // }
 
-        for (Shape s : _shapes) {
-            s.drawInCanva(this);
-        }
-    }
+        drawShapeToolbar(_tb);
 
-    public void redraw() {
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }

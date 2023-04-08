@@ -12,62 +12,57 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class ShapeToolBar extends ShapeGroup {
-    private ShapeFactory _factory;
-    private Trash _t;
+    // Factory
+    // ! To be changed i think
+    ShapeFactory _factory = new ShapesFactory();
 
+    // ToolBar Components
+    private Rectangle background = new Rectangle(0, 0, 500, 80, MyColor.GRAY, false);
     private ArrayList<Shape> _shapesTB = new ArrayList<>();
+    private Trash _trash;
 
+    // Positionning
     private double _newShapePos;
-
     private double _xPositionTB = 10;
 
-    Renderer r;
-
-    public ShapeToolBar(Renderer r) {
-        this.r = r;
-
-        _newShapePos = 10;
-        ShapeFactory shapeFactory = new ShapesFactory();
-
-        // draw container
-        Rectangle background = shapeFactory.createCustomRectangle(0, 0, 500, 70, MyColor.GRAY, false);
-        r.drawRectangle(background);
-        // draw shapes
-        add(shapeFactory.createCustomRectangle(10, _newShapePos, 20, 40, MyColor.RED, false));
-        add(shapeFactory.createDefaultPolygon(10, _newShapePos, 50, 40, MyColor.BLACK));
-        _factory = shapeFactory;
-        // draw trash
-        Trash t = new Trash(new Point2D.Double(10, 400));
-        _t = t;
-        r.drawTrashToolBar(t);
+    // Constructor
+    public ShapeToolBar() {
+        this._newShapePos = 10;
+        addShapeToToolbar(_factory.createCustomRectangle(10d, _newShapePos, 20d, 40d, MyColor.RED, false));
+        addShapeToToolbar(_factory.createDefaultPolygon(10, _newShapePos, 50, 40, MyColor.BLACK));
+        this._trash = new Trash(new Point2D.Double(10, 400));
     }
 
-    public void add(Shape s) {
+    // COMPONENTS getters
+    public Rectangle getBackground() {
+        return background;
+    }
+
+    public Trash getTrash() {
+        return _trash;
+    }
+
+    // Toolbar shapes management
+    public void addShapeToToolbar(Shape s) {
         _newShapePos += 30; // 60 sera la height
         _shapesTB.add(s);
-        // draw Line //TODO
-        /*
-         * Point2D.Double start = new Point2D.Double(0,_newShapePos);
-         * Point2D.Double end = new Point2D.Double(70,_newShapePos);
-         * 
-         * r.drawLine(start,end,MyColor.RED);
-         */
-
+        // TODO: Draw Line to separate shapes
     }
 
-    public void remove(Shape s) {
+    public void removeShapeFromToolbar(Shape s) {
         super.remove(s);
     }
 
-    public double get_xPositionTB() {
+    // GETTERS
+    public double getXPosition() {
         return _xPositionTB;
     }
 
-    public double get_newShapePos() {
+    public double getNewShapePosition() {
         return _newShapePos;
     }
 
-    public ArrayList<Shape> get_shapesTB() {
+    public ArrayList<Shape> getToolbarShapes() {
         return _shapesTB;
     }
 }
