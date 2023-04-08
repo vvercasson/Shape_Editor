@@ -9,7 +9,7 @@ import xshape.utils.MyColor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
+public class EventHandlerAWT implements MouseListener, EventHandlerInterface {
 
     private Renderer renderer;
     private Observer observer;
@@ -21,33 +21,30 @@ public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
         this.canva = canva;
     }
 
-
     @Override
-    public void updateCanva(){
+    public void updateCanva() {
         ((AwtRenderer) renderer).getCanva().repaint();
     }
 
     @Override
-    public void addMoListener(){
+    public void addMoListener() {
         canva.addMouseListener(this);
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        for (Shape s:
-                renderer.getShapes()) {
-            if(s.belongsTo(e.getPoint())){
-                observer.updateShapeColor(s, MyColor.ORANGE);
-                    updateCanva();
+        for (Shape s : renderer.getShapes()) {
+            if (s.belongsTo(e.getPoint())) {
+                observer.updateSelectedShape(s);
+                updateCanva();
             }
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for(Shape s: renderer.get_shapesToolBar()){
-            if(s.belongsTo(e.getPoint())){
+        for (Shape s : renderer.get_shapesToolBar()) {
+            if (s.belongsTo(e.getPoint())) {
                 renderer.setShapeSelected(s);
             }
         }
@@ -58,7 +55,7 @@ public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
         Shape selected = renderer.getShapeSelected();
         if (selected != null) {
             selected.setPos(e.getPoint());
-            observer.updateShapePosition(selected,e.getX(),e.getY());
+            observer.updateShapePosition(selected, e.getX(), e.getY());
             if (renderer instanceof AwtRenderer) {
                 ((AwtRenderer) renderer).getCanva().repaint();
             }
