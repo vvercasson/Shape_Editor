@@ -36,11 +36,10 @@ public class FxRenderer extends Renderer {
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
-        EventHandlerFX eventHandler= new EventHandlerFX(this, observer, _canvas);
+        EventHandlerInterface eventHandler= new EventHandlerFX(this, observer, _canvas);
         eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
-        
-        
+        // *********Ne rien faire ici********* //
     }
 
     /*

@@ -24,18 +24,21 @@ public class EventHandlerFX implements EventHandlerInterface{
     }
 
     @Override
+    public void updateCanva(){
+        canva.getGraphicsContext2D().clearRect(0, 0, canva.getWidth(), canva.getHeight());
+        renderer.draw();
+    }
+
+    @Override
     public void addMoListener() {
-        FxCanva._root.setOnMouseClicked((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
+        FxCanva._root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 for (Shape s:
                 renderer.getShapes()) {
-                    System.out.println("s pos  :" + s.getPos() );
                     if(s.belongsTo(new Point2D.Double(event.getX(), event.getY()))){
                         observer.updateShapeColor(s, MyColor.ORANGE);
-                        System.out.println("test");
-                        canva.getGraphicsContext2D().clearRect(0, 0, canva.getWidth(), canva.getHeight());
-                        renderer.draw();
+                        updateCanva();
                     }
                 }
             }

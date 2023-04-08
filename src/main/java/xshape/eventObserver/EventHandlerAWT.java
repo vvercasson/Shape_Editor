@@ -21,6 +21,12 @@ public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
         this.canva = canva;
     }
 
+
+    @Override
+    public void updateCanva(){
+        ((AwtRenderer) renderer).getCanva().repaint();
+    }
+
     @Override
     public void addMoListener(){
         canva.addMouseListener(this);
@@ -31,12 +37,9 @@ public class EventHandlerAWT implements MouseListener,EventHandlerInterface {
     public void mouseClicked(MouseEvent e) {
         for (Shape s:
                 renderer.getShapes()) {
-                    System.out.println("s pos  :" + s.getPos() );
             if(s.belongsTo(e.getPoint())){
                 observer.updateShapeColor(s, MyColor.ORANGE);
-                if(renderer instanceof AwtRenderer){
-                    ((AwtRenderer) renderer).getCanva().repaint();
-                }
+                    updateCanva();
             }
         }
     }
