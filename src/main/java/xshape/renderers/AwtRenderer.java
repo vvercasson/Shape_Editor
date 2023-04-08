@@ -105,25 +105,27 @@ public class AwtRenderer extends Renderer {
                 (int) end.getY());
     }
 
-    public void drawButtonToolBar(ButtonToolBar bar, String nameButton){
+    // ! TO DELETE
+    public void drawButtonToolBar(ButtonToolBar bar, String nameButton) {
 
         Graphics g = AwtApp.instance().graphics();
 
         g.setColor(MyColor.GRAY.toAwt());
-        g.fillRect((int) bar.get_newPos(),0, 50, 25);
+        g.fillRect((int) bar.getNewPos(), 0, 50, 25);
 
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1));
-        g2d.draw(new Rectangle2D.Double(bar.get_newPos(), 0, 50, 25));
+        g2d.draw(new Rectangle2D.Double(bar.getNewPos(), 0, 50, 25));
 
         // Draw the label for the button
         g.setColor(MyColor.WHITE.toAwt());
-        g.setFont(new Font("SansSerif", Font.PLAIN,12));
-        g.drawString(nameButton, (int) (bar.get_newPos()+10),16);
-        bar.set_newPos(bar.get_newPos()+60);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        g.drawString(nameButton, (int) (bar.getNewPos() + 10), 16);
+        bar.setNewPos(bar.getNewPos() + 60);
     }
+
     public AwtCanva getCanva() {
         return canva;
     }

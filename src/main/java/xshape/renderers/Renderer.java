@@ -3,14 +3,13 @@ package xshape.renderers;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import javafx.scene.canvas.GraphicsContext;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
+import xshape.toolbar.Button;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeToolBar;
 import xshape.toolbar.Trash;
-import xshape.toolbar.buttons.Button;
 import xshape.utils.MyColor;
 
 public abstract class Renderer {
@@ -25,6 +24,7 @@ public abstract class Renderer {
      */
     private ArrayList<Shape> _shapes = new ArrayList<Shape>();
     private ShapeToolBar _tb = new ShapeToolBar();
+    private ButtonToolBar _btb = new ButtonToolBar();
     private ShapeFactory _factory = new ShapesFactory();
 
     // ! a virer
@@ -92,16 +92,21 @@ public abstract class Renderer {
         System.out.println("Drawing trash");
     }
 
-    public void drawButtonToolBar(ButtonToolBar bar, String nameButton) {
-        System.out.println("Drawing ButtonToolBar");
+    public void drawButtonToolBar(ButtonToolBar btb) {
+        for (Button b : btb.getButtons()) {
+            drawRectangle(b.getBackground());
+            Point2D textPosition = new Point2D.Double(b.getPosition().getX() + b.getWidth() / 4,
+                    b.getPosition().getY() + b.getHeight() / 1.5);
+            drawText(textPosition, b.getLabel(), MyColor.BLACK);
+        }
     }
 
-    public void drawShapeToolbar(ShapeToolBar tb) {
-        drawRectangle(tb.getBackground());
-        for (Shape s : tb.getToolbarShapes()) {
+    public void drawShapeToolbar(ShapeToolBar stb) {
+        drawRectangle(stb.getBackground());
+        for (Shape s : stb.getToolbarShapes()) {
             s.drawInCanva(this);
         }
-        drawTrashToolBar(tb.getTrash());
+        drawTrashToolBar(stb.getTrash());
     }
 
     /*
@@ -110,7 +115,7 @@ public abstract class Renderer {
     public void draw() {
 
         if (!init) {
-            ButtonToolBar bar = new ButtonToolBar(this);
+            // ButtonToolBar bar = new ButtonToolBar(this);
 
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
@@ -136,6 +141,8 @@ public abstract class Renderer {
         // for (Shape s : _tb.get_shapesTB()) {
         // s.drawInCanva(this);
         // }
+
+        drawButtonToolBar(_btb);
 
         drawShapeToolbar(_tb);
 

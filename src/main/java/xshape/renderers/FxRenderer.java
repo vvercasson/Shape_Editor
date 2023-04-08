@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.ButtonToolBar;
-import xshape.toolbar.buttons.Button;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
@@ -36,7 +35,7 @@ public class FxRenderer extends Renderer {
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
-        EventHandlerInterface eventHandler= new EventHandlerFX(this, observer, _canvas);
+        EventHandlerInterface eventHandler = new EventHandlerFX(this, observer, _canvas);
         eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
         // *********Ne rien faire ici********* //
@@ -123,20 +122,21 @@ public class FxRenderer extends Renderer {
         _gc.strokeLine(start.getX(), start.getY(), end.getX(), end.getY());
     }
 
-    public void drawButtonToolBar(ButtonToolBar bar, String nameButton){
+    // ! TO DELETE
+    public void drawButtonToolBar(ButtonToolBar bar, String nameButton) {
         _gc.setFill(MyColor.GRAY.toFx());
         _gc.setStroke(MyColor.BLACK.toFx());
-        _gc.fillRect(bar.get_newPos(),0, 50, 25);
-        _gc.strokeRect(bar.get_newPos(),0, 50, 25);
+        _gc.fillRect(bar.getNewPos(), 0, 50, 25);
+        _gc.strokeRect(bar.getNewPos(), 0, 50, 25);
 
         // Draw the label for the button
         _gc.setFill(MyColor.WHITE.toFx());
         _gc.setFont(new Font(12));
-        _gc.fillText(nameButton, bar.get_newPos()+10,16);
-        bar.set_newPos(bar.get_newPos()+60);
+        _gc.fillText(nameButton, bar.getNewPos() + 10, 16);
+        bar.setNewPos(bar.getNewPos() + 60);
     }
 
-    public GraphicsContext get_gc(){
+    public GraphicsContext get_gc() {
         return _gc;
     }
 
