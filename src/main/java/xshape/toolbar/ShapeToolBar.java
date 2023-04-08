@@ -9,10 +9,13 @@ import xshape.shapes.ShapeGroup;
 import xshape.utils.MyColor;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class ShapeToolBar extends ShapeGroup {
     private ShapeFactory _factory;
     private Trash _t;
+
+    private ArrayList<Shape> _shapesTB = new ArrayList<>();
 
     private double _newShapePos;
 
@@ -39,9 +42,8 @@ public class ShapeToolBar extends ShapeGroup {
     }
 
     public void add(Shape s) {
-        super.add(s);
         _newShapePos += 30; // 60 sera la height
-
+        _shapesTB.add(s);
         // draw Line //TODO
         /*Point2D.Double start = new Point2D.Double(0,_newShapePos);
         Point2D.Double end = new Point2D.Double(70,_newShapePos);
@@ -60,5 +62,9 @@ public class ShapeToolBar extends ShapeGroup {
 
     public double get_newShapePos(){
         return _newShapePos;
+    }
+
+    public ArrayList<Shape> get_shapesTB() {
+        return _shapesTB;
     }
 }

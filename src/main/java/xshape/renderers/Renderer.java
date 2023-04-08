@@ -24,7 +24,11 @@ public abstract class Renderer {
      * Rendering attributes
      */
     private ArrayList<Shape> _shapes = new ArrayList<Shape>();
+
+    private ArrayList<Shape> _shapesToolBar = new ArrayList<>();
     private ShapeFactory _factory = new ShapesFactory();
+
+    private Shape _shapeSelected;
 
     /*
      * Constructor
@@ -48,6 +52,11 @@ public abstract class Renderer {
     public ArrayList<Shape> getShapes() {
         return _shapes;
     }
+
+    public ArrayList<Shape> get_shapesToolBar() {
+        return _shapesToolBar;
+    }
+
 
     /*
      * Methods to be implemented by every specific renderer
@@ -75,6 +84,12 @@ public abstract class Renderer {
 
     public void drawButtonToolBar(ButtonToolBar bar, String nameButton){System.out.println("Drawing ButtonToolBar");}
 
+    public void setShapeSelected(Shape s){
+        _shapeSelected = s;
+    }
+
+    public Shape getShapeSelected(){return _shapeSelected;}
+
     /*
      * Function that says what to be displayed on open
      */
@@ -97,11 +112,16 @@ public abstract class Renderer {
 
             Polygon p = _factory.createPolygon(points, c2);
 
-            _shapes.add(toolBar);
+            _shapesToolBar = toolBar.get_shapesTB();
             _shapes.add(p);
             _shapes.add(r);
             init = true;
         }
+
+        for (Shape s : _shapesToolBar){
+            s.drawInCanva(this);
+        }
+
         for (Shape s : _shapes) {
             s.drawInCanva(this);
         }
