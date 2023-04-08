@@ -45,8 +45,10 @@ public class Polygon extends AShape {
      */
     @Override
     public Shape translate(Point2D vec) {
+        double dx = vec.getX() - _points.get(0).getX();
+        double dy = vec.getY() - _points.get(0).getY();
         for (Point2D p : _points) {
-            p.setLocation(p.getX() + vec.getX(), p.getY() + vec.getY());
+            p.setLocation(p.getX() + dx, p.getY() + dy);
         }
         return this;
     }
