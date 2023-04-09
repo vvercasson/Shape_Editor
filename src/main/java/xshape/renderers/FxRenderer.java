@@ -35,7 +35,7 @@ public class FxRenderer extends Renderer {
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
-        EventHandlerInterface eventHandler = new EventHandlerFX(this, observer, _canvas);
+        EventHandlerInterface eventHandler = new EventHandlerFX(this, observer);
         eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
         // *********Ne rien faire ici********* //
@@ -44,6 +44,13 @@ public class FxRenderer extends Renderer {
     /*
      * Drawing methods
      */
+
+    @Override
+    public void updateCanva() {
+        _gc.clearRect(0, 0, _canvas.getWidth(), _canvas.getHeight());
+        draw();
+    }
+
     @Override
     public void drawRectangle(Rectangle r) {
         int x = (int) r.getX();

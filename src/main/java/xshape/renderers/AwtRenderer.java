@@ -1,7 +1,6 @@
 package xshape.renderers;
 
 import java.awt.*;
-import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -40,6 +39,11 @@ public class AwtRenderer extends Renderer {
     /*
      * Drawing methods
      */
+
+    @Override
+    public void updateCanva() {
+        canva.repaint();
+    }
 
     @Override
     public void drawText(Point2D pos, String text, MyColor c) {

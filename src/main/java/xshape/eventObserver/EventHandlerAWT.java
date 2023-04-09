@@ -4,7 +4,6 @@ import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
-import xshape.utils.MyColor;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -23,11 +22,6 @@ public class EventHandlerAWT implements MouseMotionListener, MouseListener, Even
     }
 
     @Override
-    public void updateCanva() {
-        ((AwtRenderer) renderer).getCanva().repaint();
-    }
-
-    @Override
     public void addMoListener() {
         canva.addMouseListener(this);
         canva.addMouseMotionListener(this);
@@ -38,7 +32,7 @@ public class EventHandlerAWT implements MouseMotionListener, MouseListener, Even
         for (Shape s : renderer.getShapes()) {
             if (s.belongsTo(e.getPoint())) {
                 observer.updateSelectedShape(s);
-                updateCanva();
+                renderer.updateCanva();
             }
         }
     }
