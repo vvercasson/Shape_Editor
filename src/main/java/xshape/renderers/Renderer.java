@@ -98,7 +98,7 @@ public abstract class Renderer {
         drawTrashToolBar(stb.getTrash());
     }
 
-    public abstract void updateCanva();
+    public abstract void refreshCanva();
 
     /*
      * Function that says what to be displayed on open

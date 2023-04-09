@@ -28,7 +28,7 @@ public class EventHandlerFX implements EventHandlerInterface {
                 for (Shape s : renderer.getShapes()) {
                     if (s.belongsTo(new Point2D.Double(event.getX(), event.getY()))) {
                         observer.updateSelectedShape(s);
-                        renderer.updateCanva();
+                        renderer.refreshCanva();
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class EventHandlerFX implements EventHandlerInterface {
                 System.out.println("Fx mouse dragged");
                 if (renderer.getShapeSelected() != null) {
                     observer.updateShapePosition(renderer.getShapeSelected(), e.getX(), e.getY());
-                    renderer.updateCanva();
+                    renderer.refreshCanva();
                 }
             }
 

@@ -41,7 +41,7 @@ public class AwtRenderer extends Renderer {
      */
 
     @Override
-    public void updateCanva() {
+    public void refreshCanva() {
         canva.repaint();
     }
 

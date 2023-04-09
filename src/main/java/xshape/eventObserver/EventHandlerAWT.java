@@ -32,7 +32,7 @@ public class EventHandlerAWT implements MouseMotionListener, MouseListener, Even
         for (Shape s : renderer.getShapes()) {
             if (s.belongsTo(e.getPoint())) {
                 observer.updateSelectedShape(s);
-                renderer.updateCanva();
+                renderer.refreshCanva();
             }
         }
     }
