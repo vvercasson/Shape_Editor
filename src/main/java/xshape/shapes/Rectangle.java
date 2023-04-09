@@ -10,17 +10,6 @@ public class Rectangle extends Polygon {
     /*
      * Constructors
      */
-    public Rectangle(double posX, double posY, double height, double width) {
-        super(4, new ArrayList<Point2D>() {
-            {
-                add(new Point2D.Double(posX, posY));
-                add(new Point2D.Double(posX + width, posY));
-                add(new Point2D.Double(posX + width, posY + height));
-                add(new Point2D.Double(posX, posY + height));
-            }
-        });
-    }
-
     public Rectangle(double posX, double posY, double height, double width, MyColor c) {
         super(4, new ArrayList<Point2D>() {
             {

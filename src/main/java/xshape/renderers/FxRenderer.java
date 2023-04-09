@@ -46,7 +46,7 @@ public class FxRenderer extends Renderer {
      */
 
     @Override
-    public void updateCanva() {
+    public void refreshCanva() {
         _gc.clearRect(0, 0, _canvas.getWidth(), _canvas.getHeight());
         draw();
     }
