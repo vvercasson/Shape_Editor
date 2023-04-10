@@ -38,6 +38,12 @@ public abstract class AShape implements Shape {
         _color = color;
     }
 
+    @Override
+    public void setOpacity(int opacity) {
+        MyColor c = getColor();
+        setColor(new MyColor(c.getRed(), c.getGreen(), c.getBlue(), opacity));
+    }
+
     public Point2D getPos() {
         return _pos;
     }

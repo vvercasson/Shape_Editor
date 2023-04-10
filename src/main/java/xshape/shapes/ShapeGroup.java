@@ -70,6 +70,14 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     }
 
     @Override
+    public void setOpacity(int opacity) {
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            it.next().setOpacity(opacity);
+        }
+    }
+
+    @Override
     public void computeCenterOfRotation() {
         Iterator<Shape> it = iterator();
         double x = 0, y = 0;

@@ -22,6 +22,8 @@ public interface Shape extends Cloneable {
 
 	void setColor(MyColor color);
 
+	void setOpacity(int opacity);
+
 	// Rotation center of the shape
 	Point2D getRotationCenter();
 
