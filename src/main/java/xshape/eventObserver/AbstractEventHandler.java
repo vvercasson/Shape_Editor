@@ -28,9 +28,6 @@ public abstract class AbstractEventHandler {
                 renderer.refreshCanva();
             }
         }
-        if (renderer.getShapeToolbar().getTrash().getShape().belongsTo(new Point2D.Double(e.getX(), e.getY()))) {
-            System.out.println("youpi");
-        }
     }
 
     // ****************AWT version****************************//

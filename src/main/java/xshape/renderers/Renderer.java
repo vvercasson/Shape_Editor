@@ -66,7 +66,7 @@ public abstract class Renderer {
         return _shapeSelected;
     }
 
-    public void deleteShape(Shape s){
+    public void deleteShape(Shape s) {
         _shapes.remove(s);
     }
 
@@ -127,9 +127,14 @@ public abstract class Renderer {
             Shape p2 = p.clone();
             p2.translate(new Point2D.Double(100, 100));
 
-            _shapes.add(p);
+            ShapeGroup g = new ShapeGroup();
+            g.add(p);
+            g.add(r);
+
+            // _shapes.add(p);
             _shapes.add(p2);
-            _shapes.add(r);
+            _shapes.add(g);
+            // _shapes.add(r);
             init = true;
         }
 
