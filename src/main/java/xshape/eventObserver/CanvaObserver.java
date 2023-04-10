@@ -2,7 +2,6 @@ package xshape.eventObserver;
 
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
-import xshape.utils.MyColor;
 
 import java.awt.geom.Point2D;
 
@@ -18,9 +17,14 @@ public class CanvaObserver implements Observer {
      */
     @Override
     public void updateSelectedShape(Shape shape) {
-        MyColor newColor = new MyColor(shape.getColor().getRed(), shape.getColor().getGreen(),
-                shape.getColor().getBlue(), 125);
-        shape.setColor(newColor);
+        shape.setOpacity(125);
+    }
+
+    @Override
+    public void Unselect(){
+        for (Shape s : renderer.getShapes()) {
+            s.setOpacity(255);
+        }
     }
 
     @Override

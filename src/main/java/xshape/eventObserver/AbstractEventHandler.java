@@ -20,12 +20,21 @@ public abstract class AbstractEventHandler {
 
     // *****************HandleClikced************************************************//
     public void handleClicked(double x, double y) {
+        Point2D point = new Point2D.Double(x,y);
         for (Shape s : renderer.getShapes()) {
-            if (s.belongsTo(new Point2D.Double(x,y))) {
+            if (s.belongsTo(point)) {
                 observer.updateSelectedShape(s);
-                renderer.refreshCanva();
+                System.out.println("click");
+                break;
+            }
+            else {
+                observer.Unselect();
+                renderer.setShapeSelected(null);
+                System.out.println("clock");
+                break;
             }
         }
+        renderer.refreshCanva();
     }
     // ***************************************************************************//
 
@@ -38,8 +47,8 @@ public abstract class AbstractEventHandler {
             double dy = currentY - originClicked.getY();
             observer.updateShapePosition(renderer.getShapeSelected(), (int) dx, (int) dy);
             originClicked = new Point2D.Double(currentX, currentY);
-            renderer.refreshCanva();
         }
+        renderer.refreshCanva();
     }
     // ***************************************************************************//
 
@@ -62,6 +71,7 @@ public abstract class AbstractEventHandler {
 
             }
         }
+        renderer.refreshCanva();
     }
     // ***************************************************************************//
 
@@ -74,7 +84,6 @@ public abstract class AbstractEventHandler {
         } else if (renderer.getShapeToolbar().getBackground().belongsTo(point)) {
             Shape s = renderer.getShapeSelected();
             renderer.getShapeToolbar().addShapeToToolbar(s.resize(150));
-            renderer.refreshCanva();
         }
         renderer.setShapeSelected(null);
         renderer.refreshCanva();
