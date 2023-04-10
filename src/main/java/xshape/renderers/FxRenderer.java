@@ -70,8 +70,8 @@ public class FxRenderer extends Renderer {
 
     @Override
     public void drawTrashToolBar(Trash t) {
-        double width = 40;
-        double height = 50;
+        double width = t.getWidth();
+        double height = t.getHeight();
 
         // trash body
         _gc.setFill(MyColor.BLACK.toFx());

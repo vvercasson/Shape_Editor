@@ -53,8 +53,8 @@ public class AwtRenderer extends Renderer {
 
     @Override
     public void drawTrashToolBar(Trash t) {
-        int width = 40;
-        int height = 50;
+        int width = t.getWidth();
+        int height = t.getHeight();
 
         // trash body
         AwtApp.instance().graphics().setColor(MyColor.BLACK.toAwt());

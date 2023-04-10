@@ -66,6 +66,10 @@ public abstract class Renderer {
         return _shapeSelected;
     }
 
+    public void deleteShape(Shape s){
+        _shapes.remove(s);
+    }
+
     /*
      * Methods to be implemented by every specific renderer
      */
