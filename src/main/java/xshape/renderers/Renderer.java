@@ -69,28 +69,17 @@ public abstract class Renderer {
     /*
      * Methods to be implemented by every specific renderer
      */
-    public void run() {
-    }
+    public abstract void run();
 
-    public void drawRectangle(Rectangle r) {
-        System.out.println("Drawing rectangle");
-    }
+    public abstract void drawRectangle(Rectangle r);
 
-    public void drawText(Point2D pos, String text, MyColor c) {
-        System.out.println("Drawing text");
-    }
+    public abstract void drawText(Point2D pos, String text, MyColor c);
 
-    public void drawPolygon(Polygon p) {
-        System.out.println("Drawing polygon");
-    }
+    public abstract void drawPolygon(Polygon p);
 
-    public void drawLine(Point2D start, Point2D end, MyColor c) {
-        System.out.println("Drawing line");
-    }
+    public abstract void drawLine(Point2D start, Point2D end, MyColor c);
 
-    public void drawTrashToolBar(Trash t) {
-        System.out.println("Drawing trash");
-    }
+    public abstract void drawTrashToolBar(Trash t);
 
     public void drawButtonToolBar(ButtonToolBar btb) {
         for (Button b : btb.getButtons()) {
@@ -108,6 +97,8 @@ public abstract class Renderer {
         }
         drawTrashToolBar(stb.getTrash());
     }
+
+    public abstract void refreshCanva();
 
     /*
      * Function that says what to be displayed on open

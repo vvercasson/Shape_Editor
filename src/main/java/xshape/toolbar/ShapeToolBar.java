@@ -2,7 +2,6 @@ package xshape.toolbar;
 
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
-import xshape.renderers.Renderer;
 import xshape.shapes.Rectangle;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
@@ -22,6 +21,7 @@ public class ShapeToolBar extends ShapeGroup {
     private Trash _trash;
 
     // Positionning
+    private double shapeSpacing = 40;
     private double _newShapePos;
     private double _xPositionTB = 10;
 
@@ -44,7 +44,7 @@ public class ShapeToolBar extends ShapeGroup {
 
     // Toolbar shapes management
     public void addShapeToToolbar(Shape s) {
-        _newShapePos += 30; // 60 sera la height
+        _newShapePos += shapeSpacing; // 60 sera la height
         _shapesTB.add(s);
         // TODO: Draw Line to separate shapes
     }

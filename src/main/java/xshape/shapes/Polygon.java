@@ -143,6 +143,28 @@ public class Polygon extends AShape {
         return _nbPoints;
     }
 
+    // Side length functions
+    public double getSideLength(int indexFirstPoint, int indexSecondPoint) {
+        if (indexFirstPoint < 0 || indexFirstPoint >= _nbPoints || indexSecondPoint < 0
+                || indexSecondPoint >= _nbPoints)
+            return -1;
+        return _points.get(indexFirstPoint).distance(_points.get(indexSecondPoint));
+    }
+
+    public void setSideLength(int indexFirstPoint, int indexSecondPoint, double length) {
+        if (indexFirstPoint < 0 || indexFirstPoint >= _nbPoints || indexSecondPoint < 0
+                || indexSecondPoint >= _nbPoints) {
+            System.err.println("Error: index out of bounds");
+            return;
+        }
+        double dx = _points.get(indexSecondPoint).getX() - _points.get(indexFirstPoint).getX();
+        double dy = _points.get(indexSecondPoint).getY() - _points.get(indexFirstPoint).getY();
+        double angle = Math.atan2(dy, dx);
+        double x = _points.get(indexFirstPoint).getX() + length * Math.cos(angle);
+        double y = _points.get(indexFirstPoint).getY() + length * Math.sin(angle);
+        _points.get(indexSecondPoint).setLocation(x, y);
+    }
+
     /*
      * Prototype pattern
      */

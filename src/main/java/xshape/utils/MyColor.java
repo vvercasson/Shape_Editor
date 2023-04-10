@@ -22,6 +22,24 @@ public class MyColor implements Cloneable {
     public static final MyColor GRAY = new MyColor(128, 128, 128);
     public static final MyColor LIGHT_GRAY = new MyColor(211, 211, 211);
     public static final MyColor DARK_GRAY = new MyColor(169, 169, 169);
+    public static final MyColor LIGHT_BLUE = new MyColor(173, 216, 230);
+    public static final MyColor LIGHT_GREEN = new MyColor(144, 238, 144);
+    public static final MyColor LIGHT_RED = new MyColor(255, 182, 193);
+    public static final MyColor LIGHT_YELLOW = new MyColor(255, 255, 224);
+    public static final MyColor LIGHT_ORANGE = new MyColor(255, 228, 181);
+    public static final MyColor LIGHT_PINK = new MyColor(255, 20, 147);
+    public static final MyColor LIGHT_MAGENTA = new MyColor(238, 130, 238);
+    public static final MyColor LIGHT_CYAN = new MyColor(224, 255, 255);
+    public static final MyColor LIGHT_BROWN = new MyColor(210, 180, 140);
+    public static final MyColor DARK_BLUE = new MyColor(0, 0, 139);
+    public static final MyColor DARK_GREEN = new MyColor(0, 100, 0);
+    public static final MyColor DARK_RED = new MyColor(139, 0, 0);
+    public static final MyColor DARK_YELLOW = new MyColor(139, 139, 0);
+    public static final MyColor DARK_ORANGE = new MyColor(255, 140, 0);
+    public static final MyColor DARK_PINK = new MyColor(255, 20, 147);
+    public static final MyColor DARK_MAGENTA = new MyColor(139, 0, 139);
+    public static final MyColor DARK_CYAN = new MyColor(0, 139, 139);
+    public static final MyColor DARK_BROWN = new MyColor(139, 69, 19);
 
     /*
      * Constructors
