@@ -109,6 +109,27 @@ public class Polygon extends AShape {
         setRotationCenter(new Point2D.Double(x, y));
     }
 
+    private double calculatePolygonSize() {
+        double size = 0.0;
+
+        for (int i = 0; i < getPoints().size(); i++) {
+            Point2D currentPoint = getPoints().get(i);
+            Point2D nextPoint = getPoints().get((i + 1) % getPoints().size());
+            double distance = currentPoint.distance(nextPoint);
+            size += distance;
+        }
+        return size;
+    }
+
+    public Shape resize(int deisiredSize) {
+        double currentSize = calculatePolygonSize();
+        double ratio = deisiredSize / currentSize;
+        for (Point2D p : getPoints()) {
+            p.setLocation(p.getX() * ratio, p.getY() * ratio);
+        }
+        return this;
+    }
+
     /*
      * Getters and Setters
      */

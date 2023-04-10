@@ -9,20 +9,19 @@ public abstract class AbstractEventHandler {
     private Renderer renderer;
     private Observer observer;
 
+    private Point2D originClicked = null;
 
-    public AbstractEventHandler(Renderer renderer, Observer observer){
-        this.renderer=renderer;
-        this.observer=observer;
+    public AbstractEventHandler(Renderer renderer, Observer observer) {
+        this.renderer = renderer;
+        this.observer = observer;
     }
 
     public abstract void addMoListener();
 
-
-
     // *****************HandleClikced************************************************//
 
     // ****************FX version****************************//
-    public void handleClicked(javafx.scene.input.MouseEvent  e){
+    public void handleClicked(javafx.scene.input.MouseEvent e) {
         for (Shape s : renderer.getShapes()) {
             if (s.belongsTo(new Point2D.Double(e.getX(), e.getY()))) {
                 observer.updateSelectedShape(s);
@@ -31,9 +30,8 @@ public abstract class AbstractEventHandler {
         }
     }
 
-
     // ****************AWT version****************************//
-    public void handleClicked(java.awt.event.MouseEvent  e){
+    public void handleClicked(java.awt.event.MouseEvent e) {
         for (Shape s : renderer.getShapes()) {
             if (s.belongsTo(e.getPoint())) {
                 observer.updateSelectedShape(s);
@@ -44,23 +42,34 @@ public abstract class AbstractEventHandler {
 
     // ***************************************************************************//
 
-
-
     // *****************HandleDragged************************************************//
-    
+
     // ****************FX version****************************//
-    public void handleDragged(javafx.scene.input.MouseEvent  e){
+    public void handleDragged(javafx.scene.input.MouseEvent e) {
         if (renderer.getShapeSelected() != null) {
-            observer.updateShapePosition(renderer.getShapeSelected(), e.getX(), e.getY());
+            double currentX = e.getX();
+            double currentY = e.getY();
+
+            double dx = currentX - originClicked.getX();
+            double dy = currentY - originClicked.getY();
+            observer.updateShapePosition(renderer.getShapeSelected(), (int) dx, (int) dy);
+            originClicked = new Point2D.Double(currentX, currentY);
             renderer.refreshCanva();
         }
     }
 
     // ****************AWT version****************************//
-    public void handleDragged(java.awt.event.MouseEvent  e){
+    public void handleDragged(java.awt.event.MouseEvent e) {
         if (renderer.getShapeSelected() != null) {
-            observer.updateShapePosition(renderer.getShapeSelected(), e.getX(), e.getY());
+            int currentX = e.getX();
+            int currentY = e.getY();
+
+            double dx = currentX - originClicked.getX();
+            double dy = currentY - originClicked.getY();
+            observer.updateShapePosition(renderer.getShapeSelected(), (int) dx, (int) dy);
+            originClicked = new Point2D.Double(currentX, currentY);
             renderer.refreshCanva();
+            return;
         }
     }
 
@@ -69,7 +78,8 @@ public abstract class AbstractEventHandler {
     // *****************HandlePressed************************************************//
 
     // ****************FX version****************************//
-    public void handlePressed(javafx.scene.input.MouseEvent  e){
+    public void handlePressed(javafx.scene.input.MouseEvent e) {
+        originClicked = new Point2D.Double(e.getX(), e.getY());
         for (Shape s : renderer.getShapeToolbar().getToolbarShapes()) {
             if (s.belongsTo(new Point2D.Double(e.getX(), e.getY()))) {
                 Shape s2 = s.clone();
@@ -89,7 +99,8 @@ public abstract class AbstractEventHandler {
     }
 
     // ****************AWT version****************************//
-    public void handlePressed(java.awt.event.MouseEvent  e){
+    public void handlePressed(java.awt.event.MouseEvent e) {
+        originClicked = new Point2D.Double(e.getX(), e.getY());
         for (Shape s : renderer.getShapeToolbar().getToolbarShapes()) {
             if (s.belongsTo(new Point2D.Double(e.getX(), e.getY()))) {
                 Shape s2 = s.clone();
@@ -107,8 +118,5 @@ public abstract class AbstractEventHandler {
         }
     }
     // ***************************************************************************//
-
-
-
 
 }

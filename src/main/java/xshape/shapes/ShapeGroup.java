@@ -123,6 +123,16 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
     }
 
     @Override
+    public Shape resize(int deisiredSize) {
+        int realDesiredSize = deisiredSize / _shapes.size();
+        Iterator<Shape> it = iterator();
+        while (it.hasNext()) {
+            it.next().resize(realDesiredSize);
+        }
+        return this;
+    }
+
+    @Override
     public boolean belongsTo(Point2D p) {
         Iterator<Shape> it = iterator();
         while (it.hasNext()) {

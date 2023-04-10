@@ -24,8 +24,10 @@ public class CanvaObserver implements Observer {
     }
 
     @Override
-    public void updateShapePosition(Shape shape, double x, double y) {
-        shape.setPos(new Point2D.Double(x, y));
+    public void updateShapePosition(Shape shape, int x, int y) {
+        Point2D vec = new Point2D.Double(x, y);
+        shape.translate(vec);
+        // shape.setPos(new Point2D.Double(x, y));
     }
 
 }

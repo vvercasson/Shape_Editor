@@ -7,6 +7,7 @@ import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
 import xshape.utils.MyColor;
 
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -45,8 +46,8 @@ public class ShapeToolBar extends ShapeGroup {
     // Toolbar shapes management
     public void addShapeToToolbar(Shape s) {
         _newShapePos += shapeSpacing; // 60 sera la height
-        _shapesTB.add(s);
-        // TODO: Draw Line to separate shapes
+        Point2D.Double p = new Point2D.Double(_xPositionTB, _newShapePos);
+        _shapesTB.add(s.setPos(p));
     }
 
     public void removeShapeFromToolbar(Shape s) {

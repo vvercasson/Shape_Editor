@@ -41,6 +41,8 @@ public interface Shape extends Cloneable {
 
 	boolean belongsTo(Point2D p);
 
+	Shape resize(int deisiredSize);
+
 	/*
 	 * Draw method
 	 */
