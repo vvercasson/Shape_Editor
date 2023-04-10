@@ -24,17 +24,17 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        handleClicked(e);
+        handleClicked(e.getX(),e.getY());
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        handlePressed(e);
+        handlePressed(e.getX(),e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        handleRelease(e);
+        handleRelease(e.getX(),e.getY());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        handleDragged(e);
+        handleDragged(e.getX(),e.getY());
     }
 
     @Override

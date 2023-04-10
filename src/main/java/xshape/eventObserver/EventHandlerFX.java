@@ -20,7 +20,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handleClicked(event);
+                handleClicked(event.getX(),event.getY());
             }
         });
 
@@ -28,7 +28,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handlePressed(event);
+                handlePressed(event.getX(),event.getY());
             }
         });
 
@@ -36,7 +36,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                handleDragged(e);
+                handleDragged(e.getX(),e.getY());
             }
 
         });
@@ -45,7 +45,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                handleRelease(e);
+                handleRelease(e.getX(),e.getY());
             }
         });
     }

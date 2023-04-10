@@ -1,6 +1,5 @@
 package xshape.eventObserver;
 
-import java.awt.geom.Point2D;
 
 import xshape.shapes.Shape;
 
