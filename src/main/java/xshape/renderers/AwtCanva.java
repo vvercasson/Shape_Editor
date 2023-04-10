@@ -1,6 +1,5 @@
 package xshape.renderers;
 
-import xshape.eventObserver.CanvaObserver;
 import xshape.eventObserver.*;
 
 import javax.swing.*;
@@ -11,7 +10,7 @@ public class AwtCanva extends JPanel {
 
     public AwtCanva(Renderer r) {
         _r = r;
-        EventHandlerInterface eventHandler= new EventHandlerAWT(_r, this);
+        EventHandlerAWT eventHandler= new EventHandlerAWT(_r, this);
         eventHandler.addMoListener();
     }
 

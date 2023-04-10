@@ -33,7 +33,7 @@ public class FxRenderer extends Renderer {
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
-        EventHandlerInterface eventHandler = new EventHandlerFX(this);
+        EventHandlerFX eventHandler = new EventHandlerFX(this);
         eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
         // *********Ne rien faire ici********* //
@@ -56,7 +56,6 @@ public class FxRenderer extends Renderer {
         int width = (int) r.getWidth();
         int height = (int) r.getHeight();
         _gc.setFill(r.getColor().toFx());
-        System.out.println("Drawing with width: " + width + " and height: " + height + "!");
         if (!r.isRounded())
             _gc.fillRect(x, y, width, height);
         else
