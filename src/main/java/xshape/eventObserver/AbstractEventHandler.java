@@ -20,17 +20,14 @@ public abstract class AbstractEventHandler {
 
     // *****************HandleClikced************************************************//
     public void handleClicked(double x, double y) {
-        Point2D point = new Point2D.Double(x,y);
+        Point2D point = new Point2D.Double(x, y);
+        Shape selected = renderer.getShapeSelected();
+        if (selected != null && !selected.belongsTo(point)) {
+            observer.Unselect();
+        }
         for (Shape s : renderer.getShapes()) {
             if (s.belongsTo(point)) {
                 observer.updateSelectedShape(s);
-                System.out.println("click");
-                break;
-            }
-            else {
-                observer.Unselect();
-                renderer.setShapeSelected(null);
-                System.out.println("clock");
                 break;
             }
         }
@@ -39,7 +36,7 @@ public abstract class AbstractEventHandler {
     // ***************************************************************************//
 
     // *****************HandleDragged************************************************//
-    public void handleDragged(double x , double y) {
+    public void handleDragged(double x, double y) {
         if (renderer.getShapeSelected() != null) {
             double currentX = x;
             double currentY = y;
@@ -53,7 +50,7 @@ public abstract class AbstractEventHandler {
     // ***************************************************************************//
 
     // *****************HandlePressed************************************************//
-    public void handlePressed(double x , double y ) {
+    public void handlePressed(double x, double y) {
         originClicked = new Point2D.Double(x, y);
         for (Shape s : renderer.getShapeToolbar().getToolbarShapes()) {
             if (s.belongsTo(originClicked)) {
@@ -85,7 +82,6 @@ public abstract class AbstractEventHandler {
             Shape s = renderer.getShapeSelected();
             renderer.getShapeToolbar().addShapeToToolbar(s.resize(150));
         }
-        renderer.setShapeSelected(null);
         renderer.refreshCanva();
     }
     // ***************************************************************************//
