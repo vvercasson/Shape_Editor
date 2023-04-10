@@ -9,12 +9,10 @@ import java.awt.event.MouseMotionListener;
 
 public class EventHandlerAWT extends AbstractEventHandler implements MouseMotionListener, MouseListener {
 
-    private Renderer renderer;
     private AwtCanva canva;
 
     public EventHandlerAWT(Renderer renderer, AwtCanva canva) {
         super(renderer, new CanvaObserver(renderer));
-        this.renderer = renderer;
         this.canva = canva;
     }
 
@@ -36,7 +34,7 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        renderer.setShapeSelected(null);
+        handleRelease(e);
     }
 
     @Override

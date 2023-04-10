@@ -29,6 +29,9 @@ public abstract class AbstractEventHandler {
                 renderer.refreshCanva();
             }
         }
+        if(renderer.getShapeToolbar().getTrash().getShape().belongsTo(new Point2D.Double(e.getX(), e.getY()))){
+            System.out.println("youpi");
+        }
     }
 
 
@@ -108,7 +111,27 @@ public abstract class AbstractEventHandler {
     }
     // ***************************************************************************//
 
+    // *****************HandleRelease************************************************//
+
+    // ****************FX version****************************//
+    public void handleRelease(javafx.scene.input.MouseEvent  e){
+        if(renderer.getShapeToolbar().getTrash().getShape().belongsTo(new Point2D.Double(e.getX(), e.getY()))){
+            renderer.deleteShape(renderer.getShapeSelected());
+        }
+        renderer.setShapeSelected(null);
+        renderer.refreshCanva();
+    }
+
+    // ****************AWT version****************************//
+    public void handleRelease(java.awt.event.MouseEvent  e){
+        if(renderer.getShapeToolbar().getTrash().getShape().belongsTo(e.getPoint())){
+            renderer.deleteShape(renderer.getShapeSelected());
+        }
+        renderer.setShapeSelected(null);
+        renderer.refreshCanva();
+    }
 
 
+    // ***************************************************************************//
 
 }

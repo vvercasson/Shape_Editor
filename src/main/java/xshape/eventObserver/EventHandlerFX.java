@@ -8,11 +8,9 @@ import xshape.renderers.FxCanva;
 
 public class EventHandlerFX extends AbstractEventHandler {
 
-    private Renderer renderer;
 
     public EventHandlerFX(Renderer renderer) {
         super(renderer, new CanvaObserver(renderer));
-        this.renderer = renderer;
     }
 
     @Override
@@ -47,7 +45,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                renderer.setShapeSelected(null);
+                handleRelease(e);
             }
         });
     }
