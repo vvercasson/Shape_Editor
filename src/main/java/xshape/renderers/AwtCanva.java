@@ -8,12 +8,10 @@ import java.awt.*;
 
 public class AwtCanva extends JPanel {
     private Renderer _r = null;
-    private CanvaObserver observer;
 
     public AwtCanva(Renderer r) {
         _r = r;
-        observer = new CanvaObserver(_r);
-        EventHandlerInterface eventHandler= new EventHandlerAWT(_r,observer, this);
+        EventHandlerInterface eventHandler= new EventHandlerAWT(_r, this);
         eventHandler.addMoListener();
     }
 

@@ -19,7 +19,6 @@ public class FxRenderer extends Renderer {
      */
     private GraphicsContext _gc;
     private Canvas _canvas;
-    private Observer observer;
 
     /*
      * Constructor
@@ -28,14 +27,13 @@ public class FxRenderer extends Renderer {
         super(width, height);
         _canvas = new Canvas(getWidth(), getHeight());
         _gc = _canvas.getGraphicsContext2D();
-        observer = new CanvaObserver(this);
     }
 
     @Override
     public void run() {
         FxCanva._root.getChildren().add(_canvas);
         draw();
-        EventHandlerInterface eventHandler = new EventHandlerFX(this, observer, _canvas);
+        EventHandlerInterface eventHandler = new EventHandlerFX(this, _canvas);
         eventHandler.addMoListener();
         FxCanva.launch(FxCanva.class);
         // *********Ne rien faire ici********* //

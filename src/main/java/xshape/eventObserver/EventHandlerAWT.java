@@ -15,9 +15,9 @@ public class EventHandlerAWT implements MouseListener, EventHandlerInterface {
     private Observer observer;
     private AwtCanva canva;
 
-    public EventHandlerAWT(Renderer renderer, Observer observer, AwtCanva canva) {
+    public EventHandlerAWT(Renderer renderer, AwtCanva canva) {
         this.renderer = renderer;
-        this.observer = observer;
+        observer = new CanvaObserver(renderer);
         this.canva = canva;
     }
 

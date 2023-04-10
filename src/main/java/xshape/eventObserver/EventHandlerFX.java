@@ -16,9 +16,9 @@ public class EventHandlerFX implements EventHandlerInterface {
     private Renderer renderer;
     private Canvas canva;
 
-    public EventHandlerFX(Renderer renderer, Observer observer, Canvas canva) {
+    public EventHandlerFX(Renderer renderer, Canvas canva) {
         this.renderer = renderer;
-        this.observer = observer;
+        observer = new CanvaObserver(renderer);
         this.canva = canva;
     }
 
