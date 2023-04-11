@@ -27,6 +27,7 @@ public class FxRenderer extends Renderer {
         super(width, height);
         _canvas = new Canvas(getWidth(), getHeight());
         _gc = _canvas.getGraphicsContext2D();
+        _canvas.setFocusTraversable(true);
     }
 
     @Override
