@@ -33,11 +33,14 @@ public class ShapesFactory implements ShapeFactory {
      * POLYGON FACTORY
      * 
      */
+
+    // Customizable polygon
     @Override
     public Polygon createPolygon(ArrayList<Point2D> points, MyColor c) {
         return new Polygon(points.size(), points, c);
     }
 
+    // Default polygon (Losange)
     @Override
     public Polygon createDefaultPolygon(double posX, double posY, double height, double width, MyColor c) {
         ArrayList<Point2D> points = new ArrayList<>();

@@ -7,10 +7,13 @@ import java.util.ArrayList;
 
 public class ButtonToolBar {
 
+    // Positionning attributes
     private double _newPos = 100;
     private static int buttonSpacing = 60;
+
     private ArrayList<Button> _buttons = new ArrayList<>();
 
+    // Constructor
     public ButtonToolBar() {
         Button undo = new Button(ButtonType.UNDO, "Undo");
         Button redo = new Button(ButtonType.REDO, "Redo");

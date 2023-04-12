@@ -120,7 +120,6 @@ public abstract class Renderer {
     public void draw() {
 
         if (!init) {
-            // ButtonToolBar bar = new ButtonToolBar(this);
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
 
