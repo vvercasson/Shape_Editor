@@ -1,5 +1,6 @@
 package xshape.eventObserver;
 
+import javafx.scene.input.MouseButton;
 import xshape.renderers.Renderer;
 
 import javafx.event.EventHandler;
@@ -20,7 +21,13 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handleClicked(event.getX(),event.getY());
+
+                if(event.getButton() == MouseButton.SECONDARY && (EventHandlerFX.super.getRenderer().getShapeSelected() != null)){
+                    EventHandlerFX.super.getRenderer().createContextMenu();
+                }
+                else{
+                    handleClicked(event.getX(),event.getY());
+                }
             }
         });
 
@@ -49,8 +56,6 @@ public class EventHandlerFX extends AbstractEventHandler {
             }
         });
     }
-
-
 
 
 

@@ -24,7 +24,11 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        handleClicked(e.getX(),e.getY());
+        if(e.getButton() == MouseEvent.BUTTON3 && (EventHandlerAWT.super.getRenderer().getShapeSelected() != null)){
+            EventHandlerAWT.super.getRenderer().createContextMenu();
+        }
+        else
+            handleClicked(e.getX(),e.getY());
     }
 
     @Override

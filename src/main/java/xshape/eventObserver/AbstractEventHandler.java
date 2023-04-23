@@ -85,5 +85,8 @@ public abstract class AbstractEventHandler {
         renderer.refreshCanva();
     }
     // ***************************************************************************//
+    public Renderer getRenderer() {
+        return renderer;
+    }
 
 }
