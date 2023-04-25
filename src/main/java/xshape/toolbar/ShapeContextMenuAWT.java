@@ -1,9 +1,7 @@
 package xshape.toolbar;
 
-import javafx.scene.canvas.Canvas;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
-import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 

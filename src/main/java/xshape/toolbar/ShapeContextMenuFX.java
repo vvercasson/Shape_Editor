@@ -7,13 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import xshape.renderers.FxCanva;
 import xshape.renderers.FxRenderer;
-import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{

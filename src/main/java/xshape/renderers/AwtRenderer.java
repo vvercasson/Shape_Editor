@@ -1,8 +1,6 @@
 package xshape.renderers;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -15,7 +13,6 @@ import xshape.toolbar.ShapeContextMenuAWT;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
-import javax.swing.*;
 
 public class AwtRenderer extends Renderer {
 
