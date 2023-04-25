@@ -125,6 +125,13 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
                     menu.show(c, e.getX(), e.getY());
                 }
             }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger() && !r.getSelectedShapes().isEmpty()) {
+                    menu.show(c, e.getX(), e.getY());
+                }
+            }
         });
         openEditBox(r, r.getSelectedShapes(), (JMenuItem) menu.getComponent(0));
         de_group(r, (JMenuItem) menu.getComponent(1), observer);
