@@ -8,6 +8,7 @@ import xshape.shapes.Shape;
 import xshape.utils.ListOfColors;
 import xshape.utils.MyColor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{
@@ -24,7 +25,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
         return menu;
     }
 
-    public void openEditBox(FxRenderer renderer, Shape s, MenuItem item){
+    public void openEditBox(FxRenderer renderer, ArrayList<Shape> s, MenuItem item){
         item.setOnAction(event -> {
             Alert box = new Alert(Alert.AlertType.NONE);
             box.setTitle(item.getText());
@@ -64,31 +65,9 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
             box.getDialogPane().setContent(grid);
             box.showAndWait().ifPresent(response -> {
-                // getColors :
-                double rInt,gInt,bInt;
-
-                // R
-                if (r.getText().isEmpty())
-                    rInt = s.getColor().getRed();
-                else
-                    rInt = Double.parseDouble(r.getText());
-
-
-                // G
-                if (g.getText().isEmpty())
-                    gInt = s.getColor().getGreen();
-                else
-                    gInt = Double.parseDouble(g.getText());
-
-                //B
-                if (b.getText().isEmpty())
-                    bInt = s.getColor().getBlue();
-                else
-                    bInt = Double.parseDouble(b.getText());
 
                 if (response == box.getButtonTypes().get(0)){
-                    s.setColor(new MyColor(rInt,gInt,bInt));
-
+                    setColorMenu(r,g,b,s);
                 }
                 renderer.refreshCanva();
             });
@@ -97,5 +76,34 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
 
         });
+    }
+
+    public void setColorMenu(TextField r,TextField g,TextField b,ArrayList<Shape> s){
+        // getColors :
+        double rInt,gInt,bInt;
+
+        for (Shape shape: s) {
+            // R
+            if (r.getText().isEmpty())
+                rInt = shape.getColor().getRed();
+            else
+                rInt = Double.parseDouble(r.getText());
+
+
+            // G
+            if (g.getText().isEmpty())
+                gInt = shape.getColor().getGreen();
+            else
+                gInt = Double.parseDouble(g.getText());
+
+            //B
+            if (b.getText().isEmpty())
+                bInt = shape.getColor().getBlue();
+            else
+                bInt = Double.parseDouble(b.getText());
+
+            shape.setColor(new MyColor(rInt,gInt,bInt));
+        }
+
     }
 }

@@ -27,8 +27,7 @@ public abstract class Renderer {
     private ButtonToolBar _btb = new ButtonToolBar();
     private ShapeFactory _factory = new ShapesFactory();
 
-    // ! a virer
-    private Shape _shapeSelected;
+    private ArrayList<Shape> _selectedShapes = new ArrayList<Shape>();
 
     /*
      * Constructor
@@ -58,13 +57,24 @@ public abstract class Renderer {
         return _shapes;
     }
 
-    public void setShapeSelected(Shape s) {
-        _shapeSelected = s;
+    // TEST
+    public ArrayList<Shape> getSelectedShapes() {
+        return _selectedShapes;
     }
 
-    public Shape getShapeSelected() {
-        return _shapeSelected;
+    public void addSelectedShape(Shape s) {
+        _selectedShapes.add(s);
     }
+
+    public void clearSelectedShape() {
+        _selectedShapes.clear();
+    }
+
+    public void removeSelectedShape(Shape s) {
+        _selectedShapes.remove(s);
+    }
+
+    // END TEST
 
     public void deleteShape(Shape s) {
         _shapes.remove(s);
@@ -112,8 +122,6 @@ public abstract class Renderer {
     public void draw() {
 
         if (!init) {
-            // ButtonToolBar bar = new ButtonToolBar(this);
-
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
 

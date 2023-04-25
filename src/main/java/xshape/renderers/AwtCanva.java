@@ -10,7 +10,9 @@ public class AwtCanva extends JPanel {
 
     public AwtCanva(Renderer r) {
         _r = r;
-        EventHandlerAWT eventHandler= new EventHandlerAWT(_r, this);
+        EventHandlerAWT eventHandler = new EventHandlerAWT(_r, this);
+        setFocusable(true);
+        requestFocus();
         eventHandler.addMoListener();
     }
 

@@ -13,37 +13,37 @@ public interface Shape extends Cloneable {
 	 * Getters and setters
 	 */
 	// Position of the shape
-	Point2D getPos();
+	public Point2D getPos();
 
-	Shape setPos(Point2D position);
+	public Shape setPos(Point2D position);
 
 	// Color of the shape
-	MyColor getColor();
+	public MyColor getColor();
 
-	void setColor(MyColor color);
+	public void setColor(MyColor color);
 
-	void setOpacity(int opacity);
+	public void setOpacity(int opacity);
 
 	// Rotation center of the shape
-	Point2D getRotationCenter();
+	public Point2D getRotationCenter();
 
-	void setRotationCenter(Point2D center);
+	public void setRotationCenter(Point2D center);
 
 	// Compute the center of rotation of the shape
-	void computeCenterOfRotation();
+	public void computeCenterOfRotation();
 
 	/*
 	 * Methods
 	 */
-	Shape translate(Point2D vec);
+	public Shape translate(Point2D vec);
 
-	Shape rotate(double angle);
+	public Shape rotate(double angle);
 
-	Shape rotate(double angle, Point2D center);
+	public Shape rotate(double angle, Point2D center);
 
-	boolean belongsTo(Point2D p);
+	public boolean belongsTo(Point2D p);
 
-	Shape resize(int deisiredSize);
+	public Shape resize(int deisiredSize);
 
 	/*
 	 * Draw method

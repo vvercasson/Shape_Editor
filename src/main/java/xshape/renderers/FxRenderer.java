@@ -30,6 +30,7 @@ public class FxRenderer extends Renderer {
         super(width, height);
         _canvas = new Canvas(getWidth(), getHeight());
         _gc = _canvas.getGraphicsContext2D();
+        _canvas.setFocusTraversable(true);
     }
 
     @Override
@@ -149,7 +150,7 @@ public class FxRenderer extends Renderer {
 
         _contextMenu = new ShapeContextMenuFX();
         _canvas.setOnContextMenuRequested(e -> _contextMenu.getMenu().show(_canvas, e.getScreenX(), e.getScreenY()));
-        _contextMenu.openEditBox(this,super.getShapeSelected(),_contextMenu.getMenu().getItems().get(0));
+        _contextMenu.openEditBox(this,super.getSelectedShapes(),_contextMenu.getMenu().getItems().get(0));
     }
 
     public GraphicsContext get_gc() {

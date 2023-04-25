@@ -6,21 +6,29 @@ import xshape.shapes.Rectangle;
 import xshape.utils.MyColor;
 
 public class Button {
+    // The four types of button that we need
     public enum ButtonType {
         UNDO, REDO, LOAD, SAVE
     }
 
+    // Button attributes
     private ButtonType _type;
     private String _label;
     private Point2D _position;
+
+    // Button size
     private int width = 50;
     private int height = 25;
 
+    /*
+     * Constructor
+     */
     public Button(ButtonType type, String label) {
         _type = type;
         _label = label;
     }
 
+    // Getters Setters
     public Point2D getPosition() {
         return _position;
     }

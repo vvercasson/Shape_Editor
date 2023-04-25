@@ -71,7 +71,7 @@ public class AwtRenderer extends Renderer {
                 }
             }
         });
-        _contextMenu.openEditBox(this,super.getShapeSelected(),(JMenuItem) _contextMenu.getMenu().getComponent(0));
+        _contextMenu.openEditBox(this,super.getSelectedShapes(),(JMenuItem) _contextMenu.getMenu().getComponent(0));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package xshape.toolbar;
 
+import javafx.scene.control.TextField;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.shapes.Shape;
@@ -8,6 +9,7 @@ import xshape.utils.MyColor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ShapeContextMenuAWT extends AbstractSCMenu{
     JPopupMenu menu = new JPopupMenu();
@@ -23,7 +25,7 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
         return menu;
     }
 
-    public void openEditBox(AwtRenderer renderer, Shape s, JMenuItem item) {
+    public void openEditBox(AwtRenderer renderer, ArrayList<Shape> s, JMenuItem item) {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
@@ -44,26 +46,6 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
 
 
                 // getColors :
-                double rInt,gInt,bInt;
-
-                // R
-                if (r.getText().isEmpty())
-                    rInt = s.getColor().getRed();
-                else
-                    rInt = Double.parseDouble(r.getText());
-
-
-                // G
-                if (g.getText().isEmpty())
-                    gInt = s.getColor().getGreen();
-                else
-                    gInt = Double.parseDouble(g.getText());
-
-                //B
-                if (b.getText().isEmpty())
-                    bInt = s.getColor().getBlue();
-                else
-                    bInt = Double.parseDouble(b.getText());
 
                 if (choice == JOptionPane.OK_OPTION) {
                     // OK button was clicked
@@ -74,12 +56,41 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
                 } else if (choice == 1) {
                     // Apply button was clicked
                     // Do something with the entered color
-                    s.setColor(new MyColor(rInt,gInt,bInt));
+                    setColorMenu(r,g,b,s);
                     renderer.refreshCanva();
                 }
             }
         };
         item.addActionListener(actionListener);
+    }
+
+    public void setColorMenu(JTextField r, JTextField g, JTextField b, ArrayList<Shape> s){
+        // getColors :
+        double rInt,gInt,bInt;
+
+        for (Shape shape: s) {
+            // R
+            if (r.getText().isEmpty())
+                rInt = shape.getColor().getRed();
+            else
+                rInt = Double.parseDouble(r.getText());
+
+
+            // G
+            if (g.getText().isEmpty())
+                gInt = shape.getColor().getGreen();
+            else
+                gInt = Double.parseDouble(g.getText());
+
+            //B
+            if (b.getText().isEmpty())
+                bInt = shape.getColor().getBlue();
+            else
+                bInt = Double.parseDouble(b.getText());
+
+            shape.setColor(new MyColor(rInt,gInt,bInt));
+        }
+
     }
 
 }

@@ -17,21 +17,29 @@ public class CanvaObserver implements Observer {
      */
     @Override
     public void updateSelectedShape(Shape shape) {
+        renderer.addSelectedShape(shape);
         shape.setOpacity(125);
     }
 
-    @Override
-    public void Unselect(){
-        for (Shape s : renderer.getShapes()) {
-            s.setOpacity(255);
-        }
+    public void updateUnselectedShape(Shape s) {
+        renderer.removeSelectedShape(s);
+        s.setOpacity(255);
     }
 
     @Override
-    public void updateShapePosition(Shape shape, int x, int y) {
+    public void Unselect() {
+        for (Shape s : renderer.getSelectedShapes()) {
+            s.setOpacity(255);
+        }
+        renderer.clearSelectedShape();
+    }
+
+    @Override
+    public void updateShapePosition(int x, int y) {
         Point2D vec = new Point2D.Double(x, y);
-        shape.translate(vec);
-        // shape.setPos(new Point2D.Double(x, y));
+        for (Shape s : renderer.getSelectedShapes()) {
+            s.translate(vec);
+        }
     }
 
 }
