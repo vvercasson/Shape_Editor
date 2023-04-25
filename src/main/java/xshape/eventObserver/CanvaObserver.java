@@ -12,9 +12,6 @@ public class CanvaObserver implements Observer {
         renderer = r;
     }
 
-    /*
-     * TODO: draw outline for the shape
-     */
     @Override
     public void updateSelectedShape(Shape shape) {
         renderer.addSelectedShape(shape);
