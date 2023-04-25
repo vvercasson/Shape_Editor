@@ -5,5 +5,4 @@ public abstract class AbstractSCMenu {
     public enum Items{
         Edit,Degroup
     }
-
 }
