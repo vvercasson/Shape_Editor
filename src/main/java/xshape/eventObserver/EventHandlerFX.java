@@ -15,7 +15,6 @@ public class EventHandlerFX extends AbstractEventHandler {
 
     @Override
     public void addMoListener() {
-
         // CLICKED
         FxCanva._root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
-import xshape.toolbar.Button;
-import xshape.toolbar.ButtonToolBar;
-import xshape.toolbar.ShapeToolBar;
-import xshape.toolbar.Trash;
+import xshape.toolbar.*;
 import xshape.utils.MyColor;
 
 public abstract class Renderer {
@@ -167,4 +164,6 @@ public abstract class Renderer {
             s.drawInCanva(this);
         }
     }
+
+    public abstract AbstractSCMenu get_contextMenu();
 }

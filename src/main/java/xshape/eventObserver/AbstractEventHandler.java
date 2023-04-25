@@ -32,6 +32,7 @@ public abstract class AbstractEventHandler {
         if (rightClick && !getRenderer().getSelectedShapes().isEmpty()) {
             System.out.println("Right click");
             if (shapeClicked) {
+                //getRenderer().get_contextMenu().showMenu();
                 getRenderer().createContextMenu();
             }
             return;

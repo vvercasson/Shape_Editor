@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.AbstractSCMenu;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeContextMenuAWT;
 import xshape.toolbar.Trash;
@@ -58,19 +59,13 @@ public class AwtRenderer extends Renderer {
             _contextMenu.getMenu().setVisible(false);
 
         _contextMenu = new ShapeContextMenuAWT();
-        canva.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    _contextMenu.getMenu().show(canva, e.getX(), e.getY());
-                }
-            }
-            public void mouseReleased(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    _contextMenu.getMenu().show(canva, e.getX(), e.getY());
-                }
-            }
-        });
-        _contextMenu.openEditBox(this,super.getSelectedShapes(),(JMenuItem) _contextMenu.getMenu().getComponent(0));
+
+        _contextMenu.showMenu(canva,this);
+    }
+
+    @Override
+    public AbstractSCMenu get_contextMenu() {
+        return _contextMenu;
     }
 
     @Override
