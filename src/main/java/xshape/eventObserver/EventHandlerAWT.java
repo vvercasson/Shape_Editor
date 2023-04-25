@@ -11,6 +11,9 @@ import java.awt.event.MouseMotionListener;
 
 public class EventHandlerAWT extends AbstractEventHandler implements MouseMotionListener, MouseListener, KeyListener {
 
+    private static final int AWT_SHIFT_CLICK_KEYCODE = 16;
+    private static final int AWT_CTRL_CLICK_KEYCODE = 17;
+
     private AwtCanva canva;
 
     public EventHandlerAWT(Renderer renderer, AwtCanva canva) {
@@ -63,13 +66,13 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
     // KEY LISTENER
     @Override
     public void keyPressed(KeyEvent k) {
-        if (k.getKeyCode() == 16 || k.getKeyCode() == 17)
+        if (k.getKeyCode() == AWT_SHIFT_CLICK_KEYCODE || k.getKeyCode() == AWT_CTRL_CLICK_KEYCODE)
             setShiftHold(true);
     }
 
     @Override
     public void keyReleased(KeyEvent k) {
-        if (k.getKeyCode() == 16 || k.getKeyCode() == 17)
+        if (k.getKeyCode() == AWT_SHIFT_CLICK_KEYCODE || k.getKeyCode() == AWT_CTRL_CLICK_KEYCODE)
             setShiftHold(false);
     }
 
