@@ -5,7 +5,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
-import xshape.utils.ListOfColors;
 import xshape.utils.MyColor;
 
 import java.util.ArrayList;
@@ -36,9 +35,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
             grid.setVgap(10);
             grid.setPadding(new Insets(20, 150, 10, 10));
 
-            ListOfColors colors = new ListOfColors();
 
-            Iterator<ListOfColors> iterator;
 
             // textfield for rgb
             TextField r = new TextField();

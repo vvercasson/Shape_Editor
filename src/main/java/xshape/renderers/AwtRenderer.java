@@ -11,7 +11,6 @@ import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeContextMenuAWT;
-import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 

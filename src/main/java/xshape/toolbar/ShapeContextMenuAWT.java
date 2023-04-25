@@ -1,7 +1,5 @@
 package xshape.toolbar;
 
-import javafx.scene.control.TextField;
-import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
@@ -28,7 +26,6 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
     public void openEditBox(AwtRenderer renderer, ArrayList<Shape> s, JMenuItem item) {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
                 JPanel panel = new JPanel();
                 panel.add(new JLabel("Choose the color (RGB format) :"));
                 JTextField r = new JTextField(5);
