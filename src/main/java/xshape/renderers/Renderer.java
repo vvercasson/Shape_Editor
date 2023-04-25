@@ -42,6 +42,14 @@ public abstract class Renderer {
         return _tb;
     }
 
+    public ButtonToolBar getButtonToolBar(){
+        return _btb;
+    }
+
+    public void setShapes(ArrayList<Shape> shapes){
+        _shapes=shapes;
+    }
+
     public int getWidth() {
         return _width;
     }

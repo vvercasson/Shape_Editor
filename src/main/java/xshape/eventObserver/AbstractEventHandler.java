@@ -1,6 +1,13 @@
 package xshape.eventObserver;
 
 import java.awt.geom.Point2D;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import xshape.toolbar.Button;
 
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
@@ -27,6 +34,24 @@ public abstract class AbstractEventHandler {
         boolean shapeClicked = false;
         if (getShapeClicked() != null) {
             shapeClicked = true;
+        }
+
+        Button b;
+        if (( b = getButtonClicked()) !=null){
+            switch (b.getLabel()) {
+                case "Load":
+                    loadCase();
+                    break;
+                case "Save":
+                    saveCase();
+                    break;
+                case "Undo":
+                    break;
+                case "Redo":
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (rightClick && !getRenderer().getSelectedShapes().isEmpty()) {
@@ -159,6 +184,15 @@ public abstract class AbstractEventHandler {
         return null;
     }
 
+    public Button getButtonClicked(){
+        for (Button b : renderer.getButtonToolBar().getButtons()) {
+            if(b.getBackground().belongsTo(originClicked)){
+                return b;
+            }
+        }
+        return null;
+    }
+
     // Shift Hold
     public void setShiftHold(boolean shiftHold) {
         this.shiftHold = shiftHold;
@@ -166,5 +200,39 @@ public abstract class AbstractEventHandler {
 
     public boolean getShiftHold() {
         return shiftHold;
+    }
+
+
+    /*************************Gestion des Load et Save*******************************************/
+
+    public void  loadCase(){
+        String fileNameLoad = "save.bin";
+        try {
+            ArrayList<Shape> saveShapes = new ArrayList<>();
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileNameLoad));
+            saveShapes =(ArrayList<Shape>) is.readObject();
+            /* if(saveShapes!=null){
+                System.out.println("il existe");
+            } */
+            is.close();
+            renderer.setShapes(saveShapes);
+            for (Shape shape : renderer.getSelectedShapes()) {
+                renderer.removeSelectedShape(shape);
+            }
+        } catch (Exception e) {
+            System.out.println("Problème avec le Load");
+        }
+    }
+
+    public void saveCase(){
+        String fileNameSave = "save.bin";
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileNameSave));
+            os.writeObject(renderer.getShapes());
+            os.close(  );
+        } catch (Exception e) {
+            System.out.println("Problème avec le Save");
+        }
+        System.out.println("done saving");
     }
 }
