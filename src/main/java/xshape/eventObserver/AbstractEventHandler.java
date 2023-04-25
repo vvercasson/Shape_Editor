@@ -21,12 +21,20 @@ public abstract class AbstractEventHandler {
     public abstract void addMoListener();
 
     // *****************HandleClikced************************************************//
-    public void handleClicked(double x, double y) {
+    public void handleClicked(double x, double y, boolean rightClick) {
         // System.out.println("Clicked");
         originClicked = new Point2D.Double(x, y);
         boolean shapeClicked = false;
         if (getShapeClicked() != null) {
             shapeClicked = true;
+        }
+
+        if (rightClick && !getRenderer().getSelectedShapes().isEmpty()) {
+            System.out.println("Right click");
+            if (shapeClicked) {
+                getRenderer().createContextMenu();
+            }
+            return;
         }
         // ! DIDNT CLICK ON A SHAPE so we clear
         if (shapeClicked == false) {
@@ -125,6 +133,7 @@ public abstract class AbstractEventHandler {
 
         renderer.refreshCanva();
     }
+
     // ***************************************************************************//
     public Renderer getRenderer() {
         return renderer;
