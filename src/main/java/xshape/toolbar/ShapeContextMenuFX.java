@@ -118,6 +118,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
     public void showMenu(Canvas c, FxRenderer r, Observer observer) {
         c.setOnContextMenuRequested(e -> menu.show(c, e.getScreenX(), e.getScreenY()));
         openEditBox(r,r.getSelectedShapes(),menu.getItems().get(0));
+        de_group(r,menu.getItems().get(1),observer);
 
     }
 }
