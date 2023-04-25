@@ -120,17 +120,16 @@ public class FxRenderer extends Renderer {
         bar.setNewPos(bar.getNewPos() + 60);
     }
 
-    public void createContextMenu(){
-        if (_contextMenu!= null)
+    public void createContextMenu(Observer observer){
+        if (_contextMenu!= null){
             _contextMenu.getMenu().hide();
+
+        }
 
         _contextMenu = new ShapeContextMenuFX();
 
-        _contextMenu.showMenu(_canvas,this);
+        _contextMenu.showMenu(_canvas,this,observer);
     }
 
-    public AbstractSCMenu get_contextMenu() {
-        return _contextMenu;
-    }
 
 }

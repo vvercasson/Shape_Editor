@@ -1,5 +1,6 @@
 package xshape.toolbar;
 
+import xshape.eventObserver.Observer;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.shapes.Shape;
@@ -12,18 +13,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ShapeContextMenuAWT extends AbstractSCMenu{
+public class ShapeContextMenuAWT extends AbstractSCMenu {
     JPopupMenu menu = new JPopupMenu();
 
-    public ShapeContextMenuAWT(){
+    public ShapeContextMenuAWT() {
 
-        for (Items i: Items.values()) {
+        for (Items i : Items.values()) {
             menu.add(new JMenuItem(i.toString()));
         }
     }
 
     public JPopupMenu getMenu() {
         return menu;
+    }
+
+    public void de_group(AwtRenderer r, JMenuItem item, Observer observer) {
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                observer.de_group_shapes();
+                r.refreshCanva();
+            }
+        };
+        item.addActionListener(actionListener);
     }
 
     public void openEditBox(AwtRenderer renderer, ArrayList<Shape> s, JMenuItem item) {
@@ -38,12 +50,16 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
                 panel.add(g);
                 panel.add(b);
 
-                Object[] options = {"OK", "Apply", "Cancel"};
+                // ROTATION
+                panel.add(new JLabel("Choose the rotation (degree) :"));
+                JTextField rotationInput = new JTextField(5);
+                panel.add(rotationInput);
+
+                Object[] options = { "OK", "Apply", "Cancel" };
 
                 // Show the JOptionPane and wait for the user's response
                 int choice = JOptionPane.showOptionDialog(null, panel, "Edit", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE, null, options, null);
-
 
                 // getColors :
 
@@ -56,7 +72,8 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
                 } else if (choice == 1) {
                     // Apply button was clicked
                     // Do something with the entered color
-                    setColorMenu(r,g,b,s);
+                    setColorMenu(r, g, b, s);
+                    setRotateMenu(rotationInput, s);
                     renderer.refreshCanva();
                 }
             }
@@ -64,17 +81,24 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
         item.addActionListener(actionListener);
     }
 
-    public void setColorMenu(JTextField r, JTextField g, JTextField b, ArrayList<Shape> s){
-        // getColors :
-        double rInt,gInt,bInt;
+    public void setRotateMenu(JTextField rotateInput, ArrayList<Shape> s) {
+        for (Shape shape : s) {
+            if (!rotateInput.getText().isEmpty()) {
+                shape.rotate(Double.parseDouble(rotateInput.getText()));
+            }
+        }
+    }
 
-        for (Shape shape: s) {
+    public void setColorMenu(JTextField r, JTextField g, JTextField b, ArrayList<Shape> s) {
+        // getColors :
+        double rInt, gInt, bInt;
+
+        for (Shape shape : s) {
             // R
             if (r.getText().isEmpty())
                 rInt = shape.getColor().getRed();
             else
                 rInt = Double.parseDouble(r.getText());
-
 
             // G
             if (g.getText().isEmpty())
@@ -82,31 +106,29 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
             else
                 gInt = Double.parseDouble(g.getText());
 
-            //B
+            // B
             if (b.getText().isEmpty())
                 bInt = shape.getColor().getBlue();
             else
                 bInt = Double.parseDouble(b.getText());
 
-            shape.setColor(new MyColor(rInt,gInt,bInt));
+            shape.setColor(new MyColor(rInt, gInt, bInt));
         }
 
     }
 
-    public void showMenu(AwtCanva c, AwtRenderer r) {
+    public void showMenu(AwtCanva c, AwtRenderer r, Observer observer) {
         c.addMouseListener(new MouseAdapter() {
+
             public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
-                    menu.show(c, e.getX(), e.getY());
-                }
-            }
-            public void mouseReleased(MouseEvent e) {
-                if (e.isPopupTrigger()) {
+                if (e.isPopupTrigger() && !r.getSelectedShapes().isEmpty()) {
                     menu.show(c, e.getX(), e.getY());
                 }
             }
         });
-        openEditBox(r,r.getSelectedShapes(),(JMenuItem) menu.getComponent(0));
+        openEditBox(r, r.getSelectedShapes(), (JMenuItem) menu.getComponent(0));
+        de_group(r, (JMenuItem) menu.getComponent(1), observer);
+
     }
 
 }

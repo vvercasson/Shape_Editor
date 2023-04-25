@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import xshape.eventObserver.Observer;
 import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
@@ -25,6 +26,13 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
     public ContextMenu getMenu() {
         return menu;
+    }
+
+    public void de_group(FxRenderer r, MenuItem item, Observer observer){
+        item.setOnAction(event -> {
+            observer.de_group_shapes();
+            r.refreshCanva();
+        });
     }
 
     public void openEditBox(FxRenderer renderer, ArrayList<Shape> s, MenuItem item){
@@ -107,8 +115,10 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
     }
 
-    public void showMenu(Canvas c, FxRenderer r) {
+    public void showMenu(Canvas c, FxRenderer r, Observer observer) {
         c.setOnContextMenuRequested(e -> menu.show(c, e.getScreenX(), e.getScreenY()));
         openEditBox(r,r.getSelectedShapes(),menu.getItems().get(0));
+        de_group(r,menu.getItems().get(1),observer);
+
     }
 }
