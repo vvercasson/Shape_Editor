@@ -214,9 +214,6 @@ public abstract class AbstractEventHandler {
             } */
             is.close();
             renderer.setShapes(saveShapes);
-            for (Shape shape : renderer.getSelectedShapes()) {
-                renderer.removeSelectedShape(shape);
-            }
         } catch (Exception e) {
             System.out.println("Problème avec le Load");
         }
@@ -226,6 +223,7 @@ public abstract class AbstractEventHandler {
         String fileNameSave = "save.bin";
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileNameSave));
+            observer.Unselect();
             os.writeObject(renderer.getShapes());
             os.close(  );
         } catch (Exception e) {
