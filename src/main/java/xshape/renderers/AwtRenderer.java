@@ -107,15 +107,7 @@ public class AwtRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
-        int x = (int) r.getX();
-        int y = (int) r.getY();
-        int width = (int) r.getWidth();
-        int height = (int) r.getHeight();
-        AwtApp.instance().graphics().setColor(r.getColor().toAwt());
-        if (!r.isRounded())
-            AwtApp.instance().graphics().fillRect(x, y, width, height);
-        else
-            AwtApp.instance().graphics().fillRoundRect(x, y, width, height, 10, 10);
+        drawPolygon(r);
     }
 
     @Override

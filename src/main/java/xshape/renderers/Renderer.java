@@ -125,7 +125,9 @@ public abstract class Renderer {
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
 
-            Rectangle r = _factory.createCustomRectangle(100d, 100d, 100d, 100d, c1, true);
+            Rectangle r = _factory.createCustomRectangle(100d, 100d, 100d, 100d, c1, false);
+
+            // Shape pol = _factory.createDefaultPolygon(100, 100, 50, 40, MyColor.BLACK);
 
             ArrayList<Point2D> points = new ArrayList<Point2D>();
             points.add(new Point2D.Double(300, 300));
@@ -140,8 +142,13 @@ public abstract class Renderer {
             ShapeGroup g = new ShapeGroup();
             g.add(p);
             g.add(r);
+            // g.add(pol);
+            // Shape g2 = g.clone();
+
+            g.rotate(20);
 
             // _shapes.add(p);
+            // _shapes.add(g2);
             _shapes.add(p2);
             _shapes.add(g);
             // _shapes.add(r);
