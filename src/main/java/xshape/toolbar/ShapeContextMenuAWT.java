@@ -1,5 +1,6 @@
 package xshape.toolbar;
 
+import xshape.eventObserver.Observer;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
 import xshape.shapes.Shape;
@@ -26,6 +27,17 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
         return menu;
     }
 
+    public void de_group(AwtRenderer r, JMenuItem item, Observer observer){
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                observer.de_group_shapes();
+                r.refreshCanva();
+            }
+        };
+        item.addActionListener(actionListener);
+    }
+
     public void openEditBox(AwtRenderer renderer, ArrayList<Shape> s, JMenuItem item) {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +49,11 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
                 panel.add(r);
                 panel.add(g);
                 panel.add(b);
+
+                // ROTATION
+                panel.add(new JLabel("Choose the rotation (degree) :"));
+                JTextField rotationInput = new JTextField(5);
+                panel.add(rotationInput);
 
                 Object[] options = {"OK", "Apply", "Cancel"};
 
@@ -57,11 +74,21 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
                     // Apply button was clicked
                     // Do something with the entered color
                     setColorMenu(r,g,b,s);
+                    setRotateMenu(rotationInput,s);
                     renderer.refreshCanva();
                 }
             }
         };
         item.addActionListener(actionListener);
+    }
+
+
+    public void setRotateMenu(JTextField rotateInput, ArrayList<Shape> s){
+        for (Shape shape: s) {
+            if (!rotateInput.getText().isEmpty()){
+                shape.rotate(Double.parseDouble(rotateInput.getText()));
+            }
+        }
     }
 
     public void setColorMenu(JTextField r, JTextField g, JTextField b, ArrayList<Shape> s){
@@ -93,8 +120,9 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
 
     }
 
-    public void showMenu(AwtCanva c, AwtRenderer r) {
+    public void showMenu(AwtCanva c, AwtRenderer r, Observer observer) {
         c.addMouseListener(new MouseAdapter() {
+
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger()) {
                     menu.show(c, e.getX(), e.getY());
@@ -107,6 +135,8 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
             }
         });
         openEditBox(r,r.getSelectedShapes(),(JMenuItem) menu.getComponent(0));
+        de_group(r,(JMenuItem) menu.getComponent(1),observer);
+
     }
 
 }

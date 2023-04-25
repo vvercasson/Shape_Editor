@@ -3,6 +3,7 @@ package xshape.renderers;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import xshape.eventObserver.Observer;
 import xshape.factory.ShapeFactory;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
@@ -111,7 +112,7 @@ public abstract class Renderer {
 
     public abstract void refreshCanva();
 
-    public abstract void createContextMenu();
+    public abstract void createContextMenu(Observer observer);
 
     /*
      * Function that says what to be displayed on open
@@ -164,6 +165,4 @@ public abstract class Renderer {
             s.drawInCanva(this);
         }
     }
-
-    public abstract AbstractSCMenu get_contextMenu();
 }

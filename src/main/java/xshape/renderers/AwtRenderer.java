@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import xshape.eventObserver.Observer;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.AbstractSCMenu;
@@ -51,18 +52,13 @@ public class AwtRenderer extends Renderer {
     }
 
     @Override
-    public void createContextMenu() {
+    public void createContextMenu(Observer observer) {
         if (_contextMenu!= null)
             _contextMenu.getMenu().setVisible(false);
 
         _contextMenu = new ShapeContextMenuAWT();
 
-        _contextMenu.showMenu(canva,this);
-    }
-
-    @Override
-    public AbstractSCMenu get_contextMenu() {
-        return _contextMenu;
+        _contextMenu.showMenu(canva,this,observer);
     }
 
     @Override

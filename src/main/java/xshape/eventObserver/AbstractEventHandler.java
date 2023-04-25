@@ -33,7 +33,7 @@ public abstract class AbstractEventHandler {
             System.out.println("Right click");
             if (shapeClicked) {
                 //getRenderer().get_contextMenu().showMenu();
-                getRenderer().createContextMenu();
+                getRenderer().createContextMenu(observer);
             }
             return;
         }
