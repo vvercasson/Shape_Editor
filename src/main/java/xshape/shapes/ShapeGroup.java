@@ -1,13 +1,14 @@
 package xshape.shapes;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import xshape.renderers.Renderer;
 import xshape.utils.MyColor;
 
-public class ShapeGroup implements Shape, Iterable<Shape> {
+public class ShapeGroup implements Shape, Iterable<Shape>, Serializable {
     /*
      * Composite pattern
      */

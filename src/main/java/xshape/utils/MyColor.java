@@ -115,4 +115,9 @@ public class MyColor implements Cloneable, Serializable {
     public void setOpacity(double opacity) {
         _rgb[3] = opacity;
     }
+
+    @Override
+    public String toString(){
+        return "red :" + _rgb[0] + " green :" + _rgb[1] + " blue :" + _rgb[2] + " opacity :" +  _rgb[3];
+    }
 }

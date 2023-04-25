@@ -60,7 +60,6 @@ public class Polygon extends AShape {
     @Override
     public Shape rotate(double angle, Point2D center) {
         for (Point2D p : getPoints()) {
-            System.out.println("Points: " + p.getX() + " " + p.getY() + "\n");
             double angleRad = ((angle / 180) * Math.PI);
             double cosAngle = Math.cos(angleRad);
             double sinAngle = Math.sin(angleRad);
@@ -71,7 +70,6 @@ public class Polygon extends AShape {
             double newY = center.getY() + (int) (dx * sinAngle + dy * cosAngle);
 
             p.setLocation(newX, newY);
-            System.out.println("Points: " + p.getX() + " " + p.getY() + "\n");
         }
         return this;
     }

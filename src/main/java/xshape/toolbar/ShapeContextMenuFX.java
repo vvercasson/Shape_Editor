@@ -8,7 +8,6 @@ import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{
     ContextMenu menu = new ContextMenu();
