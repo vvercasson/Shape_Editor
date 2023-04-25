@@ -149,7 +149,7 @@ public class FxRenderer extends Renderer {
 
         _contextMenu = new ShapeContextMenuFX();
         _canvas.setOnContextMenuRequested(e -> _contextMenu.getMenu().show(_canvas, e.getScreenX(), e.getScreenY()));
-        _contextMenu.openEditBox(super.getShapeSelected(),_contextMenu.getMenu().getItems().get(0));
+        _contextMenu.openEditBox(this,super.getShapeSelected(),_contextMenu.getMenu().getItems().get(0));
     }
 
     public GraphicsContext get_gc() {

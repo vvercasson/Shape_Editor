@@ -15,6 +15,8 @@ import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
+import javax.swing.*;
+
 public class AwtRenderer extends Renderer {
 
     /*
@@ -69,7 +71,7 @@ public class AwtRenderer extends Renderer {
                 }
             }
         });
-        //_contextMenu.openEditeBox(super.getShapeSelected(),_contextMenu.getMenu().getItem;
+        _contextMenu.openEditBox(canva,super.getShapeSelected(),(JMenuItem) _contextMenu.getMenu().getComponent(0));
     }
 
     @Override
