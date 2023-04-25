@@ -22,7 +22,7 @@ public class EventHandlerFX extends AbstractEventHandler {
             @Override
             public void handle(MouseEvent event) {
 
-                if(event.getButton() == MouseButton.SECONDARY && (EventHandlerFX.super.getRenderer().getShapeSelected() != null)){
+                if(event.getButton() == MouseButton.SECONDARY && !(EventHandlerFX.super.getRenderer().getSelectedShapes().isEmpty())){
                     EventHandlerFX.super.getRenderer().createContextMenu();
                 }
                 else{
