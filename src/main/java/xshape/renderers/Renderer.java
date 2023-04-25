@@ -114,6 +114,8 @@ public abstract class Renderer {
 
     public abstract void refreshCanva();
 
+    public abstract void createContextMenu();
+
     /*
      * Function that says what to be displayed on open
      */

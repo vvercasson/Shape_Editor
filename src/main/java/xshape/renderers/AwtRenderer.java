@@ -1,6 +1,8 @@
 package xshape.renderers;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -8,8 +10,12 @@ import java.util.ArrayList;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.ButtonToolBar;
+import xshape.toolbar.ShapeContextMenuAWT;
+import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
+
+import javax.swing.*;
 
 public class AwtRenderer extends Renderer {
 
@@ -17,6 +23,8 @@ public class AwtRenderer extends Renderer {
      * Attributes
      */
     private AwtCanva canva;
+
+    private ShapeContextMenuAWT _contextMenu;
 
     /*
      * Constructors
@@ -43,6 +51,27 @@ public class AwtRenderer extends Renderer {
     @Override
     public void refreshCanva() {
         canva.repaint();
+    }
+
+    @Override
+    public void createContextMenu() {
+        if (_contextMenu!= null)
+            _contextMenu.getMenu().setVisible(false);
+
+        _contextMenu = new ShapeContextMenuAWT();
+        canva.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    _contextMenu.getMenu().show(canva, e.getX(), e.getY());
+                }
+            }
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    _contextMenu.getMenu().show(canva, e.getX(), e.getY());
+                }
+            }
+        });
+        _contextMenu.openEditBox(this,super.getSelectedShapes(),(JMenuItem) _contextMenu.getMenu().getComponent(0));
     }
 
     @Override

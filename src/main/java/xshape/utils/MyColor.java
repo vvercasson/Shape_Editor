@@ -12,6 +12,7 @@ public class MyColor implements Cloneable, Serializable {
      * Some predefined colors
      */
     public static final MyColor RED = new MyColor(255, 0, 0);
+
     public static final MyColor GREEN = new MyColor(0, 255, 0);
     public static final MyColor BLUE = new MyColor(0, 0, 255);
     public static final MyColor BLACK = new MyColor(0, 0, 0);

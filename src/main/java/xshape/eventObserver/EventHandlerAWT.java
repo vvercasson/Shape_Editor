@@ -3,16 +3,11 @@ package xshape.eventObserver;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.Renderer;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class EventHandlerAWT extends AbstractEventHandler implements MouseMotionListener, MouseListener, KeyListener {
-
-    private static final int AWT_SHIFT_CLICK_KEYCODE = 16;
-    private static final int AWT_CTRL_CLICK_KEYCODE = 17;
+public class EventHandlerAWT extends AbstractEventHandler implements MouseMotionListener, MouseListener {
 
     private AwtCanva canva;
 
@@ -25,22 +20,26 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
     public void addMoListener() {
         canva.addMouseListener(this);
         canva.addMouseMotionListener(this);
-        canva.addKeyListener(this);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        handleClicked(e.getX(), e.getY());
+        if(e.getButton() == MouseEvent.BUTTON3 && !(EventHandlerAWT.super.getRenderer().getSelectedShapes().isEmpty())){
+            EventHandlerAWT.super.getRenderer().createContextMenu();
+        }
+        else{
+            handleClicked(e.getX(),e.getY());
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        handlePressed(e.getX(), e.getY());
+        handlePressed(e.getX(),e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        handleRelease(e.getX(), e.getY());
+        handleRelease(e.getX(),e.getY());
     }
 
     @Override
@@ -55,28 +54,11 @@ public class EventHandlerAWT extends AbstractEventHandler implements MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        handleDragged(e.getX(), e.getY());
+        handleDragged(e.getX(),e.getY());
     }
 
     @Override
     public void mouseMoved(MouseEvent arg0) {
 
-    }
-
-    // KEY LISTENER
-    @Override
-    public void keyPressed(KeyEvent k) {
-        if (k.getKeyCode() == AWT_SHIFT_CLICK_KEYCODE || k.getKeyCode() == AWT_CTRL_CLICK_KEYCODE)
-            setShiftHold(true);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent k) {
-        if (k.getKeyCode() == AWT_SHIFT_CLICK_KEYCODE || k.getKeyCode() == AWT_CTRL_CLICK_KEYCODE)
-            setShiftHold(false);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent k) {
     }
 }

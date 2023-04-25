@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.toolbar.ButtonToolBar;
+import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
 import xshape.utils.MyColor;
 
@@ -19,6 +20,8 @@ public class FxRenderer extends Renderer {
      */
     private GraphicsContext _gc;
     private Canvas _canvas;
+
+    private ShapeContextMenuFX _contextMenu;
 
     /*
      * Constructor
@@ -139,6 +142,15 @@ public class FxRenderer extends Renderer {
         _gc.setFont(new Font(12));
         _gc.fillText(nameButton, bar.getNewPos() + 10, 16);
         bar.setNewPos(bar.getNewPos() + 60);
+    }
+
+    public void createContextMenu(){
+        if (_contextMenu!= null)
+            _contextMenu.getMenu().hide();
+
+        _contextMenu = new ShapeContextMenuFX();
+        _canvas.setOnContextMenuRequested(e -> _contextMenu.getMenu().show(_canvas, e.getScreenX(), e.getScreenY()));
+        _contextMenu.openEditBox(this,super.getSelectedShapes(),_contextMenu.getMenu().getItems().get(0));
     }
 
     public GraphicsContext get_gc() {
