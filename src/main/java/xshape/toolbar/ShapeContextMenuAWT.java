@@ -1,12 +1,17 @@
 package xshape.toolbar;
 
+import javafx.scene.canvas.Canvas;
+import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
+import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class ShapeContextMenuAWT extends AbstractSCMenu{
@@ -88,6 +93,22 @@ public class ShapeContextMenuAWT extends AbstractSCMenu{
             shape.setColor(new MyColor(rInt,gInt,bInt));
         }
 
+    }
+
+    public void showMenu(AwtCanva c, AwtRenderer r) {
+        c.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    menu.show(c, e.getX(), e.getY());
+                }
+            }
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    menu.show(c, e.getX(), e.getY());
+                }
+            }
+        });
+        openEditBox(r,r.getSelectedShapes(),(JMenuItem) menu.getComponent(0));
     }
 
 }

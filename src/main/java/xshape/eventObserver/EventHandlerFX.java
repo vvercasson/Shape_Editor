@@ -9,25 +9,21 @@ import xshape.renderers.FxCanva;
 
 public class EventHandlerFX extends AbstractEventHandler {
 
-
     public EventHandlerFX(Renderer renderer) {
         super(renderer, new CanvaObserver(renderer));
     }
 
     @Override
     public void addMoListener() {
-
         // CLICKED
         FxCanva._root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
-                if(event.getButton() == MouseButton.SECONDARY && !(EventHandlerFX.super.getRenderer().getSelectedShapes().isEmpty())){
-                    EventHandlerFX.super.getRenderer().createContextMenu();
+                boolean rightClick = false;
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    rightClick = true;
                 }
-                else{
-                    handleClicked(event.getX(),event.getY());
-                }
+                handleClicked(event.getX(), event.getY(), rightClick);
             }
         });
 
@@ -35,7 +31,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handlePressed(event.getX(),event.getY());
+                handlePressed(event.getX(), event.getY());
             }
         });
 
@@ -43,7 +39,7 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                handleDragged(e.getX(),e.getY());
+                handleDragged(e.getX(), e.getY());
             }
 
         });
@@ -52,11 +48,9 @@ public class EventHandlerFX extends AbstractEventHandler {
         FxCanva._root.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                handleRelease(e.getX(),e.getY());
+                handleRelease(e.getX(), e.getY());
             }
         });
     }
-
-
 
 }

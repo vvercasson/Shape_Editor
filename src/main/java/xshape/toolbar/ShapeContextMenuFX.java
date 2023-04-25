@@ -1,12 +1,19 @@
 package xshape.toolbar;
 
 import javafx.geometry.Insets;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import xshape.renderers.FxCanva;
 import xshape.renderers.FxRenderer;
+import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{
@@ -101,5 +108,10 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
             shape.setColor(new MyColor(rInt,gInt,bInt));
         }
 
+    }
+
+    public void showMenu(Canvas c, FxRenderer r) {
+        c.setOnContextMenuRequested(e -> menu.show(c, e.getScreenX(), e.getScreenY()));
+        openEditBox(r,r.getSelectedShapes(),menu.getItems().get(0));
     }
 }

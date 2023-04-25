@@ -9,6 +9,7 @@ import xshape.eventObserver.*;
 import javafx.scene.text.Font;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
+import xshape.toolbar.AbstractSCMenu;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
@@ -20,7 +21,6 @@ public class FxRenderer extends Renderer {
      */
     private GraphicsContext _gc;
     private Canvas _canvas;
-
     private ShapeContextMenuFX _contextMenu;
 
     /*
@@ -125,12 +125,12 @@ public class FxRenderer extends Renderer {
             _contextMenu.getMenu().hide();
 
         _contextMenu = new ShapeContextMenuFX();
-        _canvas.setOnContextMenuRequested(e -> _contextMenu.getMenu().show(_canvas, e.getScreenX(), e.getScreenY()));
-        _contextMenu.openEditBox(this,super.getSelectedShapes(),_contextMenu.getMenu().getItems().get(0));
+
+        _contextMenu.showMenu(_canvas,this);
     }
 
-    public GraphicsContext get_gc() {
-        return _gc;
+    public AbstractSCMenu get_contextMenu() {
+        return _contextMenu;
     }
 
 }
