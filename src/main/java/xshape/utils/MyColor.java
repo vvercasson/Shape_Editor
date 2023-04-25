@@ -1,6 +1,8 @@
 package xshape.utils;
 
-public class MyColor implements Cloneable {
+import java.io.Serializable;
+
+public class MyColor implements Cloneable, Serializable {
     /*
      * Attributes
      */

@@ -1,10 +1,11 @@
 package xshape.shapes;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 import xshape.utils.MyColor;
 
-public abstract class AShape implements Shape {
+public abstract class AShape implements Shape, Serializable {
     /*
      * Shape Attributes
      */
