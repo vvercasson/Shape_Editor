@@ -126,6 +126,9 @@ public abstract class AbstractEventHandler {
         renderer.refreshCanva();
     }
     // ***************************************************************************//
+    public Renderer getRenderer() {
+        return renderer;
+    }
 
     // Methods to limit code above
     public Shape getShapeClicked() {
