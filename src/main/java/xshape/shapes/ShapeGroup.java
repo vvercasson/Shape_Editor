@@ -86,7 +86,7 @@ public class ShapeGroup implements Shape, Iterable<Shape> {
             x += p.getX();
             y += p.getY();
         }
-        _rotationCenterOfGroup = (new Point2D.Double(x / _shapes.size(), y / _shapes.size()));
+        setRotationCenter(new Point2D.Double(x / _shapes.size(), y / _shapes.size()));
     }
 
     @Override

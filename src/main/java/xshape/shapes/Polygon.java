@@ -48,35 +48,30 @@ public class Polygon extends AShape {
         for (Point2D p : _points) {
             p.setLocation(p.getX() + vec.getX(), p.getY() + vec.getY());
         }
+        computeCenterOfRotation();
         return this;
     }
 
     @Override
     public Shape rotate(double angle) {
-        double centerX = getRotationCenter().getX();
-        double centerY = getRotationCenter().getY();
-        double radians = Math.toRadians(angle);
-        for (Point2D point : getPoints()) {
-            double x = point.getX() - centerX;
-            double y = point.getY() - centerY;
-            double xPrime = x * Math.cos(radians) - y * Math.sin(radians);
-            double yPrime = x * Math.sin(radians) + y * Math.cos(radians);
-            point.setLocation(xPrime + centerX, yPrime + centerY);
-        }
-        return this;
+        return rotate(angle, getRotationCenter());
     }
 
     @Override
     public Shape rotate(double angle, Point2D center) {
-        double centerX = center.getX();
-        double centerY = center.getY();
-        double radians = Math.toRadians(angle);
-        for (Point2D point : getPoints()) {
-            double x = point.getX() - centerX;
-            double y = point.getY() - centerY;
-            double xPrime = x * Math.cos(radians) - y * Math.sin(radians);
-            double yPrime = x * Math.sin(radians) + y * Math.cos(radians);
-            point.setLocation(xPrime + centerX, yPrime + centerY);
+        for (Point2D p : getPoints()) {
+            System.out.println("Points: " + p.getX() + " " + p.getY() + "\n");
+            double angleRad = ((angle / 180) * Math.PI);
+            double cosAngle = Math.cos(angleRad);
+            double sinAngle = Math.sin(angleRad);
+            double dx = (p.getX() - center.getX());
+            double dy = (p.getY() - center.getY());
+
+            double newX = center.getX() + (int) (dx * cosAngle - dy * sinAngle);
+            double newY = center.getY() + (int) (dx * sinAngle + dy * cosAngle);
+
+            p.setLocation(newX, newY);
+            System.out.println("Points: " + p.getX() + " " + p.getY() + "\n");
         }
         return this;
     }
@@ -127,6 +122,7 @@ public class Polygon extends AShape {
         for (Point2D p : getPoints()) {
             p.setLocation(p.getX() * ratio, p.getY() * ratio);
         }
+        computeCenterOfRotation();
         return this;
     }
 

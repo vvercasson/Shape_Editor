@@ -70,6 +70,11 @@ public class Rectangle extends Polygon {
     }
 
     @Override
+    public Shape rotate(double angle, Point2D center) {
+        return super.rotate(angle, center);
+    }
+
+    @Override
     public void drawInCanva(Renderer r) {
         r.drawRectangle(this);
     }

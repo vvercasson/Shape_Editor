@@ -52,15 +52,7 @@ public class FxRenderer extends Renderer {
 
     @Override
     public void drawRectangle(Rectangle r) {
-        int x = (int) r.getX();
-        int y = (int) r.getY();
-        int width = (int) r.getWidth();
-        int height = (int) r.getHeight();
-        _gc.setFill(r.getColor().toFx());
-        if (!r.isRounded())
-            _gc.fillRect(x, y, width, height);
-        else
-            _gc.fillRoundRect(x, y, width, height, 10, 10);
+        drawPolygon(r);
     }
 
     @Override
@@ -96,28 +88,12 @@ public class FxRenderer extends Renderer {
         ArrayList<Point2D> points = p.getPoints();
         double[] xPoints = new double[points.size()];
         double[] yPoints = new double[points.size()];
-        if (!p.isRounded()) {
-            for (int i = 0; i < points.size(); i++) {
-                xPoints[i] = points.get(i).getX();
-                yPoints[i] = points.get(i).getY();
-            }
-            _gc.setFill(p.getColor().toFx());
-            _gc.fillPolygon(xPoints, yPoints, points.size());
-        } else {
-            double centerX = p.getRotationCenter().getX();
-            double centerY = p.getRotationCenter().getY();
-            double radius = 80;
-            double angle = Math.PI / 6; // 30 degrees
-            double offset = Math.PI / 2; // 90 degrees
-            for (int i = 0; i < p.getNbPoints(); i++) {
-                double x = centerX + radius * Math.cos(i * angle + offset);
-                double y = centerY + radius * Math.sin(i * angle + offset);
-                xPoints[i] = x;
-                yPoints[i] = y;
-            }
-            _gc.setFill(p.getColor().toFx());
-            _gc.fillPolygon(xPoints, yPoints, p.getNbPoints());
+        for (int i = 0; i < points.size(); i++) {
+            xPoints[i] = points.get(i).getX();
+            yPoints[i] = points.get(i).getY();
         }
+        _gc.setFill(p.getColor().toFx());
+        _gc.fillPolygon(xPoints, yPoints, points.size());
 
     }
 
