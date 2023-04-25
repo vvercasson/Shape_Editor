@@ -43,12 +43,12 @@ public class CanvaObserver implements Observer {
 
     @Override
     public void de_group_shapes() {
-        for (Shape s: renderer.getSelectedShapes()) {
+        for (Shape s : renderer.getSelectedShapes()) {
             if (s instanceof ShapeGroup) {
                 Iterator<Shape> iterator = ((ShapeGroup) s).iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     Shape shapeOfGroup = iterator.next();
-                    shapeOfGroup.clone();
+                    shapeOfGroup.setOpacity(255);
                     renderer.getShapes().add(shapeOfGroup);
                     ((ShapeGroup) s).remove(shapeOfGroup);
                 }
