@@ -1,11 +1,12 @@
 package xshape.toolbar;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 import xshape.shapes.Rectangle;
 import xshape.shapes.Shape;
 
-public class Trash {
+public class Trash implements Serializable {
     private Point2D.Double _pos;
     private int width = 40;
     private int height = 50;
