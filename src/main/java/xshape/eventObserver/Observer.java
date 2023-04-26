@@ -1,7 +1,6 @@
 package xshape.eventObserver;
 
 import xshape.shapes.Shape;
-import xshape.shapes.ShapeGroup;
 
 public interface Observer {
 

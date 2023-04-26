@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import xshape.eventObserver.Observer;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
-import xshape.toolbar.AbstractSCMenu;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeContextMenuAWT;
 import xshape.toolbar.Trash;

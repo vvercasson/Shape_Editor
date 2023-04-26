@@ -9,7 +9,6 @@ import xshape.eventObserver.*;
 import javafx.scene.text.Font;
 import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
-import xshape.toolbar.AbstractSCMenu;
 import xshape.toolbar.ButtonToolBar;
 import xshape.toolbar.ShapeContextMenuFX;
 import xshape.toolbar.Trash;
