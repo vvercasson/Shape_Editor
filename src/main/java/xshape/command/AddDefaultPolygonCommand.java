@@ -15,6 +15,11 @@ public class AddDefaultPolygonCommand extends AbsShapeCreationCmd {
         _p = getFactory().createDefaultPolygon(x, y, height, width, c);
     }
 
+    public AddDefaultPolygonCommand(ShapeFactory f, Renderer r, Polygon p) {
+        super(f, r);
+        _p = p;
+    }
+
     @Override
     public void apply() {
         getRenderer().getShapes().add(_p);

@@ -40,6 +40,7 @@ public class Invoker {
             command.undo();
             redoStack.push(command);
         }
+        System.out.println("Undo stack now contains " + undoStack.size() + " commands");
     }
 
     public void redo() {
@@ -48,6 +49,7 @@ public class Invoker {
             command.apply();
             undoStack.push(command);
         }
+        System.out.println("Redo stack now contains " + redoStack.size() + " commands");
     }
 
     public String getStacksInfos() {
