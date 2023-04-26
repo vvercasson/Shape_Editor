@@ -152,10 +152,13 @@ public abstract class AbstractEventHandler {
                     System.out.println("More then one shape dropped in toolbar");
                     g.add(s);
                     renderer.getShapeToolbar().addShapeToToolbar(g.resize(150));
+                    refreshToolBarSave();
                 }
             } else {
                 System.out.println("Only one shape selected");
                 renderer.getShapeToolbar().addShapeToToolbar(renderer.getSelectedShapes().get(0).resize(150));
+                refreshToolBarSave();
+
             }
         }
 
@@ -246,5 +249,17 @@ public abstract class AbstractEventHandler {
             System.out.println("Problème avec le Save");
         }
         System.out.println("done saving");
+    }
+
+    public void refreshToolBarSave(){
+        String fileToolbarSave = "src/main/java/xshape/save/saveTollBar.bin";
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileToolbarSave));
+            os.writeObject(renderer.getShapeToolbar());
+            os.close(  );
+            System.out.println("ToolBar saved");
+        } catch (Exception e) {
+            System.out.println("Problème avec le Save toolbar");
+        }
     }
 }

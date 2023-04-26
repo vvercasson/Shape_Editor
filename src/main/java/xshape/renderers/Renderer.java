@@ -130,6 +130,8 @@ public abstract class Renderer {
         if (!init) {
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
+            _tb.addShapeToToolbar(_factory.createCustomRectangle(10d, _tb.getNewShapePosition(), 20d, 40d, MyColor.RED, false));
+            _tb.addShapeToToolbar(_factory.createDefaultPolygon(10, _tb.getNewShapePosition(), 50, 40, MyColor.BLACK));
 
             Rectangle r = _factory.createCustomRectangle(100d, 100d, 100d, 100d, c1, false);
 
@@ -150,7 +152,6 @@ public abstract class Renderer {
             g.add(r);
             // g.add(pol);
             // Shape g2 = g.clone();
-
             g.rotate(20);
 
             // _shapes.add(p);
