@@ -12,7 +12,6 @@ import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{

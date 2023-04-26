@@ -94,6 +94,7 @@ public abstract class AbstractEventHandler {
         // ! Toolbar drag n drop
         if ((s = getShapeClickedToolbar()) != null) {
             System.out.println("Dragging shape from toolbar");
+            renderer.setSelectedToolBarShape(s);
             Shape s2 = s.clone();
             observer.Unselect();
             observer.updateSelectedShape(s2);
@@ -104,6 +105,7 @@ public abstract class AbstractEventHandler {
 
         // ! Canva shape pressed
         if ((s = getShapeClicked()) != null) {
+            renderer.setSelectedToolBarShape(null);
             if (renderer.getSelectedShapes().contains(s) && getShiftHold()) {
                 System.out.println("Removing shape from select group");
                 observer.updateUnselectedShape(s);
@@ -140,6 +142,10 @@ public abstract class AbstractEventHandler {
             for (Shape s : renderer.getSelectedShapes()) {
                 renderer.deleteShape(s);
             }
+            if(renderer.getSelectedToolBarShape()!= null){
+                renderer.getShapeToolbar().getToolbarShapes().remove(renderer.getSelectedToolBarShape());
+                refreshToolBarSave();
+            }
         }
         // RELEASE ON TOOLBAR
         else if (renderer.getShapeToolbar().getBackground().belongsTo(originClicked)) {
@@ -154,6 +160,7 @@ public abstract class AbstractEventHandler {
             } else {
                 System.out.println("Only one shape selected");
                 renderer.getShapeToolbar().addShapeToToolbar(renderer.getSelectedShapes().get(0).resize(150));
+                renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
                 refreshToolBarSave();
 
             }
@@ -252,9 +259,9 @@ public abstract class AbstractEventHandler {
         String fileToolbarSave = "src/main/java/xshape/save/saveTollBar.bin";
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileToolbarSave));
-            os.writeObject(renderer.getShapeToolbar());
+            os.writeObject(renderer.getShapeToolbar().getToolbarShapes());
             os.close(  );
-            System.out.println("ToolBar saved");
+            System.out.println("ShapeToolBar saved");
         } catch (Exception e) {
             System.out.println("Problème avec le Save toolbar");
         }

@@ -1,6 +1,8 @@
 package xshape.renderers;
 
 import java.awt.geom.Point2D;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import xshape.eventObserver.Observer;
@@ -26,6 +28,8 @@ public abstract class Renderer {
     private ShapeFactory _factory = new ShapesFactory();
 
     private ArrayList<Shape> _selectedShapes = new ArrayList<Shape>();
+    private Shape _shapeToolBarSelected = null ;
+
 
     /*
      * Constructor
@@ -49,6 +53,18 @@ public abstract class Renderer {
 
     public void setShapes(ArrayList<Shape> shapes){
         _shapes=shapes;
+    }
+
+    public Shape getSelectedToolBarShape(){
+        return _shapeToolBarSelected;
+    }
+
+    public void setSelectedToolBarShape(Shape shape){
+        _shapeToolBarSelected=shape;
+    }
+
+    public void setShapeToolBar(ArrayList<Shape> shapes){
+        _tb.setShapeTB(shapes);
     }
 
     public int getWidth() {
@@ -80,7 +96,18 @@ public abstract class Renderer {
         _selectedShapes.remove(s);
     }
 
-    // END TEST
+    public void loadShapeToolBar(){
+        String fileToolbarSave = "src/main/java/xshape/save/saveTollBar.bin";
+        try {
+            ArrayList<Shape> savedShapes = new ArrayList<>();
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileToolbarSave));
+            savedShapes =(ArrayList<Shape>) is.readObject();
+            is.close();
+            setShapeToolBar(savedShapes);
+        } catch (Exception e) {
+            System.out.println("Problème avec le Load tool bar :" + e);
+        }
+    }
 
     public void deleteShape(Shape s) {
         _shapes.remove(s);
@@ -130,9 +157,10 @@ public abstract class Renderer {
         if (!init) {
             MyColor c1 = new MyColor(0, 0, 255);
             MyColor c2 = new MyColor(255, 0, 0);
+
             _tb.addShapeToToolbar(_factory.createCustomRectangle(10d, _tb.getNewShapePosition(), 20d, 40d, MyColor.RED, false));
             _tb.addShapeToToolbar(_factory.createDefaultPolygon(10, _tb.getNewShapePosition(), 50, 40, MyColor.BLACK));
-
+            //loadShapeToolBar();
             Rectangle r = _factory.createCustomRectangle(100d, 100d, 100d, 100d, c1, false);
 
             // Shape pol = _factory.createDefaultPolygon(100, 100, 50, 40, MyColor.BLACK);

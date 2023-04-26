@@ -58,4 +58,8 @@ public class ShapeToolBar extends ShapeGroup {
     public ArrayList<Shape> getToolbarShapes() {
         return _shapesTB;
     }
+
+    public void setShapeTB(ArrayList<Shape> shapesTB){
+        _shapesTB=shapesTB;
+    }
 }
