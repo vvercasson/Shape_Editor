@@ -1,5 +1,6 @@
 package xshape.toolbar;
 
+import xshape.command.*;
 import xshape.eventObserver.Observer;
 import xshape.renderers.AwtCanva;
 import xshape.renderers.AwtRenderer;
@@ -84,7 +85,8 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
     public void setRotateMenu(JTextField rotateInput, ArrayList<Shape> s) {
         for (Shape shape : s) {
             if (!rotateInput.getText().isEmpty()) {
-                shape.rotate(Double.parseDouble(rotateInput.getText()));
+                RotateShapeCommand rotate = new RotateShapeCommand(shape, Integer.parseInt(rotateInput.getText()));
+                Invoker.getInstance().apply(rotate);
             }
         }
     }
@@ -112,7 +114,8 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
             else
                 bInt = Double.parseDouble(b.getText());
 
-            shape.setColor(new MyColor(rInt, gInt, bInt));
+            ChangeShapeColor colorCommand = new ChangeShapeColor(shape, new MyColor(rInt, gInt, bInt, 255));
+            Invoker.getInstance().apply(colorCommand);
         }
 
     }
@@ -136,7 +139,6 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
 
         openEditBox(r, r.getSelectedShapes(), (JMenuItem) menu.getComponent(0));
         de_group(r, (JMenuItem) menu.getComponent(1), observer);
-
 
     }
 

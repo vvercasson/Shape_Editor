@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import xshape.toolbar.Button;
+import xshape.command.Invoker;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
@@ -37,7 +38,7 @@ public abstract class AbstractEventHandler {
         }
 
         Button b;
-        if (( b = getButtonClicked()) !=null){
+        if ((b = getButtonClicked()) != null) {
             switch (b.getLabel()) {
                 case "Load":
                     loadCase();
@@ -46,8 +47,10 @@ public abstract class AbstractEventHandler {
                     saveCase();
                     break;
                 case "Undo":
+                    Invoker.getInstance().undo();
                     break;
                 case "Redo":
+                    Invoker.getInstance().redo();
                     break;
                 default:
                     break;
