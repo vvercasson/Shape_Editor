@@ -12,6 +12,7 @@ import xshape.renderers.FxRenderer;
 import xshape.shapes.Shape;
 import xshape.utils.MyColor;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class ShapeContextMenuFX extends AbstractSCMenu{
@@ -35,9 +36,16 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
         });
     }
 
+    public void setRotateMenu(TextField rotateInput, ArrayList<Shape> s) {
+        for (Shape shape : s) {
+            if (!rotateInput.getText().isEmpty()) {
+                shape.rotate(Double.parseDouble(rotateInput.getText()));
+            }
+        }
+    }
+
     public void openEditBox(FxRenderer renderer, ArrayList<Shape> s, MenuItem item){
         item.setOnAction(event -> {
-            System.out.println("je passe dans le create");
             Alert box = new Alert(Alert.AlertType.NONE);
             box.setTitle(item.getText());
 
@@ -67,6 +75,12 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
             grid.add(g,2,1);
             grid.add(b, 3, 1);
 
+            TextField rotateInput = new TextField();
+            rotateInput.setPrefWidth(40);
+            grid.add(new Label("Choose the shape color (RGB format) :"), 0, 2);
+            grid.add(rotateInput,1,3);
+
+
             box.getButtonTypes().add( new ButtonType("Apply", ButtonBar.ButtonData.APPLY));
             box.getButtonTypes().add( new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE));
             box.getButtonTypes().add( new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
@@ -77,6 +91,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
                 if (response == box.getButtonTypes().get(0)){
                     setColorMenu(r,g,b,s);
+                    setRotateMenu(rotateInput,s);
                 }
                 renderer.refreshCanva();
             });
