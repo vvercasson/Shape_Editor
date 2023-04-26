@@ -7,8 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
 import xshape.toolbar.Button;
-
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
@@ -204,7 +204,13 @@ public abstract class AbstractEventHandler {
     /*************************Gestion des Load et Save*******************************************/
 
     public void  loadCase(){
-        String fileNameLoad = "save.bin";
+        String fileNameLoad ;
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION){
+            fileNameLoad = fileChooser.getSelectedFile().getAbsolutePath();
+        }
+        else return;
         try {
             ArrayList<Shape> saveShapes = new ArrayList<>();
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileNameLoad));
@@ -220,7 +226,13 @@ public abstract class AbstractEventHandler {
     }
 
     public void saveCase(){
-        String fileNameSave = "save.bin";
+        String fileNameSave ;
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION){
+            fileNameSave = fileChooser.getSelectedFile().getAbsolutePath();
+        }
+        else return;
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileNameSave));
             observer.Unselect();
