@@ -264,7 +264,7 @@ public abstract class AbstractEventHandler {
     }
 
     public void refreshToolBarSave(){
-        String fileToolbarSave = "src/main/java/xshape/save/saveTollBar.bin";
+        String fileToolbarSave = "./saveTollBar.bin";
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileToolbarSave));
             os.writeObject(renderer.getShapeToolbar().getToolbarShapes());
