@@ -51,13 +51,16 @@ public class AwtRenderer extends Renderer {
     }
 
     @Override
-    public void createContextMenu(Observer observer) {
-        if (_contextMenu!= null)
-            _contextMenu.getMenu().setVisible(false);
-
+    public void createContextMenu(Observer observer, boolean rightClick) {
         _contextMenu = new ShapeContextMenuAWT();
 
         _contextMenu.showMenu(canva,this,observer);
+    }
+
+    @Override
+    public void hideMenu() {
+        if (_contextMenu!= null)
+            _contextMenu.getMenu().setVisible(false);
     }
 
     @Override

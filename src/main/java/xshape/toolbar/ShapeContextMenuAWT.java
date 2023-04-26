@@ -133,8 +133,10 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
                 }
             }
         });
+
         openEditBox(r, r.getSelectedShapes(), (JMenuItem) menu.getComponent(0));
         de_group(r, (JMenuItem) menu.getComponent(1), observer);
+
 
     }
 

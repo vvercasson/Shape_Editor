@@ -120,7 +120,7 @@ public abstract class Renderer {
 
     public abstract void refreshCanva();
 
-    public abstract void createContextMenu(Observer observer);
+    public abstract void createContextMenu(Observer observer,boolean rightClick);
 
     /*
      * Function that says what to be displayed on open
@@ -173,4 +173,6 @@ public abstract class Renderer {
             s.drawInCanva(this);
         }
     }
+
+    public abstract void hideMenu();
 }

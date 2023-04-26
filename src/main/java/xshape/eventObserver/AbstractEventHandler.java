@@ -57,7 +57,7 @@ public abstract class AbstractEventHandler {
         if (rightClick && !getRenderer().getSelectedShapes().isEmpty()) {
             System.out.println("Right click");
             if (shapeClicked) {
-                getRenderer().createContextMenu(observer);
+                getRenderer().createContextMenu(observer,rightClick);
             }
         }
         // ! DIDNT CLICK ON A SHAPE so we clear
@@ -88,6 +88,7 @@ public abstract class AbstractEventHandler {
 
     // *****************HandlePressed************************************************//
     public void handlePressed(double x, double y) {
+        renderer.hideMenu();
         originClicked = new Point2D.Double(x, y);
         Shape s;
         // ! Toolbar drag n drop
