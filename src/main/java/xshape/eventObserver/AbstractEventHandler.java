@@ -172,8 +172,8 @@ public abstract class AbstractEventHandler {
             } else if (renderer.getSelectedToolBarShape()!=null) {
                 renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
             }
+            observer.updateUnselectedShape(renderer.getSelectedShapes().get(0));
         }
-        observer.updateUnselectedShape(renderer.getSelectedShapes().get(0));
         renderer.refreshCanva();
     }
 
