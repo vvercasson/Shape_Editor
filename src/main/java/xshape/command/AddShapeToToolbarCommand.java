@@ -1,29 +1,29 @@
 package xshape.command;
 
-import xshape.factory.ShapeFactory;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 
-public class AddShapeCommand implements ICommand {
-
+public class AddShapeToToolbarCommand implements ICommand {
     private Shape _shape;
     private Renderer _renderer;
 
-    public AddShapeCommand(Renderer r, Shape s) {
+    public AddShapeToToolbarCommand(Renderer r, Shape s) {
         _renderer = r;
         _shape = s;
     }
 
     @Override
     public void apply() {
-        _renderer.getShapes().add(_shape);
+        _renderer.getShapeToolbar().addShapeToToolbar(_shape.resize(150));
         _renderer.refreshCanva();
     }
 
     @Override
     public void undo() {
-        _renderer.getShapes().remove(_shape);
+        _renderer.getShapeToolbar().getToolbarShapes().remove(_shape);
+        _renderer.getShapeToolbar().removedShapeFromToolbar();
         _renderer.refreshCanva();
+
     }
 
 }

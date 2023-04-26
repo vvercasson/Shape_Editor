@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import xshape.toolbar.Button;
+import xshape.command.AddShapeCommand;
+import xshape.command.AddShapeToToolbarCommand;
 import xshape.command.Invoker;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
@@ -60,7 +62,7 @@ public abstract class AbstractEventHandler {
         if (rightClick && !getRenderer().getSelectedShapes().isEmpty()) {
             System.out.println("Right click");
             if (shapeClicked) {
-                getRenderer().createContextMenu(observer,rightClick);
+                getRenderer().createContextMenu(observer, rightClick);
             }
         }
         // ! DIDNT CLICK ON A SHAPE so we clear
@@ -101,8 +103,8 @@ public abstract class AbstractEventHandler {
             Shape s2 = s.clone();
             observer.Unselect();
             observer.updateSelectedShape(s2);
-            renderer.getShapes().add(s2);
-            renderer.refreshCanva();
+            AddShapeCommand addShapeCommand = new AddShapeCommand(renderer, s2);
+            Invoker.getInstance().apply(addShapeCommand);
             return;
         }
 
@@ -145,7 +147,7 @@ public abstract class AbstractEventHandler {
             for (Shape s : renderer.getSelectedShapes()) {
                 renderer.deleteShape(s);
             }
-            if(renderer.getSelectedToolBarShape()!= null){
+            if (renderer.getSelectedToolBarShape() != null) {
                 renderer.getShapeToolbar().getToolbarShapes().remove(renderer.getSelectedToolBarShape());
                 renderer.getShapeToolbar().removedShapeFromToolbar();
                 refreshToolBarSave();
@@ -153,23 +155,26 @@ public abstract class AbstractEventHandler {
         }
         // RELEASE ON TOOLBAR
         else if (renderer.getShapeToolbar().getBackground().belongsTo(originClicked)) {
-            if(renderer.getSelectedToolBarShape()==null) {
+            if (renderer.getSelectedToolBarShape() == null) {
                 if (renderer.getSelectedShapes().size() > 1) {
                     ShapeGroup g = new ShapeGroup();
                     for (Shape s : renderer.getSelectedShapes()) {
                         System.out.println("More then one shape dropped in toolbar");
                         g.add(s);
-                        renderer.getShapeToolbar().addShapeToToolbar(g.resize(150));
-                        refreshToolBarSave();
                     }
+                    AddShapeToToolbarCommand addShapeToToolbarCommand = new AddShapeToToolbarCommand(renderer, g);
+                    Invoker.getInstance().apply(addShapeToToolbarCommand);
+                    refreshToolBarSave();
                 } else {
                     System.out.println("Only one shape selected");
-                    renderer.getShapeToolbar().addShapeToToolbar(renderer.getSelectedShapes().get(0).resize(150));
+                    AddShapeToToolbarCommand addShapeToToolbarCommand = new AddShapeToToolbarCommand(renderer,
+                            renderer.getSelectedShapes().get(0));
+                    Invoker.getInstance().apply(addShapeToToolbarCommand);
                     renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
                     refreshToolBarSave();
 
                 }
-            } else if (renderer.getSelectedToolBarShape()!=null) {
+            } else if (renderer.getSelectedToolBarShape() != null) {
                 renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
             }
             observer.updateUnselectedShape(renderer.getSelectedShapes().get(0));
@@ -201,9 +206,9 @@ public abstract class AbstractEventHandler {
         return null;
     }
 
-    public Button getButtonClicked(){
+    public Button getButtonClicked() {
         for (Button b : renderer.getButtonToolBar().getButtons()) {
-            if(b.getBackground().belongsTo(originClicked)){
+            if (b.getBackground().belongsTo(originClicked)) {
                 return b;
             }
         }
@@ -219,24 +224,27 @@ public abstract class AbstractEventHandler {
         return shiftHold;
     }
 
+    /*************************
+     * Gestion des Load et Save
+     *******************************************/
 
-    /*************************Gestion des Load et Save*******************************************/
-
-    public void  loadCase(){
-        String fileNameLoad ;
+    public void loadCase() {
+        String fileNameLoad;
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION) {
             fileNameLoad = fileChooser.getSelectedFile().getAbsolutePath();
-        }
-        else return;
+        } else
+            return;
         try {
             ArrayList<Shape> saveShapes = new ArrayList<>();
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileNameLoad));
-            saveShapes =(ArrayList<Shape>) is.readObject();
-            /* if(saveShapes!=null){
-                System.out.println("il existe");
-            } */
+            saveShapes = (ArrayList<Shape>) is.readObject();
+            /*
+             * if(saveShapes!=null){
+             * System.out.println("il existe");
+             * }
+             */
             is.close();
             renderer.setShapes(saveShapes);
         } catch (Exception e) {
@@ -244,31 +252,31 @@ public abstract class AbstractEventHandler {
         }
     }
 
-    public void saveCase(){
-        String fileNameSave ;
+    public void saveCase() {
+        String fileNameSave;
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION) {
             fileNameSave = fileChooser.getSelectedFile().getAbsolutePath();
-        }
-        else return;
+        } else
+            return;
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileNameSave));
             observer.Unselect();
             os.writeObject(renderer.getShapes());
-            os.close(  );
+            os.close();
         } catch (Exception e) {
             System.out.println("Problème avec le Save");
         }
         System.out.println("done saving");
     }
 
-    public void refreshToolBarSave(){
+    public void refreshToolBarSave() {
         String fileToolbarSave = "./saveTollBar.bin";
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileToolbarSave));
             os.writeObject(renderer.getShapeToolbar().getToolbarShapes());
-            os.close(  );
+            os.close();
             System.out.println("ShapeToolBar saved");
         } catch (Exception e) {
             System.out.println("Problème avec le Save toolbar");
