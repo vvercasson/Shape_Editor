@@ -147,33 +147,29 @@ public abstract class AbstractEventHandler {
             }
             if(renderer.getSelectedToolBarShape()!= null){
                 renderer.getShapeToolbar().getToolbarShapes().remove(renderer.getSelectedToolBarShape());
+                renderer.getShapeToolbar().removedShapeFromToolbar();
                 refreshToolBarSave();
             }
         }
         // RELEASE ON TOOLBAR
         else if (renderer.getShapeToolbar().getBackground().belongsTo(originClicked)) {
-            if(renderer.getSelectedToolBarShape()==null){
-                if (renderer.getSelectedShapes().size() > 1) {
-                    ShapeGroup g = new ShapeGroup();
-                    for (Shape s : renderer.getSelectedShapes()) {
-                        System.out.println("More then one shape dropped in toolbar");
-                        g.add(s);
-                        renderer.getShapeToolbar().addShapeToToolbar(g.resize(150));
-                        refreshToolBarSave();
-                    }
-                } else {
-                    System.out.println("Only one shape selected");
-                    renderer.getShapeToolbar().addShapeToToolbar(renderer.getSelectedShapes().get(0).resize(150));
-                    renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
+            if (renderer.getSelectedShapes().size() > 1) {
+                ShapeGroup g = new ShapeGroup();
+                for (Shape s : renderer.getSelectedShapes()) {
+                    System.out.println("More then one shape dropped in toolbar");
+                    g.add(s);
+                    renderer.getShapeToolbar().addShapeToToolbar(g.resize(150));
                     refreshToolBarSave();
-    
-                }  
-            }
-            else if (renderer.getSelectedToolBarShape()!=null){
+                }
+            } else {
+                System.out.println("Only one shape selected");
+                renderer.getShapeToolbar().addShapeToToolbar(renderer.getSelectedShapes().get(0).resize(150));
                 renderer.getShapes().remove(renderer.getSelectedShapes().get(0));
+                refreshToolBarSave();
+
             }
         }
-        observer.updateUnselectedShape(renderer.getSelectedShapes().get(0));
+
         renderer.refreshCanva();
     }
 
@@ -264,7 +260,7 @@ public abstract class AbstractEventHandler {
     }
 
     public void refreshToolBarSave(){
-        String fileToolbarSave = "./saveTollBar.bin";
+        String fileToolbarSave = "src/main/java/xshape/save/saveTollBar.bin";
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileToolbarSave));
             os.writeObject(renderer.getShapeToolbar().getToolbarShapes());

@@ -166,8 +166,8 @@ public abstract class Renderer {
             loadShapeToolBar();
             if (_tb.getToolbarShapes().isEmpty()){
                 System.out.println("tool bar shapes empty : adding default shapes");
-                _tb.addShapeToToolbar(_factory.createCustomRectangle(10d, _tb.getNewShapePosition(), 20d, 40d, MyColor.RED, false));
-                _tb.addShapeToToolbar(_factory.createDefaultPolygon(10, _tb.getNewShapePosition(), 50, 40, MyColor.BLACK));
+                _tb.addShapeToToolbar(_factory.createCustomRectangle(0d, _tb.getNewShapePosition(), 20d, 40d, MyColor.RED, false));
+                _tb.addShapeToToolbar(_factory.createDefaultPolygon(0, _tb.getNewShapePosition(), 50, 40, MyColor.BLACK));
             }
             Rectangle r = _factory.createCustomRectangle(100d, 100d, 100d, 100d, c1, false);
 

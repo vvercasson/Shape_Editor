@@ -1,5 +1,6 @@
 package xshape.toolbar;
 
+import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
@@ -16,7 +17,7 @@ public class ShapeToolBar extends ShapeGroup {
     private Trash _trash;
 
     // Positionning
-    private double shapeSpacing = 40;
+    private double shapeSpacing = 30;
     private double _newShapePos;
     private double _xPositionTB = 10;
 
@@ -37,13 +38,21 @@ public class ShapeToolBar extends ShapeGroup {
 
     // Toolbar shapes management
     public void addShapeToToolbar(Shape s) {
-        _newShapePos += shapeSpacing; // 60 sera la height
-        Point2D.Double p = new Point2D.Double(_xPositionTB, _newShapePos);
+        Point2D.Double p = null;
+        if(!_shapesTB.isEmpty())
+            shapeSpacing = 60;
+
+        if(s instanceof Rectangle)
+            p = new Point2D.Double(_xPositionTB, _newShapePos);
+        else{
+            p = new Point2D.Double(_xPositionTB+20, _newShapePos);
+        }
         _shapesTB.add(s.setPos(p));
+        _newShapePos += shapeSpacing; // 60 sera la height
     }
 
-    public void removeShapeFromToolbar(Shape s) {
-        super.remove(s);
+    public void removedShapeFromToolbar() {
+        _newShapePos -= shapeSpacing;
     }
 
     // GETTERS
