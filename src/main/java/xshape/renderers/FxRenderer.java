@@ -52,6 +52,7 @@ public class FxRenderer extends Renderer {
         draw();
     }
 
+
     @Override
     public void drawRectangle(Rectangle r) {
         drawPolygon(r);
@@ -119,15 +120,18 @@ public class FxRenderer extends Renderer {
         bar.setNewPos(bar.getNewPos() + 60);
     }
 
-    public void createContextMenu(Observer observer){
-        if (_contextMenu!= null){
-            _contextMenu.getMenu().hide();
-
-        }
+    @Override
+    public void createContextMenu(Observer observer,boolean rightClick){
 
         _contextMenu = new ShapeContextMenuFX();
 
         _contextMenu.showMenu(_canvas,this,observer);
+    }
+
+    @Override
+    public void hideMenu() {
+        if (_contextMenu!= null)
+            _contextMenu.getMenu().hide();
     }
 
 

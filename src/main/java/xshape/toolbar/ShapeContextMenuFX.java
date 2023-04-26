@@ -29,7 +29,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
     }
 
     public void de_group(FxRenderer r, MenuItem item, Observer observer){
-        item.setOnAction(event -> {
+        item.setOnAction( event -> {
             observer.de_group_shapes();
             r.refreshCanva();
         });
@@ -37,6 +37,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
 
     public void openEditBox(FxRenderer renderer, ArrayList<Shape> s, MenuItem item){
         item.setOnAction(event -> {
+            System.out.println("je passe dans le create");
             Alert box = new Alert(Alert.AlertType.NONE);
             box.setTitle(item.getText());
 
@@ -116,9 +117,12 @@ public class ShapeContextMenuFX extends AbstractSCMenu{
     }
 
     public void showMenu(Canvas c, FxRenderer r, Observer observer) {
-        c.setOnContextMenuRequested(e -> menu.show(c, e.getScreenX(), e.getScreenY()));
-        openEditBox(r,r.getSelectedShapes(),menu.getItems().get(0));
-        de_group(r,menu.getItems().get(1),observer);
-
+        c.setOnContextMenuRequested(e -> {
+            if (!r.getSelectedShapes().isEmpty()) {
+                menu.show(c, e.getScreenX(), e.getScreenY());
+                openEditBox(r, r.getSelectedShapes(), menu.getItems().get(0));
+                de_group(r, menu.getItems().get(1), observer);
+            }
+        });
     }
 }
