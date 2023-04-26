@@ -36,6 +36,13 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
         });
     }
 
+    public void group_shapes(FxRenderer r, MenuItem item, Observer observer){
+        item.setOnAction(event -> {
+            observer.group_shapes();
+            r.refreshCanva();
+        });
+    }
+
     public void setRotateMenu(TextField rotateInput, ArrayList<Shape> s) {
         for (Shape shape : s) {
             if (!rotateInput.getText().isEmpty()) {
@@ -68,15 +75,16 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
             g.setPromptText("G");
             b.setPrefWidth(40);
             b.setPromptText("B");
-
             grid.add(new Label("Choose the shape color (RGB format) :"), 0, 0);
             grid.add(r, 1, 1);
             grid.add(g, 2, 1);
             grid.add(b, 3, 1);
 
+
+            // ROTATION
             TextField rotateInput = new TextField();
             rotateInput.setPrefWidth(40);
-            grid.add(new Label("Choose the shape color (RGB format) :"), 0, 2);
+            grid.add(new Label("Choose the shape orientation (degree) :"), 0, 2);
             grid.add(rotateInput, 1, 3);
 
             box.getButtonTypes().add(new ButtonType("Apply", ButtonBar.ButtonData.APPLY));
@@ -133,6 +141,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
                 menu.show(c, e.getScreenX(), e.getScreenY());
                 openEditBox(r, r.getSelectedShapes(), menu.getItems().get(0));
                 de_group(r, menu.getItems().get(1), observer);
+                group_shapes(r,menu.getItems().get(2),observer);
             }
         });
     }
