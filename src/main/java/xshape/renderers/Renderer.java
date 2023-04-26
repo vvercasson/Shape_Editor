@@ -23,12 +23,12 @@ public abstract class Renderer {
     /*
      * Rendering attributes
      */
-    private ArrayList<Shape> _shapes = new ArrayList<Shape>();
+    private ArrayList<Shape> _shapes = new ArrayList<>();
     private ShapeToolBar _tb = new ShapeToolBar();
     private ButtonToolBar _btb = new ButtonToolBar();
     private ShapeFactory _factory = new ShapesFactory();
 
-    private ArrayList<Shape> _selectedShapes = new ArrayList<Shape>();
+    private ArrayList<Shape> _selectedShapes = new ArrayList<>();
     private Shape _shapeToolBarSelected = null ;
 
 
@@ -136,7 +136,7 @@ public abstract class Renderer {
     public void drawButtonToolBar(ButtonToolBar btb) {
         for (Button b : btb.getButtons()) {
             drawRectangle(b.getBackground());
-            Point2D textPosition = new Point2D.Double(b.getPosition().getX() + b.getWidth() / 4,
+            Point2D textPosition = new Point2D.Double(b.getPosition().getX() + (double) b.getWidth() / 4,
                     b.getPosition().getY() + b.getHeight() / 1.5);
             drawText(textPosition, b.getLabel(), MyColor.BLACK);
         }
@@ -173,7 +173,7 @@ public abstract class Renderer {
 
             // Shape pol = _factory.createDefaultPolygon(100, 100, 50, 40, MyColor.BLACK);
 
-            ArrayList<Point2D> points = new ArrayList<Point2D>();
+            ArrayList<Point2D> points = new ArrayList<>();
             points.add(new Point2D.Double(300, 300));
             points.add(new Point2D.Double(350, 300));
             points.add(new Point2D.Double(350, 350));
@@ -197,10 +197,6 @@ public abstract class Renderer {
             // _shapes.add(r);
             init = true;
         }
-
-        // for (Shape s : _tb.get_shapesTB()) {
-        // s.drawInCanva(this);
-        // }
 
         drawButtonToolBar(_btb);
 
