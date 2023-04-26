@@ -75,15 +75,16 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
             g.setPromptText("G");
             b.setPrefWidth(40);
             b.setPromptText("B");
-
             grid.add(new Label("Choose the shape color (RGB format) :"), 0, 0);
             grid.add(r, 1, 1);
             grid.add(g, 2, 1);
             grid.add(b, 3, 1);
 
+
+            // ROTATION
             TextField rotateInput = new TextField();
             rotateInput.setPrefWidth(40);
-            grid.add(new Label("Choose the shape color (RGB format) :"), 0, 2);
+            grid.add(new Label("Choose the shape orientation (degree) :"), 0, 2);
             grid.add(rotateInput, 1, 3);
 
             box.getButtonTypes().add(new ButtonType("Apply", ButtonBar.ButtonData.APPLY));

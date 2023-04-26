@@ -63,7 +63,7 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
                 panel.add(b);
 
                 // ROTATION
-                panel.add(new JLabel("Choose the rotation (degree) :"));
+                panel.add(new JLabel("Choose the shape orientation (degree) :"));
                 JTextField rotationInput = new JTextField(5);
                 panel.add(rotationInput);
 
