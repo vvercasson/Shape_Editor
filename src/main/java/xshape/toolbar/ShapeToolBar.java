@@ -1,6 +1,5 @@
 package xshape.toolbar;
 
-import xshape.shapes.Polygon;
 import xshape.shapes.Rectangle;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 public class ShapeToolBar extends ShapeGroup {
 
     // ToolBar Components
-    private Rectangle background = new Rectangle(0, 0, 500, 80, MyColor.GRAY, false);
+    private final Rectangle background = new Rectangle(0, 0, 500, 80, MyColor.GRAY, false);
     private ArrayList<Shape> _shapesTB = new ArrayList<>();
     private Trash _trash;
 
