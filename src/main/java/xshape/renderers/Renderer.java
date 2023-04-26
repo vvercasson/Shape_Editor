@@ -2,6 +2,7 @@ package xshape.renderers;
 
 import java.awt.geom.Point2D;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
@@ -97,17 +98,21 @@ public abstract class Renderer {
     }
 
     public void loadShapeToolBar(){
-        String fileToolbarSave = "src/main/java/xshape/Save/saveTollBar.bin";
+        String fileToolbarSave = "./saveTollBar.bin";
         try {
             ArrayList<Shape> savedShapes = new ArrayList<>();
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileToolbarSave));
             savedShapes =(ArrayList<Shape>) is.readObject();
             is.close();
             setShapeToolBar(savedShapes);
+        } catch (FileNotFoundException e){
+            System.out.println("Pas de fichier save pour la tool bar, Tool bar par défaut");
+        
         } catch (Exception e) {
             System.out.println("Problème avec le Load tool bar :" + e);
-        }
+        }   
     }
+            
 
     public void deleteShape(Shape s) {
         _shapes.remove(s);
