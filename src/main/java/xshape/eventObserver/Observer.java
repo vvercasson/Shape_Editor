@@ -13,4 +13,6 @@ public interface Observer {
     void updateShapePosition(int x, int y);
 
     void de_group_shapes();
+
+    void group_shapes();
 }

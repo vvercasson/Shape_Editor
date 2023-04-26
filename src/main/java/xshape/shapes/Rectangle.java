@@ -84,6 +84,6 @@ public class Rectangle extends Polygon {
      */
     @Override
     public Shape clone() {
-        return new Rectangle(getX(), getY(), getHeight(), getWidth(), getColor(), isRounded());
+        return new Polygon(getNbPoints(), getPoints());
     }
 }

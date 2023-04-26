@@ -57,4 +57,14 @@ public class CanvaObserver implements Observer {
         }
     }
 
+    @Override
+    public void group_shapes(){
+        ShapeGroup newShapeGroup = new ShapeGroup();
+        for (Shape s : renderer.getSelectedShapes()){
+            newShapeGroup.add(s.clone());
+            renderer.getShapes().remove(s);
+        }
+        renderer.getShapes().add(newShapeGroup);
+    }
+
 }

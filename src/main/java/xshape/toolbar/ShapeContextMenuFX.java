@@ -36,6 +36,13 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
         });
     }
 
+    public void group_shapes(FxRenderer r, MenuItem item, Observer observer){
+        item.setOnAction(event -> {
+            observer.group_shapes();
+            r.refreshCanva();
+        });
+    }
+
     public void setRotateMenu(TextField rotateInput, ArrayList<Shape> s) {
         for (Shape shape : s) {
             if (!rotateInput.getText().isEmpty()) {
@@ -133,6 +140,7 @@ public class ShapeContextMenuFX extends AbstractSCMenu {
                 menu.show(c, e.getScreenX(), e.getScreenY());
                 openEditBox(r, r.getSelectedShapes(), menu.getItems().get(0));
                 de_group(r, menu.getItems().get(1), observer);
+                group_shapes(r,menu.getItems().get(2),observer);
             }
         });
     }

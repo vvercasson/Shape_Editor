@@ -28,6 +28,17 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
         return menu;
     }
 
+    public void group_shapes(AwtRenderer r, JMenuItem item, Observer observer){
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                observer.group_shapes();
+                r.refreshCanva();
+            }
+        };
+        item.addActionListener(actionListener);
+    }
+
     public void de_group(AwtRenderer r, JMenuItem item, Observer observer) {
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -139,6 +150,7 @@ public class ShapeContextMenuAWT extends AbstractSCMenu {
 
         openEditBox(r, r.getSelectedShapes(), (JMenuItem) menu.getComponent(0));
         de_group(r, (JMenuItem) menu.getComponent(1), observer);
+        group_shapes(r,(JMenuItem) menu.getComponent(2), observer);
 
     }
 
