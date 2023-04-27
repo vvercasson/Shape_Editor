@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import xshape.toolbar.Button;
 import xshape.command.AddShapeCommand;
 import xshape.command.AddShapeToToolbarCommand;
+import xshape.command.DeleteShapeCommand;
 import xshape.command.Invoker;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
@@ -145,7 +146,8 @@ public abstract class AbstractEventHandler {
         // RELEASE ON TRASH
         if (renderer.getShapeToolbar().getTrash().getShape().belongsTo(originClicked)) {
             for (Shape s : renderer.getSelectedShapes()) {
-                renderer.deleteShape(s);
+                DeleteShapeCommand deleteShapeCommand = new DeleteShapeCommand(renderer, s);
+                Invoker.getInstance().apply(deleteShapeCommand);
             }
             if (renderer.getSelectedToolBarShape() != null) {
                 renderer.getShapeToolbar().getToolbarShapes().remove(renderer.getSelectedToolBarShape());

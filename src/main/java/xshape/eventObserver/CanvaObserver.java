@@ -1,11 +1,12 @@
 package xshape.eventObserver;
 
+import xshape.command.Invoker;
+import xshape.command.UngroupCommand;
 import xshape.renderers.Renderer;
 import xshape.shapes.Shape;
 import xshape.shapes.ShapeGroup;
 
 import java.awt.geom.Point2D;
-import java.util.Iterator;
 
 public class CanvaObserver implements Observer {
     Renderer renderer;
@@ -43,22 +44,14 @@ public class CanvaObserver implements Observer {
 
     @Override
     public void de_group_shapes() {
-        for (Shape s : renderer.getSelectedShapes()){
-            if (s instanceof ShapeGroup) {
-                Iterator<Shape> iterator = ((ShapeGroup) s).iterator();
-                while (iterator.hasNext()) {
-                    Shape shapeOfGroup = iterator.next();
-                    renderer.getShapes().add(shapeOfGroup.clone());
-                    renderer.getShapes().remove(s);
-                }
-            }
-        }
+        UngroupCommand ungroupCommand = new UngroupCommand(renderer, renderer.getSelectedShapes());
+        Invoker.getInstance().apply(ungroupCommand);
     }
 
     @Override
-    public void group_shapes(){
+    public void group_shapes() {
         ShapeGroup newShapeGroup = new ShapeGroup();
-        for (Shape s : renderer.getSelectedShapes()){
+        for (Shape s : renderer.getSelectedShapes()) {
             newShapeGroup.add(s.clone());
             renderer.getShapes().remove(s);
         }
