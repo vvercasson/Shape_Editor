@@ -32,10 +32,11 @@ public class UngroupCommand implements ICommand {
                     Shape copy = shapeOfGroup.clone();
                     copy.setOpacity(255);
                     _renderer.getShapes().add(copy);
-                    _renderer.getShapes().remove(shapeOfGroup);
+                    _renderer.getShapes().remove(s);
                 }
             }
         }
+        _renderer.getShapes().remove(_oldShapeGroup);
     }
 
     @Override

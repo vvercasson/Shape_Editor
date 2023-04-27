@@ -18,6 +18,7 @@ public class AddShapeToToolbarCommand implements ICommand {
 
     @Override
     public void apply() {
+        _shape.setOpacity(255);
         _renderer.getShapeToolbar().addShapeToToolbar(_shape.resize(150));
         _renderer.refreshCanva();
     }
