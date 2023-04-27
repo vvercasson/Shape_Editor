@@ -3,6 +3,8 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
+import xshape.command.ChangeShapeColor;
+import xshape.command.Invoker;
 import xshape.factory.ShapesFactory;
 import xshape.shapes.*;
 import xshape.utils.MyColor;
@@ -56,6 +58,25 @@ public class unitTest {
 
         // Checking
         assert (shapeCounter == expectedNumberOfShape);
+    }
+
+    @Test
+    public void undoRedoTest() {
+        ShapesFactory f = new ShapesFactory();
+        Shape s = f.createDefaultRectangle(0, 0);
+        assert (s.getColor() == MyColor.RED);
+
+        ChangeShapeColor c = new ChangeShapeColor(s, MyColor.BLUE);
+        Invoker.getInstance().apply(c);
+
+        assert (s.getColor() == MyColor.BLUE);
+
+        Invoker.getInstance().undo();
+        assert (s.getColor() == MyColor.RED);
+
+        Invoker.getInstance().redo();
+        assert (s.getColor() == MyColor.BLUE);
+
     }
 
 }
